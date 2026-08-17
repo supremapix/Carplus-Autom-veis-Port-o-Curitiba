@@ -1,73 +1,73 @@
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
+import { Container } from '../ui/Container';
+import { SectionHeading } from '../ui/SectionHeading';
 
 export function HomeFAQ() {
   const faqs = [
     {
-      q: 'Como funciona o processo de compra de um veículo na Carplus Autos?',
-      a: 'Você pode escolher o modelo no estoque online e entrar em contato pelo WhatsApp ou visitar nossa loja física no bairro Portão. Realizamos o atendimento, apresentação completa do veículo, esclarecimento de dúvidas e condução de todo o processo de transferência documental.',
+      q: 'Como funciona o processo de compra de um seminovo na Carplus Autos?',
+      a: 'Você escolhe o modelo no estoque online e entra em contato via WhatsApp ou nos visita na loja física no bairro Portão. Apresentamos todo o histórico, laudo pericial cautelar, realizamos test-drive e cuidamos de toda a transferência documental com total transparência.',
     },
     {
-      q: 'Posso dar meu carro usado como parte do pagamento (troca)?',
-      a: 'Sim. Aceitamos veículos seminovos na troca mediante avaliação presencial ou prévia pelo site. Avaliamos o estado de conservação, histórico, quilometragem e documentação do seu veículo usado para abatimento no valor do modelo escolhido.',
+      q: 'Posso dar meu carro usado como parte do pagamento (troca ou troco na troca)?',
+      a: 'Sim! Avaliamos seu veículo seminovo com base no valor de mercado real de Curitiba. Você pode utilizar seu carro como entrada e financiar a diferença, ou se o seu seminovo valer mais, devolvemos a diferença em dinheiro na hora (troco na troca).',
     },
     {
-      q: 'Como solicito uma simulação de financiamento?',
-      a: 'Basta acessar a página de Financiamento ou clicar no botão de simulação no veículo desejado, preencher seus dados básicos de contato e nossa equipe entrará em contato para apresentar as opções de planos e prazos disponíveis.',
+      q: 'Como funciona a simulação e aprovação de financiamento?',
+      a: 'Temos parceria direta com os principais bancos e financeiras (Santander, BV, Itaú, Bradesco, PAN). Você envia CPF, data de nascimento e telefone e retornamos em minutos com as melhores condições em até 60 parcelas.',
     },
     {
-      q: 'O que é o serviço de consignação de veículos?',
-      a: 'Na consignação, você deixa seu carro em nossa loja física e nós cuidamos de toda a divulgação profissional, fotos, atendimento aos interessados e negociação segura, permitindo que você venda sem se expor diretamente a estranhos.',
+      q: 'Todos os veículos do estoque possuem garantia e laudo pericial?',
+      a: 'Sim. Todos os carros do estoque da Carplus Autos passam por rigorosa inspeção técnica e laudo cautelar 100% aprovado, além de garantia de 90 dias para motor e câmbio conforme o Código de Defesa do Consumidor.',
     },
     {
-      q: 'Quais documentos são necessários para a negociação?',
-      a: 'Geralmente são solicitados documento de identificação oficial com foto (RG/CNH), comprovante de residência atualizado e o documento do veículo (CRLV-e / ATPV-e) caso haja troca ou venda.',
+      q: 'O que é a Consignação Segura da Carplus Autos?',
+      a: 'Na consignação, você deixa seu carro em nosso showroom na Av. Arthur Bernardes. Cuidamos das fotos profissionais, anúncios em portais especializados, atendimento e recebimento de propostas, garantindo que você venda seu veículo pelo melhor preço com total segurança e sem riscos.',
     },
     {
       q: 'Onde a Carplus Autos está localizada em Curitiba?',
-      a: 'Estamos na Avenida Presidente Arthur da Silva Bernardes, 1323, no bairro Portão, em Curitiba/PR. Contamos com espaço físico integrado para atendimento e estacionamento.',
-    },
-    {
-      q: 'Como agendar uma visita ou test-drive?',
-      a: 'Você pode clicar no botão de WhatsApp em qualquer veículo do estoque para falar diretamente com um consultor e agendar o melhor horário para sua visita.',
+      a: 'Estamos localizados na Avenida Presidente Arthur da Silva Bernardes, 1323, no bairro Portão, em Curitiba - PR (CEP 80320-300), com estacionamento próprio e fácil acesso.',
     },
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-slate-50 border-t border-slate-200">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 mb-2">
-            <span className="w-2 h-4 bg-[#F59C00] rounded-xs inline-block" />
-            <span className="text-xs font-display font-bold uppercase tracking-widest text-[#d97706]">
-              TIRA-DÚVIDAS
-            </span>
+    <section className="py-16 sm:py-24 bg-[#FAFAFA] border-b border-[#E0E0E0]">
+      <Container>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-14">
+            <SectionHeading
+              align="center"
+              kicker="TIRA-DÚVIDAS"
+              title={
+                <>
+                  PERGUNTAS <span className="text-[#F59C00] italic">FREQUENTES</span>
+                </>
+              }
+              subtitle="Tire suas dúvidas sobre compra, venda, troca, financiamento e consignação."
+            />
           </div>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl uppercase text-slate-900 tracking-wide">
-            PERGUNTAS FREQUENTES
-          </h2>
-          <p className="text-sm text-slate-600 mt-2">
-            Respostas para as principais dúvidas sobre compra, venda, troca e consignação.
-          </p>
-        </div>
 
-        <div className="space-y-3.5">
-          {faqs.map((faq, index) => (
-            <details
-              key={index}
-              className="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs transition-all [&_summary::-webkit-details-marker]:hidden"
-            >
-              <summary className="flex items-center justify-between p-5 sm:p-6 text-sm sm:text-base font-bold text-slate-900 cursor-pointer select-none hover:text-[#d97706] transition-colors">
-                <span className="pr-4">{faq.q}</span>
-                <ChevronDown className="w-5 h-5 text-[#F59C00] shrink-0 transition-transform duration-300 group-open:rotate-180" />
-              </summary>
-              <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
-                {faq.a}
-              </div>
-            </details>
-          ))}
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <details
+                key={index}
+                className="group bg-white border border-[#E0E0E0] rounded-2xl overflow-hidden shadow-xs transition-all [&_summary::-webkit-details-marker]:hidden"
+              >
+                <summary className="flex items-center justify-between p-6 text-base sm:text-lg font-bold text-[#121212] cursor-pointer select-none hover:text-[#F59C00] transition-colors">
+                  <span className="pr-4 leading-snug">{faq.q}</span>
+                  <div className="w-8 h-8 rounded-full bg-[#FAFAFA] group-hover:bg-[#F59C00]/20 flex items-center justify-center shrink-0 transition-colors">
+                    <ChevronDown className="w-5 h-5 text-[#F59C00] transition-transform duration-300 group-open:rotate-180" />
+                  </div>
+                </summary>
+                <div className="px-6 pb-6 pt-2 text-base text-[#666666] leading-relaxed border-t border-[#F2F2F2]">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

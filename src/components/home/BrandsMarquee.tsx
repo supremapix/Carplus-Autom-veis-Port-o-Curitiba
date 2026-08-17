@@ -4,37 +4,33 @@ import { Link } from 'react-router-dom';
 export function BrandsMarquee() {
   const brands = [
     'TOYOTA',
-    'HONDA',
+    'LAND ROVER',
+    'BMW',
+    'NISSAN',
+    'FORD',
     'VOLKSWAGEN',
     'CHEVROLET',
     'HYUNDAI',
     'JEEP',
-    'FIAT',
-    'NISSAN',
-    'RENAULT',
-    'BMW',
-    'MERCEDES-BENZ',
-    'FORD',
-    'MITSUBISHI',
+    'HONDA',
     'AUDI',
-    'PEUGEOT',
-    'CITROËN',
+    'MERCEDES-BENZ',
   ];
 
   return (
-    <div className="bg-white border-b border-slate-200/80 py-3.5 overflow-hidden select-none shadow-xs">
+    <div className="bg-black border-y border-[#2E2E2E] py-4 overflow-hidden select-none">
       <div className="relative flex overflow-x-hidden">
-        <div className="animate-marquee flex items-center gap-8 whitespace-nowrap">
-          {brands.concat(brands).map((brand, index) => (
+        <div className="animate-marquee flex items-center gap-10 whitespace-nowrap">
+          {brands.concat(brands).concat(brands).map((brand, index) => (
             <Link
               key={index}
-              to={`/estoque?marca=${brand.charAt(0) + brand.slice(1).toLowerCase()}`}
-              className="flex items-center gap-8 text-slate-500 hover:text-[#d97706] transition-colors"
+              to={`/estoque?marca=${encodeURIComponent(brand.charAt(0) + brand.slice(1).toLowerCase())}`}
+              className="flex items-center gap-10 text-[#666666] hover:text-[#F59C00] transition-colors group"
             >
-              <span className="font-display font-bold text-xs sm:text-sm tracking-widest text-slate-700 hover:text-slate-950">
+              <span className="font-display font-bold text-sm sm:text-base tracking-widest italic uppercase group-hover:text-white transition-colors">
                 {brand}
               </span>
-              <span className="text-[#F59C00] text-xs opacity-70">◆</span>
+              <span className="text-[#F59C00] text-xs opacity-60">◆</span>
             </Link>
           ))}
         </div>

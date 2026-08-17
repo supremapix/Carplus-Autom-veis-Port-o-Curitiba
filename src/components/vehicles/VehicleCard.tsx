@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Gauge, Fuel, Cog, ArrowRight, RefreshCw } from 'lucide-react';
+import { Calendar, Gauge, Fuel, Cog, ArrowRight, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
 import { formatPrice, formatKm } from '../../lib/utils';
 
-interface VehicleCardProps {
+export interface VehicleCardProps {
   vehicle: Vehicle;
   key?: React.Key;
 }
 
 export function VehicleCard({ vehicle }: VehicleCardProps) {
-  const coverImage = vehicle.images.find((img) => img.isCover)?.url || vehicle.images[0]?.url || 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=1200';
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const coverImg = vehicle.images.find((img) => img.isCover) || vehicle.images[0];
+  const coverUrl = coverImg?.url || '/images/veiculos/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024/01.jpg';
+  
+  // Try WebP path if url is .jpg
+  const webpUrl = coverUrl.endsWith('.jpg') ? coverUrl.replace('.jpg', '.webp') : coverUrl;
+  const webpSrcset = coverUrl.endsWith('.jpg')
+    ? `${coverUrl.replace('.jpg', '-400w.webp')} 400w, ${coverUrl.replace('.jpg', '-800w.webp')} 800w, ${coverUrl.replace('.jpg', '-1600w.webp')} 1600w`
+    : undefined;
+
   const isSold = vehicle.status === 'vendido';
   const isReserved = vehicle.status === 'reservado';
 
@@ -31,127 +40,146 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
     automatizado: 'Automatizado',
   };
 
-  const imageAlt = vehicle.images.find((img) => img.isCover)?.alt || `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel} ${vehicle.color} — Carplus Autos Curitiba`;
+  const imageAlt = coverImg?.alt || `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel} à Venda em Curitiba - Carplus Autos`;
 
   return (
     <Link
       to={`/estoque/${vehicle.slug}`}
-      className={`group block bg-white rounded-2xl border border-slate-200 overflow-hidden transition-all duration-300 hover:border-[#F59C00] hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5 ${
+      className={`group flex flex-col bg-white rounded-2xl border border-[#E0E0E0] overflow-hidden transition-all duration-300 hover:border-[#F59C00] hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/8 select-none ${
         isSold ? 'opacity-75 grayscale-[40%]' : ''
       }`}
     >
-      {/* Imagem do Veículo */}
-      <div className="relative aspect-[4/3] bg-slate-900 overflow-hidden">
-        <img
-          src={coverImage}
-          alt={imageAlt}
-          loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+      {/* Imagem do Veículo com Suporte a WebP e Skeleton de Carregamento */}
+      <div className="relative aspect-[4/3] bg-[#1A1A1A] overflow-hidden">
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-[#EAEAEA] animate-pulse" />
+        )}
+
+        <picture>
+          {webpSrcset && (
+            <source
+              type="image/webp"
+              srcSet={webpSrcset}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          )}
+          <img
+            src={coverUrl}
+            alt={imageAlt}
+            width={600}
+            height={450}
+            loading="lazy"
+            decoding="async"
+            onLoad={() => setImageLoaded(true)}
+            className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        </picture>
 
         {/* Badges de Destaque / Oferta / Status */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10 items-start">
+        <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-10 items-start">
           {vehicle.featured && !isSold && !isReserved && (
-            <span className="bg-[#F59C00] text-black text-[10px] font-display font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wider shadow-md">
+            <span className="bg-[#F59C00] text-black text-xs font-display font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
               DESTAQUE
             </span>
           )}
           {Boolean(vehicle.previousPrice && vehicle.previousPrice > vehicle.price) && !isSold && (
-            <span className="bg-black text-[#F59C00] border border-[#F59C00] text-[10px] font-display font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wider shadow-md">
+            <span className="bg-black text-[#F59C00] border border-[#F59C00] text-xs font-display font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
               OFERTA
             </span>
           )}
           {isReserved && (
-            <span className="bg-slate-800 text-white text-[10px] font-display font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wider shadow-md">
+            <span className="bg-[#2A2A2A] text-white text-xs font-display font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
               RESERVADO
             </span>
           )}
           {isSold && (
-            <span className="bg-slate-900 text-white text-[10px] font-display font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wider shadow-md">
+            <span className="bg-black text-white text-xs font-display font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
               VENDIDO
             </span>
           )}
         </div>
 
-        {/* Badge Aceita Troca / Cidade */}
+        {/* Badge Aceita Troca / Curitiba */}
         <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5">
           {vehicle.acceptsTrade && (
-            <span className="bg-black/80 backdrop-blur-sm text-slate-200 font-semibold text-[10px] px-2 py-0.5 rounded-md border border-slate-700 shadow-xs flex items-center gap-1">
-              <RefreshCw className="w-2.5 h-2.5 text-[#F59C00]" />
+            <span className="bg-black/85 backdrop-blur-xs text-white font-semibold text-[11px] px-2.5 py-1 rounded-full border border-[#3E3E3E] shadow-sm flex items-center gap-1.5">
+              <RefreshCw className="w-3 h-3 text-[#F59C00]" />
               <span>Aceita troca</span>
             </span>
           )}
-          <span className="bg-white/90 backdrop-blur-sm text-slate-800 font-semibold text-[10px] px-2 py-0.5 rounded-md border border-slate-200 shadow-xs">
+          <span className="bg-white/95 backdrop-blur-xs text-[#121212] font-semibold text-[11px] px-2.5 py-1 rounded-full border border-[#E0E0E0] shadow-sm">
             Curitiba/PR
           </span>
         </div>
       </div>
 
-      {/* Conteúdo & Specs */}
-      <div className="p-5 flex flex-col justify-between flex-grow">
+      {/* Conteúdo & Especificações */}
+      <div className="p-5 sm:p-6 flex flex-col justify-between flex-grow bg-white">
         <div>
           {/* Marca e Modelo */}
-          <div className="flex items-baseline justify-between gap-2">
-            <h3 className="font-display font-bold text-lg sm:text-xl text-slate-900 uppercase tracking-wide group-hover:text-[#d97706] transition-colors line-clamp-1">
-              {vehicle.brand} {vehicle.model}
-            </h3>
-          </div>
+          <h3 className="font-display font-bold text-xl sm:text-2xl text-[#121212] uppercase tracking-wide group-hover:text-[#F59C00] transition-colors line-clamp-1 leading-tight">
+            {vehicle.brand} {vehicle.model}
+          </h3>
 
           {/* Versão */}
-          <p className="text-xs text-slate-500 font-medium line-clamp-1 mt-0.5">
+          <p className="text-xs sm:text-sm text-[#666666] font-medium line-clamp-1 mt-1">
             {vehicle.version}
           </p>
 
           {/* Grid de Especificações Rápidas */}
-          <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100 text-xs text-slate-600">
-            <div className="flex items-center gap-1.5" title="Ano de Fabricação / Modelo">
-              <Calendar className="w-3.5 h-3.5 text-[#d97706] shrink-0" />
-              <span>{vehicle.yearManufacture}/{vehicle.yearModel}</span>
+          <div className="grid grid-cols-2 gap-2.5 mt-4 pt-4 border-t border-[#E0E0E0] text-xs text-[#666666]">
+            <div className="flex items-center gap-2" title="Ano de Fabricação / Modelo">
+              <Calendar className="w-4 h-4 text-[#F59C00] shrink-0" />
+              <span className="font-semibold text-[#121212]">{vehicle.yearManufacture}/{vehicle.yearModel}</span>
             </div>
 
-            <div className="flex items-center gap-1.5" title="Quilometragem">
-              <Gauge className="w-3.5 h-3.5 text-[#d97706] shrink-0" />
-              <span>{formatKm(vehicle.mileage)}</span>
+            <div className="flex items-center gap-2" title="Quilometragem">
+              <Gauge className="w-4 h-4 text-[#F59C00] shrink-0" />
+              <span className="font-semibold text-[#121212]">{formatKm(vehicle.mileage)}</span>
             </div>
 
-            <div className="flex items-center gap-1.5" title="Combustível">
-              <Fuel className="w-3.5 h-3.5 text-[#d97706] shrink-0" />
-              <span>{vehicle.fuelLabel || fuelMap[vehicle.fuel] || vehicle.fuel}</span>
+            <div className="flex items-center gap-2" title="Combustível">
+              <Fuel className="w-4 h-4 text-[#F59C00] shrink-0" />
+              <span className="font-semibold text-[#121212]">{vehicle.fuelLabel || fuelMap[vehicle.fuel] || vehicle.fuel}</span>
             </div>
 
-            <div className="flex items-center gap-1.5" title="Câmbio">
-              <Cog className="w-3.5 h-3.5 text-[#d97706] shrink-0" />
-              <span>{transMap[vehicle.transmission] || vehicle.transmission}</span>
+            <div className="flex items-center gap-2" title="Câmbio">
+              <Cog className="w-4 h-4 text-[#F59C00] shrink-0" />
+              <span className="font-semibold text-[#121212]">{transMap[vehicle.transmission] || vehicle.transmission}</span>
             </div>
           </div>
         </div>
 
         {/* Preço e CTA */}
-        <div className="mt-5 pt-3 border-t border-slate-100 flex items-end justify-between">
+        <div className="mt-5 pt-4 border-t border-[#E0E0E0] flex items-end justify-between gap-3">
           <div>
             {isSold ? (
-              <span className="text-sm font-bold text-slate-400 uppercase tracking-wider">
+              <span className="text-sm font-display font-bold text-[#666666] uppercase tracking-wider">
                 Vendido
               </span>
             ) : (
               <div>
                 {Boolean(vehicle.previousPrice && vehicle.previousPrice > vehicle.price) && (
-                  <span className="text-xs line-through text-slate-400 font-medium block">
+                  <span className="text-xs line-through text-[#999999] font-medium block">
                     De {formatPrice(vehicle.previousPrice!)}
                   </span>
                 )}
-                <span className="text-[10px] uppercase tracking-wider text-slate-400 font-medium block">Preço à vista</span>
-                <span className="font-display font-bold text-xl sm:text-2xl text-[#d97706]">
+                <span className="text-[10px] font-display font-bold uppercase tracking-wider text-[#666666] block">
+                  Preço à vista
+                </span>
+                <span className="font-display font-bold text-2xl sm:text-[28px] text-[#121212] group-hover:text-[#F59C00] transition-colors leading-none">
                   {formatPrice(vehicle.price)}
                 </span>
               </div>
             )}
           </div>
 
-          <span className="text-xs font-bold text-slate-500 group-hover:text-slate-900 flex items-center gap-1 transition-colors">
-            <span>Ver detalhes</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-[#d97706]" />
-          </span>
+          <div className="h-10 px-4 rounded-full bg-[#FAFAFA] group-hover:bg-[#F59C00] border border-[#E0E0E0] group-hover:border-[#F59C00] flex items-center gap-1.5 transition-all text-xs font-display font-bold uppercase tracking-wider text-[#121212]">
+            <span>VER</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+          </div>
         </div>
       </div>
     </Link>
@@ -160,20 +188,20 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
 
 export function VehicleCardSkeleton() {
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 animate-pulse overflow-hidden shadow-xs">
-      <div className="aspect-[4/3] bg-slate-200" />
+    <div className="bg-white rounded-2xl border border-[#E0E0E0] animate-pulse overflow-hidden shadow-xs">
+      <div className="aspect-[4/3] bg-[#F2F2F2]" />
       <div className="p-5 space-y-4">
-        <div className="h-6 bg-slate-200 rounded w-3/4" />
-        <div className="h-4 bg-slate-200/60 rounded w-1/2" />
+        <div className="h-6 bg-[#E0E0E0] rounded w-3/4" />
+        <div className="h-4 bg-[#F2F2F2] rounded w-1/2" />
         <div className="grid grid-cols-2 gap-2 pt-2">
-          <div className="h-4 bg-slate-200/40 rounded" />
-          <div className="h-4 bg-slate-200/40 rounded" />
-          <div className="h-4 bg-slate-200/40 rounded" />
-          <div className="h-4 bg-slate-200/40 rounded" />
+          <div className="h-4 bg-[#F2F2F2] rounded" />
+          <div className="h-4 bg-[#F2F2F2] rounded" />
+          <div className="h-4 bg-[#F2F2F2] rounded" />
+          <div className="h-4 bg-[#F2F2F2] rounded" />
         </div>
-        <div className="pt-3 border-t border-slate-100 flex justify-between items-center">
-          <div className="h-7 bg-slate-200 rounded w-28" />
-          <div className="h-4 bg-slate-200 rounded w-20" />
+        <div className="pt-3 border-t border-[#E0E0E0] flex justify-between items-center">
+          <div className="h-8 bg-[#E0E0E0] rounded w-32" />
+          <div className="h-8 bg-[#F2F2F2] rounded-full w-20" />
         </div>
       </div>
     </div>

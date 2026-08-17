@@ -1,91 +1,97 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Wrench, Car, ExternalLink } from 'lucide-react';
+import { Wrench, Car, ExternalLink, ArrowRight, ShieldCheck, Award } from 'lucide-react';
 import { LOGO_URL } from '../components/layout/Header';
+import { Container } from '../components/ui/Container';
+import { PageHero } from '../components/ui/PageHero';
+import { Button } from '../components/ui/Button';
 
 export function Empresa() {
   return (
-    <div className="bg-slate-50 min-h-screen py-10 sm:py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Cabeçalho */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 mb-2">
-            <span className="w-2 h-4 bg-[#F59C00] rounded-xs inline-block" />
-            <span className="text-xs font-display font-bold uppercase tracking-widest text-[#d97706]">
-              SOBRE A CARPLUS
-            </span>
-          </div>
-          <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl uppercase text-slate-900 tracking-wide">
-            A CARPLUS AUTOS
-          </h1>
-          <p className="text-sm text-slate-600 mt-3 leading-relaxed">
-            Tradição, estrutura física completa e compromisso com transparência no mercado automotivo de Curitiba.
-          </p>
-        </div>
+    <div className="bg-white min-h-screen">
+      {/* Page Hero Preto */}
+      <PageHero
+        kicker="TRADIÇÃO & TRANSPARÊNCIA"
+        title="A CARPLUS AUTOS"
+        subtitle="Estrutura física completa, showroom moderno e compromisso com procedência no mercado automotivo de Curitiba."
+        breadcrumbs={[
+          { label: 'Início', href: '/' },
+          { label: 'Sobre Nós' },
+        ]}
+      />
 
-        {/* Bloco Institucional */}
-        <div className="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 space-y-8 shadow-xl shadow-slate-900/5">
-          
-          <div className="flex items-center justify-center pb-6 border-b border-slate-100">
-            <img src={LOGO_URL} alt="Carplus Autos" className="h-14 w-auto object-contain" />
-          </div>
+      <div className="py-12 sm:py-16">
+        <Container>
+          <div className="max-w-4xl mx-auto space-y-12">
+            {/* Bloco Institucional */}
+            <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-8 sm:p-12 space-y-8 shadow-xl">
+              
+              <div className="flex items-center justify-center pb-8 border-b border-[#E0E0E0]">
+                <img src={LOGO_URL} alt="Carplus Autos Curitiba" className="h-16 w-auto object-contain" />
+              </div>
 
-          <div className="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
-            <p>
-              A <strong>Carplus Autos</strong> nasceu da sólida trajetória da <strong>Carplus Centro Automotivo</strong> em Curitiba, trazendo para o segmento de compra, venda, troca e consignação de veículos o mesmo padrão de excelência, respeito e integridade técnica que consolidou nossa marca no setor mecânico e de pneus.
-            </p>
-            <p>
-              Localizados na <strong>Avenida Presidente Arthur da Silva Bernardes, 1323</strong>, no tradicional bairro Portão, contamos com uma estrutura moderna que integra showroom de veículos seminovos selecionados e centro automotivo completo.
-            </p>
-            <p>
-              Cada veículo disponível em nosso estoque passa por critérios rigorosos de conferência documental, procedência e integridade estrutural, oferecendo a você a certeza de uma negociação segura, transparente e sem surpresas.
-            </p>
-          </div>
+              <div className="space-y-5 text-[#333333] text-base leading-relaxed">
+                <p>
+                  A <strong className="text-[#121212]">Carplus Autos</strong> nasceu da sólida trajetória do <strong className="text-[#121212]">Carplus Centro Automotivo</strong> em Curitiba, trazendo para o segmento de compra, venda, troca e consignação de seminovos o mesmo rigor técnico, respeito ao consumidor e excelência no atendimento.
+                </p>
+                <p>
+                  Localizados na <strong className="text-[#121212]">Avenida Presidente Arthur da Silva Bernardes, 1323</strong>, no tradicional bairro Portão, contamos com uma estrutura integrada com showroom de veículos seminovos selecionados e centro mecânico especializado.
+                </p>
+                <p>
+                  Cada veículo disponível em nosso estoque passa por critérios rigorosos de conferência documental, laudo pericial cautelar 100% aprovado e garantia de motor e câmbio, garantindo a você a certeza de uma negociação segura e transparente.
+                </p>
+              </div>
 
-          {/* Cards de Integração */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-              <Car className="w-8 h-8 text-[#d97706] mb-3" />
-              <h2 className="font-display font-bold text-base uppercase text-slate-900 mb-1">
-                Carplus Autos
-              </h2>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Compra, venda, troca e consignação de veículos seminovos com laudo e garantia de procedência em Curitiba.
-              </p>
+              {/* Cards de Integração com Centro Automotivo */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                <div className="bg-white p-7 rounded-2xl border border-[#E0E0E0] shadow-xs">
+                  <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center mb-4 text-[#F59C00]">
+                    <Car className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-display font-bold text-lg uppercase text-[#121212] mb-1">
+                    Carplus Autos
+                  </h3>
+                  <p className="text-xs text-[#666666] leading-relaxed">
+                    Showroom de seminovos revisados, compra com pagamento à vista, troca com troco e consignação segura.
+                  </p>
+                </div>
+
+                <div className="bg-white p-7 rounded-2xl border border-[#E0E0E0] shadow-xs">
+                  <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center mb-4 text-[#F59C00]">
+                    <Wrench className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-display font-bold text-lg uppercase text-[#121212] mb-1">
+                    Carplus Pneus & Oficina
+                  </h3>
+                  <p className="text-xs text-[#666666] leading-relaxed">
+                    Centro automotivo completo com alinhamento 3D, balanceamento, suspensão, freios e pneus multimarcas.
+                  </p>
+                  <a
+                    href="https://www.carpluspneuseoficina.com.br"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#F59C00] hover:text-[#F7941D] font-display font-bold uppercase tracking-wider mt-4"
+                  >
+                    <span>ACESSAR SITE DA OFICINA</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="pt-8 border-t border-[#E0E0E0] text-center">
+                <Button
+                  to="/estoque"
+                  variant="primary"
+                  size="lg"
+                  icon={<ArrowRight className="w-5 h-5 text-black" />}
+                >
+                  CONHEÇA NOSSO ESTOQUE
+                </Button>
+              </div>
+
             </div>
-
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-              <Wrench className="w-8 h-8 text-[#d97706] mb-3" />
-              <h2 className="font-display font-bold text-base uppercase text-slate-900 mb-1">
-                Carplus Pneus & Oficina
-              </h2>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Centro automotivo completo com alinhamento 3D, balanceamento, freios, suspensão e venda de pneus.
-              </p>
-              <a
-                href="https://www.carpluspneuseoficina.com.br"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-[#d97706] hover:text-[#b45309] font-bold mt-3"
-              >
-                <span>Acessar site do centro automotivo</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
           </div>
-
-          <div className="pt-6 border-t border-slate-100 text-center">
-            <Link
-              to="/estoque"
-              className="inline-block px-8 py-3.5 bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-sm tracking-wider uppercase rounded-xl transition-all shadow-md shadow-[#F59C00]/20"
-            >
-              CONHEÇA NOSSO ESTOQUE
-            </Link>
-          </div>
-
-        </div>
-
+        </Container>
       </div>
     </div>
   );

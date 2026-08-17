@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
-import { ChevronRight, Home as HomeIcon } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import { VehicleFilters } from '../components/vehicles/VehicleFilters';
 import { VehicleGrid } from '../components/vehicles/VehicleGrid';
 import { getVehicles, getBrands, getModelsByBrand } from '../services/vehicles';
 import { Vehicle } from '../types/vehicle';
 import { VehicleFiltersState, VehicleSortOption } from '../types/filters';
+import { Container } from '../components/ui/Container';
+import { PageHero } from '../components/ui/PageHero';
 
 export function Estoque() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,7 +35,6 @@ export function Estoque() {
 
   useEffect(() => {
     getBrands().then(setAvailableBrands);
-    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
@@ -89,67 +89,47 @@ export function Estoque() {
   }, [setSearchParams]);
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8 sm:py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-slate-500 mb-6" aria-label="Breadcrumb">
-          <Link to="/" className="hover:text-slate-900 flex items-center gap-1 font-medium">
-            <HomeIcon className="w-3.5 h-3.5" />
-            <span>Início</span>
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-[#d97706] font-bold">Estoque de Veículos</span>
-          {filters.brand && (
-            <>
-              <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-              <span className="text-slate-900 font-bold">{filters.brand}</span>
-            </>
-          )}
-        </nav>
+    <div className="bg-white min-h-screen">
+      {/* Page Hero Preto no Padrão Carplus */}
+      <PageHero
+        kicker="SHOWROOM CURITIBA"
+        title={filters.brand ? `ESTOQUE ${filters.brand.toUpperCase()}` : 'ESTOQUE DE VEÍCULOS'}
+        subtitle="Confira nossa seleção de seminovos revisados, periciados com laudo 100% aprovado e garantia em Curitiba."
+        breadcrumbs={[
+          { label: 'Início', href: '/' },
+          { label: 'Estoque', href: '/estoque' },
+          ...(filters.brand ? [{ label: filters.brand }] : []),
+        ]}
+      />
 
-        {/* Header da Página */}
-        <div className="mb-8 pb-4 border-b border-slate-200">
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="w-2 h-4 bg-[#F59C00] rounded-xs inline-block" />
-            <span className="text-xs font-display font-bold uppercase tracking-widest text-[#d97706]">
-              VEÍCULOS SELECIONADOS EM CURITIBA
-            </span>
+      {/* Conteúdo Principal com Sidebar de Filtros */}
+      <div className="py-12 sm:py-16">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+            {/* Sidebar de Filtros */}
+            <aside className="lg:col-span-1">
+              <VehicleFilters
+                filters={filters}
+                sort={sort}
+                availableBrands={availableBrands}
+                availableModels={availableModels}
+                onFilterChange={handleFilterChange}
+                onSortChange={handleSortChange}
+                onReset={handleResetFilters}
+                totalCount={vehicles.length}
+              />
+            </aside>
+
+            {/* Grid de Veículos */}
+            <main className="lg:col-span-3">
+              <VehicleGrid
+                vehicles={vehicles}
+                loading={loading}
+                onResetFilters={handleResetFilters}
+              />
+            </main>
           </div>
-          <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl uppercase text-slate-900 tracking-wide">
-            {filters.brand ? `ESTOQUE ${filters.brand.toUpperCase()}` : 'ESTOQUE COMPLETO'}
-          </h1>
-          <p className="text-sm text-slate-600 mt-2">
-            Confira nossos veículos seminovos revisados com procedência e garantia em Curitiba.
-          </p>
-        </div>
-
-        {/* Layout Grid com Sidebar de Filtros */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-          {/* Sidebar de Filtros */}
-          <aside className="lg:col-span-1">
-            <VehicleFilters
-              filters={filters}
-              sort={sort}
-              availableBrands={availableBrands}
-              availableModels={availableModels}
-              onFilterChange={handleFilterChange}
-              onSortChange={handleSortChange}
-              onReset={handleResetFilters}
-              totalCount={vehicles.length}
-            />
-          </aside>
-
-          {/* Grid de Veículos */}
-          <main className="lg:col-span-3">
-            <VehicleGrid
-              vehicles={vehicles}
-              loading={loading}
-              onResetFilters={handleResetFilters}
-            />
-          </main>
-        </div>
-
+        </Container>
       </div>
     </div>
   );

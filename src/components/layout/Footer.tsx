@@ -1,203 +1,273 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Clock, Instagram, MessageSquare, ExternalLink, Lock } from 'lucide-react';
+import { MapPin, Phone, Clock, Instagram, MessageSquare, ExternalLink, Lock, ShieldCheck, FileText } from 'lucide-react';
 import { LOGO_URL } from './Header';
 import { SupremaCredit } from './SupremaCredit';
 import { CARPLUS_PHONE_DISPLAY, buildWhatsAppLink } from '../../lib/whatsapp';
+import { Container } from '../ui/Container';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const brands = ['Land Rover', 'BMW', 'Nissan', 'Ford', 'Toyota', 'Jeep', 'Volkswagen', 'Chevrolet'];
+  const brands = [
+    { name: 'Toyota', count: '1 veículo' },
+    { name: 'Land Rover', count: '1 veículo' },
+    { name: 'BMW', count: '1 veículo' },
+    { name: 'Nissan', count: '1 veículo' },
+    { name: 'Ford', count: '1 veículo' },
+  ];
 
   return (
-    <footer className="bg-slate-950 text-slate-400 border-t border-slate-800 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800/80">
-          
-          {/* Coluna 1: Sobre & Logo */}
-          <div className="space-y-4">
-            <Link to="/" className="inline-block">
-              <img
-                src={LOGO_URL}
-                alt="Carplus Autos"
-                className="h-11 w-auto object-contain"
-                referrerPolicy="no-referrer"
-              />
-            </Link>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Compra, venda e troca de veículos em Curitiba com segurança, transparência e atendimento especializado.
-            </p>
-            <div className="flex items-center gap-3 pt-2">
+    <footer className="bg-black text-white border-t border-[#2E2E2E]">
+      {/* Faixa Laranja CTA Pré-Footer (Idêntica à do Site Aprovado) */}
+      <div className="bg-[#F59C00] text-black py-10 sm:py-12 border-b border-black/10">
+        <Container>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 text-center lg:text-left">
+            <div className="space-y-1.5 max-w-2xl">
+              <span className="inline-block px-3 py-1 rounded-full bg-black text-white text-xs font-display font-bold uppercase tracking-wider mb-1">
+                ATENDIMENTO DIRETO EM CURITIBA
+              </span>
+              <h3 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl uppercase tracking-wide leading-tight text-black">
+                QUER COMPRAR, VENDER OU TROCAR SEU CARRO?
+              </h3>
+              <p className="text-sm sm:text-base font-semibold text-black/85">
+                Avaliação justa no seu usado, laudo cautelar aprovado e aprovação rápida de financiamento.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3.5 shrink-0 w-full sm:w-auto">
               <a
-                href="https://www.instagram.com/carpluscwb/"
+                href={buildWhatsAppLink('Olá! Gostaria de uma consultoria para comprar ou vender meu veículo.')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-[#F59C00] hover:border-[#F59C00] transition-colors"
-                aria-label="Instagram"
+                className="w-full sm:w-auto h-14 px-8 rounded-full bg-black hover:bg-[#1A1A1A] active:bg-[#2A2A2A] text-white font-display font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2.5 shadow-xl shadow-black/30 transition-all select-none"
               >
-                <Instagram className="w-4 h-4" />
+                <MessageSquare className="w-5 h-5 text-[#25D366] fill-current" />
+                <span>WHATSAPP AGORA</span>
               </a>
+
               <a
-                href={buildWhatsAppLink('Olá! Vim através do site e gostaria de atendimento.')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-[#F59C00] hover:bg-[#F59C00] hover:text-black transition-colors"
-                aria-label="WhatsApp"
+                href="tel:+554130827282"
+                className="w-full sm:w-auto h-14 px-7 rounded-full bg-white hover:bg-black hover:text-white text-black font-display font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2.5 border-2 border-black transition-all select-none"
               >
-                <MessageSquare className="w-4 h-4" />
-              </a>
-              <a
-                href="https://maps.google.com/?q=Av.+Presidente+Arthur+da+Silva+Bernardes,+1323+-+Port%C3%A3o,+Curitiba+-+PR"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-[#F59C00] hover:border-[#F59C00] transition-colors"
-                aria-label="Como Chegar"
-              >
-                <MapPin className="w-4 h-4" />
+                <Phone className="w-5 h-5 text-[#F59C00]" />
+                <span>{CARPLUS_PHONE_DISPLAY}</span>
               </a>
             </div>
           </div>
+        </Container>
+      </div>
 
-          {/* Coluna 2: Navegação */}
-          <div className="space-y-4">
-            <h3 className="text-white font-display text-base uppercase tracking-wider font-bold">
-              Navegação
-            </h3>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link to="/estoque" className="hover:text-[#F59C00] transition-colors flex items-center gap-1.5">
-                  <span>Estoque de Veículos</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/venda-seu-carro" className="hover:text-[#F59C00] transition-colors">
-                  Venda seu Carro
-                </Link>
-              </li>
-              <li>
-                <Link to="/financiamento" className="hover:text-[#F59C00] transition-colors">
-                  Financiamento
-                </Link>
-              </li>
-              <li>
-                <Link to="/consignacao" className="hover:text-[#F59C00] transition-colors">
-                  Consignação de Veículos
-                </Link>
-              </li>
-              <li>
-                <Link to="/empresa" className="hover:text-[#F59C00] transition-colors">
-                  A Empresa
-                </Link>
-              </li>
-              <li>
-                <Link to="/contato" className="hover:text-[#F59C00] transition-colors">
-                  Fale Conosco
-                </Link>
-              </li>
-              <li>
-                <Link to="/politica-de-privacidade" className="hover:text-[#F59C00] transition-colors">
-                  Política de Privacidade (LGPD)
-                </Link>
-              </li>
-            </ul>
-          </div>
+      {/* Grid Principal de 4 Colunas do Footer */}
+      <div className="py-14 sm:py-16">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12 border-b border-[#2E2E2E]">
+            {/* Coluna 1: Sobre & Logo Oficial */}
+            <div className="space-y-5">
+              <Link to="/" className="inline-block" aria-label="Página Inicial Carplus Autos">
+                <img
+                  src={LOGO_URL}
+                  alt="Carplus Autos"
+                  className="h-14 w-auto object-contain"
+                />
+              </Link>
+              <p className="text-sm text-[#B3B3B3] leading-relaxed">
+                Referência em veículos seminovos selecionados e periciados no bairro Portão em Curitiba. Garantia de motor e caixa, laudo cautelar 100% aprovado e procedência garantida.
+              </p>
 
-          {/* Coluna 3: Estoque por Marca */}
-          <div className="space-y-4">
-            <h3 className="text-white font-display text-base uppercase tracking-wider font-bold">
-              Estoque por Marca
-            </h3>
-            <ul className="grid grid-cols-2 gap-2 text-sm">
-              {brands.map((b) => (
-                <li key={b}>
-                  <Link
-                    to={`/estoque?marca=${b}`}
-                    className="hover:text-[#F59C00] transition-colors inline-block"
-                  >
-                    {b}
+              {/* Redes Sociais em Círculos de 48px */}
+              <div className="flex items-center gap-3 pt-2">
+                <a
+                  href="https://www.instagram.com/carpluscwb/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#2E2E2E] hover:border-[#F59C00] flex items-center justify-center text-white hover:text-[#F59C00] transition-all"
+                  aria-label="Instagram Oficial Carplus"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href={buildWhatsAppLink('Olá! Vim através do site e gostaria de atendimento.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#2E2E2E] hover:border-[#25D366] flex items-center justify-center text-[#25D366] transition-all"
+                  aria-label="WhatsApp Oficial"
+                >
+                  <MessageSquare className="w-5 h-5 fill-current" />
+                </a>
+                <a
+                  href="https://maps.google.com/?q=Av.+Presidente+Arthur+da+Silva+Bernardes,+1323+-+Port%C3%A3o,+Curitiba+-+PR"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#2E2E2E] hover:border-[#F59C00] flex items-center justify-center text-white hover:text-[#F59C00] transition-all"
+                  aria-label="Localização no Google Maps"
+                >
+                  <MapPin className="w-5 h-5 text-[#F59C00]" />
+                </a>
+              </div>
+            </div>
+
+            {/* Coluna 2: Navegação Institucional */}
+            <div className="space-y-4">
+              <h4 className="font-display text-lg uppercase tracking-wider font-bold text-[#F59C00]">
+                NAVEGAÇÃO
+              </h4>
+              <ul className="space-y-2 text-base text-[#E0E0E0]">
+                <li>
+                  <Link to="/" className="hover:text-[#F59C00] transition-colors inline-block py-1">
+                    Início
                   </Link>
                 </li>
-              ))}
-            </ul>
-            <div className="pt-2">
+                <li>
+                  <Link to="/estoque" className="hover:text-[#F59C00] transition-colors inline-block py-1 font-semibold text-white">
+                    Estoque de Veículos
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/venda-seu-carro" className="hover:text-[#F59C00] transition-colors inline-block py-1">
+                    Venda seu Carro
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/financiamento" className="hover:text-[#F59C00] transition-colors inline-block py-1">
+                    Simular Financiamento
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/consignacao" className="hover:text-[#F59C00] transition-colors inline-block py-1">
+                    Consignação Segura
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/empresa" className="hover:text-[#F59C00] transition-colors inline-block py-1">
+                    A Empresa
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contato" className="hover:text-[#F59C00] transition-colors inline-block py-1">
+                    Fale Conosco
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Coluna 3: Estoque por Marca */}
+            <div className="space-y-4">
+              <h4 className="font-display text-lg uppercase tracking-wider font-bold text-[#F59C00]">
+                ESTOQUE POR MARCA
+              </h4>
+              <ul className="space-y-2.5 text-base text-[#E0E0E0]">
+                {brands.map((b) => (
+                  <li key={b.name}>
+                    <Link
+                      to={`/estoque?marca=${encodeURIComponent(b.name)}`}
+                      className="hover:text-[#F59C00] transition-colors flex items-center justify-between group py-1"
+                    >
+                      <span className="group-hover:translate-x-1 transition-transform">{b.name}</span>
+                      <span className="text-xs text-[#B3B3B3] bg-[#1A1A1A] px-2.5 py-0.5 rounded-full border border-[#2E2E2E]">
+                        {b.count}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <div className="pt-2">
+                <Link
+                  to="/estoque"
+                  className="text-xs font-display font-bold text-[#F59C00] hover:text-[#F7941D] uppercase tracking-wider inline-flex items-center gap-1.5"
+                >
+                  <span>VER TODO O ESTOQUE</span>
+                  <span>→</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Coluna 4: Onde Estamos & Contato Direto */}
+            <div className="space-y-4">
+              <h4 className="font-display text-lg uppercase tracking-wider font-bold text-[#F59C00]">
+                ONDE ESTAMOS
+              </h4>
+              <div className="space-y-4 text-base">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#1A1A1A] border border-[#2E2E2E] flex items-center justify-center shrink-0 mt-0.5">
+                    <MapPin className="w-5 h-5 text-[#F59C00]" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold leading-snug">
+                      Av. Pres. Arthur da Silva Bernardes, 1323
+                    </p>
+                    <p className="text-sm text-[#B3B3B3]">
+                      Portão — Curitiba - PR · CEP 80320-300
+                    </p>
+                  </div>
+                </div>
+
+                {/* Telefone em Destaque Oswald 28px */}
+                <div className="p-3.5 bg-[#1A1A1A] border border-[#2E2E2E] rounded-2xl">
+                  <div className="text-xs font-display font-bold uppercase tracking-wider text-[#B3B3B3] mb-0.5">
+                    TELEFONE & WHATSAPP
+                  </div>
+                  <a
+                    href="tel:+554130827282"
+                    className="font-display font-bold text-2xl sm:text-[28px] text-[#F59C00] hover:text-[#F7941D] transition-colors block tracking-wide"
+                  >
+                    {CARPLUS_PHONE_DISPLAY}
+                  </a>
+                </div>
+
+                <div className="flex items-start gap-3 text-sm text-[#B3B3B3]">
+                  <Clock className="w-5 h-5 text-[#F59C00] shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-white font-medium">Segunda a Sexta: 08:00 – 18:00</p>
+                    <p>Sábado: 08:00 – 12:00</p>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-[#2E2E2E]">
+                  <a
+                    href="https://www.carpluspneuseoficina.com.br"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#B3B3B3] hover:text-[#F59C00] transition-colors font-medium"
+                  >
+                    <span>Carplus Pneus & Oficina (Centro Automotivo)</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-[#F59C00]" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Linha de Copyright & Links Legais */}
+          <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#B3B3B3]">
+            <p className="text-center sm:text-left">
+              Carplus Autos © {currentYear} · Todos os direitos reservados. CNPJ Matriz Curitiba/PR.
+            </p>
+            <div className="flex items-center gap-4 flex-wrap justify-center">
+              <Link to="/politica-de-privacidade" className="hover:text-white transition-colors flex items-center gap-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#F59C00]" />
+                <span>Política de Privacidade (LGPD)</span>
+              </Link>
+              <span className="text-[#333333]">·</span>
+              <a href="/sitemap.xml" target="_blank" className="hover:text-white transition-colors flex items-center gap-1">
+                <FileText className="w-3.5 h-3.5 text-[#B3B3B3]" />
+                <span>Sitemap XML</span>
+              </a>
+              <span className="text-[#333333]">·</span>
               <Link
-                to="/estoque"
-                className="text-xs font-bold text-[#F59C00] hover:text-[#F7941D] uppercase tracking-wider flex items-center gap-1"
+                to="/admin"
+                className="inline-flex items-center gap-1 hover:text-[#F59C00] transition-colors"
+                title="Acesso Administrativo"
               >
-                Ver todas as marcas →
+                <Lock className="w-3 h-3" />
+                <span>Painel Admin</span>
               </Link>
             </div>
           </div>
 
-          {/* Coluna 4: Onde Estamos & Contato */}
-          <div className="space-y-4">
-            <h3 className="text-white font-display text-base uppercase tracking-wider font-bold">
-              Onde Estamos
-            </h3>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#F59C00] shrink-0 mt-0.5" />
-                <p>
-                  Av. Presidente Arthur da Silva Bernardes, 1323 — Portão, Curitiba/PR<br />
-                  <span className="text-xs text-slate-500">CEP 80320-300</span>
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#F59C00] shrink-0" />
-                <a href="tel:4130827282" className="hover:text-white transition-colors">
-                  {CARPLUS_PHONE_DISPLAY}
-                </a>
-              </div>
-
-              <div className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-[#F59C00] shrink-0 mt-0.5" />
-                <p className="text-xs">
-                  Segunda a Sexta: 08:00 – 18:00<br />
-                  Sábado: 08:00 – 12:00
-                </p>
-              </div>
-
-              <div className="pt-2 border-t border-slate-900">
-                <a
-                  href="https://www.carpluspneuseoficina.com.br"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-[#F59C00] transition-colors"
-                >
-                  <span>Conheça a Carplus Centro Automotivo</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Linha de Copyright & Acesso Restrito */}
-        <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <p>
-            Carplus Autos © {currentYear} · Todos os direitos reservados. CNPJ matriz Curitiba/PR.
-          </p>
-          <div className="flex items-center gap-4">
-            <Link to="/politica-de-privacidade" className="hover:text-slate-300 transition-colors">
-              Privacidade
-            </Link>
-            <span className="text-slate-800">·</span>
-            <Link
-              to="/admin"
-              className="inline-flex items-center gap-1 hover:text-[#F59C00] transition-colors"
-              title="Painel Administrativo"
-            >
-              <Lock className="w-3 h-3" />
-              <span>Painel Admin</span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Crédito Oficial Suprema Sites Express */}
-        <SupremaCredit />
+          {/* Selo Suprema Sites Express */}
+          <SupremaCredit />
+        </Container>
       </div>
     </footer>
   );

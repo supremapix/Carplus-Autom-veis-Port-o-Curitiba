@@ -1,96 +1,94 @@
 import React from 'react';
 import { MapPin, Phone, Clock, Navigation } from 'lucide-react';
 import { CARPLUS_PHONE_DISPLAY } from '../../lib/whatsapp';
+import { Container } from '../ui/Container';
+import { SectionHeading } from '../ui/SectionHeading';
+import { Button } from '../ui/Button';
 
 export function LocationSection() {
   const addressUrl = 'https://maps.google.com/?q=Av.+Presidente+Arthur+da+Silva+Bernardes,+1323+-+Port%C3%A3o,+Curitiba+-+PR';
 
   return (
-    <section className="py-16 sm:py-20 bg-white border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
+    <section className="py-16 sm:py-24 bg-white border-b border-[#E0E0E0]">
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Informações da Loja */}
           <div className="lg:col-span-5 space-y-6">
-            <div>
-              <div className="inline-flex items-center gap-2 mb-2">
-                <span className="w-2 h-4 bg-[#F59C00] rounded-xs inline-block" />
-                <span className="text-xs font-display font-bold uppercase tracking-widest text-[#d97706]">
-                  LOJA FÍSICA
-                </span>
-              </div>
-              <h2 className="font-display font-bold text-3xl sm:text-4xl uppercase text-slate-900 tracking-wide">
-                ONDE ESTAMOS EM CURITIBA
-              </h2>
-            </div>
-
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Venha tomar um café conosco e conhecer nosso estoque de perto no tradicional bairro Portão em Curitiba. Estrutura moderna com amplo estacionamento e oficina integrada.
-            </p>
+            <SectionHeading
+              kicker="LOJA FÍSICA & SHOWROOM"
+              title={
+                <>
+                  ONDE ESTAMOS EM <span className="text-[#F59C00] italic">CURITIBA</span>
+                </>
+              }
+              subtitle="Venha tomar um café conosco e conhecer nosso estoque de perto no tradicional bairro Portão. Fácil acesso pela Av. Arthur Bernardes."
+            />
 
             <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-3.5 bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-xs">
-                <div className="p-2 rounded-xl bg-white text-[#d97706] shrink-0 border border-slate-200/80 shadow-xs">
-                  <MapPin className="w-5 h-5" />
+              <div className="flex items-start gap-4 bg-[#FAFAFA] p-5 rounded-2xl border border-[#E0E0E0]">
+                <div className="w-12 h-12 rounded-xl bg-black text-[#F59C00] shrink-0 flex items-center justify-center shadow-xs">
+                  <MapPin className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-display font-bold uppercase tracking-wider text-slate-900">
-                    Endereço
+                  <h3 className="text-xs font-display font-bold uppercase tracking-wider text-[#121212]">
+                    Endereço Oficial
                   </h3>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Av. Presidente Arthur da Silva Bernardes, 1323<br />
-                    Bairro Portão — Curitiba/PR — CEP 80320-300
+                  <p className="text-sm text-[#666666] mt-1 leading-relaxed">
+                    <strong className="text-[#121212]">Av. Pres. Arthur da Silva Bernardes, 1323</strong><br />
+                    Portão — Curitiba/PR — CEP 80320-300
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-xs">
-                <div className="p-2 rounded-xl bg-white text-[#d97706] shrink-0 border border-slate-200/80 shadow-xs">
-                  <Phone className="w-5 h-5" />
+              <div className="flex items-start gap-4 bg-[#FAFAFA] p-5 rounded-2xl border border-[#E0E0E0]">
+                <div className="w-12 h-12 rounded-xl bg-black text-[#F59C00] shrink-0 flex items-center justify-center shadow-xs">
+                  <Phone className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-display font-bold uppercase tracking-wider text-slate-900">
-                    Telefone & WhatsApp
+                  <h3 className="text-xs font-display font-bold uppercase tracking-wider text-[#121212]">
+                    Telefone Fixo & Atendimento
                   </h3>
-                  <p className="text-xs text-slate-600 mt-1">
-                    <a href="tel:4130827282" className="font-semibold text-slate-900 hover:text-[#d97706] transition-colors">
+                  <p className="text-sm text-[#666666] mt-1">
+                    <a
+                      href="tel:+554130827282"
+                      className="font-display font-bold text-xl text-[#F59C00] hover:text-[#F7941D] transition-colors"
+                    >
                       {CARPLUS_PHONE_DISPLAY}
                     </a>
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-xs">
-                <div className="p-2 rounded-xl bg-white text-[#d97706] shrink-0 border border-slate-200/80 shadow-xs">
-                  <Clock className="w-5 h-5" />
+              <div className="flex items-start gap-4 bg-[#FAFAFA] p-5 rounded-2xl border border-[#E0E0E0]">
+                <div className="w-12 h-12 rounded-xl bg-black text-[#F59C00] shrink-0 flex items-center justify-center shadow-xs">
+                  <Clock className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-display font-bold uppercase tracking-wider text-slate-900">
+                  <h3 className="text-xs font-display font-bold uppercase tracking-wider text-[#121212]">
                     Horário de Funcionamento
                   </h3>
-                  <p className="text-xs text-slate-600 mt-1">
-                    Segunda a Sexta: 08:00 às 18:00<br />
-                    Sábado: 08:00 às 12:00
+                  <p className="text-sm text-[#666666] mt-1">
+                    <span className="font-semibold text-[#121212]">Segunda a Sexta:</span> 08:00 às 18:00<br />
+                    <span className="font-semibold text-[#121212]">Sábado:</span> 08:00 às 12:00
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="pt-2">
-              <a
+              <Button
                 href={addressUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-sm tracking-wider uppercase rounded-xl transition-all shadow-lg shadow-[#F59C00]/25"
+                variant="primary"
+                size="lg"
+                icon={<Navigation className="w-5 h-5 text-black" />}
               >
-                <Navigation className="w-4 h-4" />
-                <span>COMO CHEGAR (GOOGLE MAPS)</span>
-              </a>
+                ABRIR NO GOOGLE MAPS
+              </Button>
             </div>
           </div>
 
           {/* Iframe Mapa */}
-          <div className="lg:col-span-7 h-[380px] sm:h-[450px] rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative">
+          <div className="lg:col-span-7 h-[420px] sm:h-[480px] rounded-3xl overflow-hidden border border-[#E0E0E0] shadow-xl relative">
             <iframe
               title="Localização Carplus Autos no Portão Curitiba"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.4939227546747!2d-49.2870749!3d-25.4770000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce365e8a75e3f%3A0x6b6070b13524b01e!2sAv.%20Pres.%20Arthur%20da%20Silva%20Bernardes%2C%201323%20-%20Port%C3%A3o%2C%20Curitiba%20-%20PR%2C%2080320-300!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
@@ -102,9 +100,8 @@ export function LocationSection() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, RefreshCw, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
 import { createTradeInRequest } from '../../services/leads';
+import { Button } from '../ui/Button';
 
 interface TradeInModalProps {
   vehicle: Vehicle;
@@ -77,67 +78,72 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Box */}
-      <div className="relative bg-white border border-slate-200 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl z-10">
-        <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-          <div className="flex items-center gap-2">
-            <RefreshCw className="w-5 h-5 text-[#d97706]" />
-            <h3 className="font-display font-bold text-xl uppercase tracking-wider text-slate-900">
+      <div className="relative bg-white border border-[#E0E0E0] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl z-10">
+        <div className="flex items-center justify-between pb-4 border-b border-[#E0E0E0]">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center text-[#F59C00]">
+              <RefreshCw className="w-5 h-5" />
+            </div>
+            <h3 className="font-display font-bold text-xl uppercase tracking-wider text-[#121212]">
               Avaliação de Troca
             </h3>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors"
+            className="p-2 text-[#666666] hover:text-black rounded-xl hover:bg-[#FAFAFA] transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
         {/* Veículo de Interesse */}
-        <div className="mt-4 p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center gap-3.5">
+        <div className="mt-4 p-4 bg-[#FAFAFA] border border-[#E0E0E0] rounded-2xl flex items-center gap-4">
           <img
             src={vehicle.images[0]?.url}
             alt={vehicle.model}
             className="w-16 h-12 rounded-xl object-cover"
           />
           <div>
-            <span className="text-[10px] uppercase tracking-wider text-[#d97706] font-bold block">
+            <span className="text-[10px] uppercase tracking-wider text-[#F59C00] font-bold block">
               Veículo de Interesse:
             </span>
-            <p className="text-sm font-bold text-slate-900">
+            <p className="text-sm font-bold text-[#121212]">
               {vehicle.brand} {vehicle.model} {vehicle.version} ({vehicle.yearModel})
             </p>
           </div>
         </div>
 
         {success ? (
-          <div className="py-8 text-center space-y-3">
-            <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-            <h4 className="font-display text-2xl uppercase tracking-wider text-slate-900">
+          <div className="py-8 text-center space-y-4">
+            <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-10 h-10 text-emerald-600" />
+            </div>
+            <h4 className="font-display text-2xl uppercase tracking-wider text-[#121212]">
               Proposta de Troca Recebida!
             </h4>
-            <p className="text-sm text-slate-600 max-w-md mx-auto">
-              Nossa equipe de avaliação entrará em contato via WhatsApp para solicitar fotos complementares e passar a proposta do seu usado.
+            <p className="text-sm text-[#666666] max-w-md mx-auto leading-relaxed">
+              Nossa equipe de avaliação entrará em contato via WhatsApp para solicitar fotos complementares e passar a melhor avaliação no seu seminovo.
             </p>
-            <button
-              type="button"
-              onClick={onClose}
-              className="mt-6 px-6 py-3 bg-[#F59C00] text-black font-display font-bold text-sm tracking-wider uppercase rounded-xl"
-            >
-              Fechar
-            </button>
+            <div className="pt-2">
+              <Button
+                onClick={onClose}
+                variant="primary"
+              >
+                FECHAR
+              </Button>
+            </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-6 space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   Seu Nome *
                 </label>
                 <input
@@ -146,12 +152,12 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                   placeholder="Nome completo"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                  className="w-full h-11 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   WhatsApp com DDD *
                 </label>
                 <input
@@ -160,19 +166,19 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                   placeholder="(41) 99999-9999"
                   value={whatsapp}
                   onChange={(e) => setWhatsapp(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                  className="w-full h-11 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                 />
               </div>
             </div>
 
-            <div className="pt-3 border-t border-slate-100">
-              <h4 className="text-xs font-display uppercase tracking-wider text-[#d97706] font-bold mb-3">
-                Dados do seu veículo usado
+            <div className="pt-4 border-t border-[#E0E0E0]">
+              <h4 className="text-xs font-display uppercase tracking-wider text-[#F59C00] font-bold mb-3">
+                Dados do seu veículo na troca
               </h4>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Marca *
                   </label>
                   <input
@@ -181,12 +187,12 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                     placeholder="Ex: Fiat"
                     value={tradeBrand}
                     onChange={(e) => setTradeBrand(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                    className="w-full h-11 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Modelo *
                   </label>
                   <input
@@ -195,12 +201,12 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                     placeholder="Ex: Argo"
                     value={tradeModel}
                     onChange={(e) => setTradeModel(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                    className="w-full h-11 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Versão
                   </label>
                   <input
@@ -208,14 +214,14 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                     placeholder="Ex: Drive 1.0"
                     value={tradeVersion}
                     onChange={(e) => setTradeVersion(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                    className="w-full h-11 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Ano / Modelo
                   </label>
                   <input
@@ -223,12 +229,12 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                     placeholder="Ex: 2021"
                     value={tradeYear}
                     onChange={(e) => setTradeYear(e.target.value ? Number(e.target.value) : '')}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                    className="w-full h-11 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Quilometragem (km)
                   </label>
                   <input
@@ -236,12 +242,12 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                     placeholder="Ex: 45000"
                     value={tradeMileage}
                     onChange={(e) => setTradeMileage(e.target.value ? Number(e.target.value) : '')}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                    className="w-full h-11 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Cor
                   </label>
                   <input
@@ -249,13 +255,13 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                     placeholder="Ex: Prata"
                     value={tradeColor}
                     onChange={(e) => setTradeColor(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                    className="w-full h-11 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                   />
                 </div>
               </div>
 
               <div className="mt-3">
-                <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   Valor Pretendido (R$)
                 </label>
                 <input
@@ -263,12 +269,12 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                   placeholder="Ex: 60000"
                   value={expectedPrice}
                   onChange={(e) => setExpectedPrice(e.target.value ? Number(e.target.value) : '')}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                  className="w-full h-11 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                 />
               </div>
 
               <div className="mt-3">
-                <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
+                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   Observações adicionais (opcional)
                 </label>
                 <textarea
@@ -276,19 +282,19 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                   placeholder="Detalhes sobre manutenção, opcionais, etc."
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                  className="w-full bg-white border border-[#E0E0E0] rounded-xl p-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
                 />
               </div>
             </div>
 
             {/* Checkbox LGPD */}
-            <label className="flex items-start gap-2.5 text-xs text-slate-600 cursor-pointer pt-2 font-medium">
+            <label className="flex items-start gap-3 text-xs text-[#666666] cursor-pointer pt-2 font-medium">
               <input
                 type="checkbox"
                 required
                 checked={lgpdAccepted}
                 onChange={(e) => setLgpdAccepted(e.target.checked)}
-                className="rounded border-slate-300 text-[#F59C00] focus:ring-0 w-4 h-4 mt-0.5"
+                className="rounded border-[#CCCCCC] text-[#F59C00] focus:ring-0 w-5 h-5 mt-0.5"
               />
               <span>
                 Concordo com o tratamento dos meus dados para avaliação do veículo de acordo com a LGPD.
@@ -296,27 +302,27 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
             </label>
 
             {errorMsg && (
-              <div className="flex items-center gap-1.5 text-red-600 text-xs bg-red-50 p-2.5 rounded-xl border border-red-200">
+              <div className="flex items-center gap-2 text-red-600 text-xs bg-red-50 p-3 rounded-xl border border-red-200">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{errorMsg}</span>
               </div>
             )}
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
-              <button
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#E0E0E0]">
+              <Button
                 type="button"
                 onClick={onClose}
-                className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold uppercase tracking-wider"
+                variant="outline"
               >
-                Cancelar
-              </button>
-              <button
+                CANCELAR
+              </Button>
+              <Button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-2.5 bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-sm uppercase tracking-wider rounded-xl transition-all shadow-md disabled:opacity-50"
+                variant="primary"
               >
-                {loading ? 'Enviando...' : 'SOLICITAR AVALIAÇÃO'}
-              </button>
+                {loading ? 'ENVIANDO...' : 'SOLICITAR AVALIAÇÃO'}
+              </Button>
             </div>
           </form>
         )}

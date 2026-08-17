@@ -18,10 +18,14 @@ export function VehicleGallery({
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const fallbackImage = 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=1200';
+  const fallbackImage = '/images/veiculos/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024/01.webp';
   const galleryImages = images && images.length > 0 ? images : [{ id: '1', url: fallbackImage, isCover: true, order: 0 }];
 
   const currentImage = galleryImages[activeIndex] || galleryImages[0];
+  const coverUrl = currentImage.url;
+  const webpSrcset = coverUrl.endsWith('.jpg')
+    ? `${coverUrl.replace('.jpg', '-400w.webp')} 400w, ${coverUrl.replace('.jpg', '-800w.webp')} 800w, ${coverUrl.replace('.jpg', '-1600w.webp')} 1600w`
+    : undefined;
 
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -37,35 +41,48 @@ export function VehicleGallery({
     <div className="space-y-4">
       {/* Imagem Principal */}
       <div
-        className={`relative aspect-[16/10] sm:aspect-[16/9] bg-slate-100 rounded-3xl overflow-hidden border border-slate-200 shadow-lg shadow-slate-900/5 group cursor-pointer ${
+        className={`relative aspect-[16/10] sm:aspect-[16/9] bg-black rounded-3xl overflow-hidden border border-[#E0E0E0] shadow-xl group cursor-pointer ${
           isSold ? 'grayscale-[50%]' : ''
         }`}
         onClick={() => setLightboxOpen(true)}
       >
-        <img
-          src={currentImage.url}
-          alt={`${vehicleTitle} - Foto ${activeIndex + 1}`}
-          className="w-full h-full object-cover transition-all duration-300 group-hover:scale-102"
-        />
+        <picture>
+          {webpSrcset && (
+            <source
+              type="image/webp"
+              srcSet={webpSrcset}
+              sizes="(max-width: 1024px) 100vw, 800px"
+            />
+          )}
+          <img
+            src={currentImage.url}
+            alt={`${vehicleTitle} - Foto ${activeIndex + 1}`}
+            width={1200}
+            height={800}
+            fetchPriority="high"
+            decoding="async"
+            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-102"
+          />
+        </picture>
 
         {/* Badges de Status */}
         <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
           {isSold && (
-            <span className="bg-slate-800 text-white font-display font-bold text-xs px-3 py-1 rounded-lg uppercase tracking-wider shadow-lg">
+            <span className="bg-black text-white font-display font-bold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
               VEÍCULO VENDIDO
             </span>
           )}
           {isReserved && (
-            <span className="bg-amber-500 text-black font-display font-bold text-xs px-3 py-1 rounded-lg uppercase tracking-wider shadow-lg">
+            <span className="bg-[#F59C00] text-black font-display font-bold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
               RESERVADO
             </span>
           )}
         </div>
 
         {/* Contador de Fotos */}
-        <div className="absolute bottom-4 right-4 bg-slate-950/75 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-xl border border-white/10 flex items-center gap-1.5 shadow-md">
-          <Camera className="w-3.5 h-3.5 text-[#F59C00]" />
-          <span>
+        <div className="absolute bottom-4 right-4 bg-black/85 backdrop-blur-xs text-white text-xs px-3.5 py-1.5 rounded-full border border-white/15 flex items-center gap-2 shadow-md">
+          <Camera className="w-4 h-4 text-[#F59C00]" />
+          <span className="font-semibold">
             {activeIndex + 1} / {galleryImages.length}
           </span>
         </div>
@@ -74,10 +91,11 @@ export function VehicleGallery({
         <button
           type="button"
           onClick={() => setLightboxOpen(true)}
-          className="absolute top-4 right-4 p-2 bg-slate-950/60 hover:bg-slate-950/90 text-white rounded-xl backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100 shadow-md"
+          className="absolute top-4 right-4 p-2.5 bg-black/70 hover:bg-black text-white rounded-full backdrop-blur-xs transition-colors opacity-0 group-hover:opacity-100 shadow-md cursor-pointer"
           title="Ver fotos em tela cheia"
+          aria-label="Ver fotos em tela cheia"
         >
-          <Maximize2 className="w-4 h-4" />
+          <Maximize2 className="w-4 h-4 text-[#F59C00]" />
         </button>
 
         {/* Botões Navegação na Imagem Principal */}
@@ -86,18 +104,18 @@ export function VehicleGallery({
             <button
               type="button"
               onClick={handlePrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 bg-slate-950/60 hover:bg-slate-950/90 text-white rounded-xl backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 shadow-md"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-black/75 hover:bg-black text-white rounded-full backdrop-blur-xs transition-all opacity-0 group-hover:opacity-100 shadow-md flex items-center justify-center cursor-pointer"
               aria-label="Foto anterior"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6 text-[#F59C00]" />
             </button>
             <button
               type="button"
               onClick={handleNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 bg-slate-950/60 hover:bg-slate-950/90 text-white rounded-xl backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 shadow-md"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 bg-black/75 hover:bg-black text-white rounded-full backdrop-blur-xs transition-all opacity-0 group-hover:opacity-100 shadow-md flex items-center justify-center cursor-pointer"
               aria-label="Próxima foto"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6 text-[#F59C00]" />
             </button>
           </>
         )}
@@ -105,21 +123,25 @@ export function VehicleGallery({
 
       {/* Miniaturas em Carrossel */}
       {galleryImages.length > 1 && (
-        <div className="flex gap-2.5 overflow-x-auto pb-2 scrollbar-thin">
+        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
           {galleryImages.map((img, idx) => (
             <button
               key={img.id || idx}
               type="button"
               onClick={() => setActiveIndex(idx)}
-              className={`relative flex-shrink-0 w-20 sm:w-24 aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+              className={`relative shrink-0 w-24 sm:w-28 aspect-[4/3] rounded-2xl overflow-hidden border-2 transition-all cursor-pointer bg-black ${
                 activeIndex === idx
-                  ? 'border-[#F59C00] shadow-md shadow-amber-500/20 scale-105'
-                  : 'border-slate-200 opacity-60 hover:opacity-100'
+                  ? 'border-[#F59C00] shadow-md shadow-[#F59C00]/30 scale-105'
+                  : 'border-[#E0E0E0] opacity-60 hover:opacity-100'
               }`}
             >
               <img
                 src={img.url}
                 alt={`Miniatura ${idx + 1}`}
+                width={120}
+                height={90}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </button>
@@ -129,22 +151,27 @@ export function VehicleGallery({
 
       {/* Lightbox / Modal em Tela Cheia */}
       {lightboxOpen && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6">
-          <div className="flex items-center justify-between text-white pb-3 border-b border-neutral-800">
+        <div
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="flex items-center justify-between text-white pb-4 border-b border-[#2E2E2E]">
             <div>
-              <h3 className="font-display font-bold text-lg uppercase tracking-wide">
+              <h3 className="font-display font-bold text-xl uppercase tracking-wide">
                 {vehicleTitle}
               </h3>
-              <span className="text-xs text-neutral-400">
+              <span className="text-xs text-[#B3B3B3]">
                 Foto {activeIndex + 1} de {galleryImages.length}
               </span>
             </div>
             <button
               type="button"
               onClick={() => setLightboxOpen(false)}
-              className="p-2 text-neutral-400 hover:text-white bg-neutral-900 rounded-xl"
+              className="p-3 text-white bg-[#1A1A1A] hover:bg-[#2A2A2A] rounded-full border border-[#2E2E2E] cursor-pointer"
+              aria-label="Fechar galeria"
             >
-              <X className="w-6 h-6" />
+              <X className="w-6 h-6 text-[#F59C00]" />
             </button>
           </div>
 
@@ -160,16 +187,18 @@ export function VehicleGallery({
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="absolute left-2 sm:left-6 p-3 bg-neutral-900/80 hover:bg-neutral-800 text-white rounded-2xl"
+                  className="absolute left-2 sm:left-6 w-14 h-14 bg-black/80 hover:bg-black text-white rounded-full flex items-center justify-center border border-[#2E2E2E] cursor-pointer"
+                  aria-label="Foto anterior"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-8 h-8 text-[#F59C00]" />
                 </button>
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="absolute right-2 sm:right-6 p-3 bg-neutral-900/80 hover:bg-neutral-800 text-white rounded-2xl"
+                  className="absolute right-2 sm:right-6 w-14 h-14 bg-black/80 hover:bg-black text-white rounded-full flex items-center justify-center border border-[#2E2E2E] cursor-pointer"
+                  aria-label="Próxima foto"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-8 h-8 text-[#F59C00]" />
                 </button>
               </>
             )}
@@ -181,8 +210,8 @@ export function VehicleGallery({
                 key={img.id || idx}
                 type="button"
                 onClick={() => setActiveIndex(idx)}
-                className={`w-14 sm:w-16 aspect-[4/3] rounded-lg overflow-hidden border-2 transition-all ${
-                  activeIndex === idx ? 'border-[#F59C00]' : 'border-neutral-800 opacity-40'
+                className={`w-16 sm:w-20 aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+                  activeIndex === idx ? 'border-[#F59C00]' : 'border-[#2E2E2E] opacity-40'
                 }`}
               >
                 <img src={img.url} alt="" className="w-full h-full object-cover" />

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { Calculator, CheckCircle2, AlertCircle, Send } from 'lucide-react';
+import { Calculator, CheckCircle2, AlertCircle, Send, Banknote, ShieldCheck } from 'lucide-react';
 import { createFinancingRequest } from '../services/leads';
 import { getVehicles } from '../services/vehicles';
 import { Vehicle } from '../types/vehicle';
+import { Container } from '../components/ui/Container';
+import { PageHero } from '../components/ui/PageHero';
+import { Button } from '../components/ui/Button';
 
 export function Financiamento() {
   const [searchParams] = useSearchParams();
@@ -80,227 +83,269 @@ export function Financiamento() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen py-10 sm:py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 mb-2">
-            <span className="w-2 h-4 bg-[#F59C00] rounded-xs inline-block" />
-            <span className="text-xs font-display font-bold uppercase tracking-widest text-[#d97706]">
-              CONDIÇÕES FACILITADAS
-            </span>
-          </div>
-          <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl uppercase text-slate-900 tracking-wide">
-            SOLICITAÇÃO DE FINANCIAMENTO
-          </h1>
-          <p className="text-sm text-slate-600 mt-3 leading-relaxed">
-            Preencha seus dados para que nossa equipe faça uma simulação personalizada nos principais bancos parceiros.
-          </p>
-        </div>
+    <div className="bg-white min-h-screen">
+      {/* Page Hero Preto */}
+      <PageHero
+        kicker="TAXAS COMPETITIVAS"
+        title="SIMULAÇÃO DE FINANCIAMENTO"
+        subtitle="Parceria direta com os principais bancos e financeiras. Simule prazos em até 60x com as menores taxas de juros de Curitiba."
+        breadcrumbs={[
+          { label: 'Início', href: '/' },
+          { label: 'Financiamento' },
+        ]}
+      />
 
-        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-900/5">
-          {success ? (
-            <div className="py-12 text-center space-y-4">
-              <CheckCircle2 className="w-16 h-16 text-emerald-600 mx-auto" />
-              <h2 className="font-display font-bold text-3xl uppercase tracking-wide text-slate-900">
-                Solicitação Enviada com Sucesso!
-              </h2>
-              <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                Nossa equipe entrará em contato via WhatsApp com as opções de planos e taxas de financiamento.
-              </p>
-              <div className="pt-4">
-                <button
-                  type="button"
-                  onClick={() => setSuccess(false)}
-                  className="px-6 py-3 bg-[#F59C00] text-black font-display font-bold text-xs uppercase tracking-wider rounded-xl shadow-md cursor-pointer"
-                >
-                  Nova Simulação
-                </button>
+      <div className="py-12 sm:py-16">
+        <Container>
+          <div className="max-w-4xl mx-auto space-y-12">
+            
+            {/* Benefícios Financiamento */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-2xl p-6 text-center shadow-xs">
+                <div className="w-12 h-12 rounded-xl bg-black text-[#F59C00] flex items-center justify-center mx-auto mb-4">
+                  <Banknote className="w-6 h-6" />
+                </div>
+                <h2 className="font-display font-bold text-base uppercase text-[#121212] tracking-wide">
+                  Até 60 Parcelas
+                </h2>
+                <p className="text-xs text-[#666666] mt-1.5 leading-relaxed">
+                  Planos flexíveis que cabem no seu orçamento mensal.
+                </p>
+              </div>
+
+              <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-2xl p-6 text-center shadow-xs">
+                <div className="w-12 h-12 rounded-xl bg-black text-[#F59C00] flex items-center justify-center mx-auto mb-4">
+                  <Calculator className="w-6 h-6" />
+                </div>
+                <h2 className="font-display font-bold text-base uppercase text-[#121212] tracking-wide">
+                  Aprovação Ágil
+                </h2>
+                <p className="text-xs text-[#666666] mt-1.5 leading-relaxed">
+                  Resposta rápida dos bancos parceiros diretamente no WhatsApp.
+                </p>
+              </div>
+
+              <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-2xl p-6 text-center shadow-xs">
+                <div className="w-12 h-12 rounded-xl bg-black text-[#F59C00] flex items-center justify-center mx-auto mb-4">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <h2 className="font-display font-bold text-base uppercase text-[#121212] tracking-wide">
+                  Sem Burocracia
+                </h2>
+                <p className="text-xs text-[#666666] mt-1.5 leading-relaxed">
+                  Cuidamos de todo o processo de análise e documentação.
+                </p>
               </div>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              
-              {/* Seleção do Veículo */}
-              <div>
-                <h2 className="text-sm font-display font-bold uppercase tracking-wider text-[#d97706] mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
-                  <Calculator className="w-4 h-4" />
-                  <span>1. Veículo Desejado</span>
-                </h2>
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
-                    Escolha o veículo do estoque (ou deixe em branco para simulação livre)
-                  </label>
-                  <select
-                    value={selectedVehicleId}
-                    onChange={(e) => setSelectedVehicleId(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white font-medium"
-                  >
-                    <option value="">Ainda não escolhi o modelo específico</option>
-                    {vehicles.map((v) => (
-                      <option key={v.id} value={v.id}>
-                        {v.brand} {v.model} {v.version} ({v.yearModel}) — R$ {v.price.toLocaleString('pt-BR')}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
 
-              {/* Dados Pessoais */}
-              <div>
-                <h2 className="text-sm font-display font-bold uppercase tracking-wider text-[#d97706] mb-4 pb-2 border-b border-slate-100">
-                  2. Seus Dados Pessoais
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
-                      Nome Completo *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Seu nome"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
-                    />
+            {/* Card do Formulário */}
+            <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-10 shadow-xl">
+              {success ? (
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-12 h-12 text-emerald-600" />
                   </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
-                      CPF *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="000.000.000-00"
-                      value={cpf}
-                      onChange={(e) => setCpf(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
-                      WhatsApp com DDD *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="(41) 99999-9999"
-                      value={whatsapp}
-                      onChange={(e) => setWhatsapp(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
-                      Data de Nascimento
-                    </label>
-                    <input
-                      type="date"
-                      value={birthDate}
-                      onChange={(e) => setBirthDate(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Simulação de Valores */}
-              <div>
-                <h2 className="text-sm font-display font-bold uppercase tracking-wider text-[#d97706] mb-4 pb-2 border-b border-slate-100">
-                  3. Condições Desejadas
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
-                      Valor de Entrada (R$)
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="Ex: 20000"
-                      value={downPayment}
-                      onChange={(e) => setDownPayment(e.target.value ? Number(e.target.value) : '')}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
-                      Número de Parcelas
-                    </label>
-                    <select
-                      value={installments}
-                      onChange={(e) => setInstallments(Number(e.target.value))}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
+                  <h2 className="font-display font-bold text-3xl uppercase tracking-wide text-[#121212]">
+                    Solicitação Enviada com Sucesso!
+                  </h2>
+                  <p className="text-base text-[#666666] max-w-md mx-auto leading-relaxed">
+                    Nossa equipe entrará em contato via WhatsApp com as opções de planos e taxas de financiamento.
+                  </p>
+                  <div className="pt-4">
+                    <Button
+                      onClick={() => setSuccess(false)}
+                      variant="primary"
                     >
-                      <option value={12}>12x</option>
-                      <option value={24}>24x</option>
-                      <option value={36}>36x</option>
-                      <option value={48}>48x</option>
-                      <option value={60}>60x</option>
-                    </select>
+                      NOVA SIMULAÇÃO
+                    </Button>
                   </div>
-
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  
+                  {/* Seleção do Veículo */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">
-                      Possui CNH?
-                    </label>
-                    <select
-                      value={cnh}
-                      onChange={(e) => setCnh(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-[#F59C00] focus:bg-white"
-                    >
-                      <option value="sim">Sim, possuo CNH</option>
-                      <option value="nao">Não possuo</option>
-                    </select>
+                    <h2 className="text-sm font-display font-bold uppercase tracking-wider text-[#F59C00] mb-4 pb-2 border-b border-[#E0E0E0] flex items-center gap-2">
+                      <Calculator className="w-4 h-4" />
+                      <span>1. Veículo Desejado</span>
+                    </h2>
+                    <div>
+                      <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        Escolha o veículo do estoque (ou deixe em branco para simulação geral)
+                      </label>
+                      <select
+                        value={selectedVehicleId}
+                        onChange={(e) => setSelectedVehicleId(e.target.value)}
+                        className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] font-medium"
+                      >
+                        <option value="">Ainda não escolhi o modelo específico</option>
+                        {vehicles.map((v) => (
+                          <option key={v.id} value={v.id}>
+                            {v.brand} {v.model} {v.version} ({v.yearModel}) — R$ {v.price.toLocaleString('pt-BR')}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Checkbox LGPD */}
-              <div className="pt-2">
-                <label className="flex items-start gap-2.5 text-xs text-slate-600 cursor-pointer font-medium">
-                  <input
-                    type="checkbox"
-                    required
-                    checked={lgpdAccepted}
-                    onChange={(e) => setLgpdAccepted(e.target.checked)}
-                    className="rounded border-slate-300 text-[#F59C00] focus:ring-0 w-4 h-4 mt-0.5"
-                  />
-                  <span>
-                    Autorizo a consulta e envio das informações para análise cadastral conforme a{' '}
-                    <Link to="/politica-de-privacidade" target="_blank" className="text-[#d97706] underline">
-                      Política de Privacidade
-                    </Link>.
-                  </span>
-                </label>
-              </div>
+                  {/* Dados Pessoais */}
+                  <div>
+                    <h2 className="text-sm font-display font-bold uppercase tracking-wider text-[#F59C00] mb-4 pb-2 border-b border-[#E0E0E0]">
+                      2. Seus Dados Pessoais
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                          Nome Completo *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Seu nome"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
+                        />
+                      </div>
 
-              {errorMsg && (
-                <div className="flex items-center gap-1.5 text-red-600 text-xs bg-red-50 p-3 rounded-xl border border-red-200">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                  <span>{errorMsg}</span>
-                </div>
+                      <div>
+                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                          CPF *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="000.000.000-00"
+                          value={cpf}
+                          onChange={(e) => setCpf(e.target.value)}
+                          className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                          WhatsApp com DDD *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="(41) 99999-9999"
+                          value={whatsapp}
+                          onChange={(e) => setWhatsapp(e.target.value)}
+                          className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                          Data de Nascimento
+                        </label>
+                        <input
+                          type="date"
+                          value={birthDate}
+                          onChange={(e) => setBirthDate(e.target.value)}
+                          className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Simulação de Valores */}
+                  <div>
+                    <h2 className="text-sm font-display font-bold uppercase tracking-wider text-[#F59C00] mb-4 pb-2 border-b border-[#E0E0E0]">
+                      3. Condições Desejadas
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                          Valor de Entrada (R$)
+                        </label>
+                        <input
+                          type="number"
+                          placeholder="Ex: 20000"
+                          value={downPayment}
+                          onChange={(e) => setDownPayment(e.target.value ? Number(e.target.value) : '')}
+                          className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                          Número de Parcelas
+                        </label>
+                        <select
+                          value={installments}
+                          onChange={(e) => setInstallments(Number(e.target.value))}
+                          className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
+                        >
+                          <option value={12}>12x</option>
+                          <option value={24}>24x</option>
+                          <option value={36}>36x</option>
+                          <option value={48}>48x</option>
+                          <option value={60}>60x</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                          Possui CNH?
+                        </label>
+                        <select
+                          value={cnh}
+                          onChange={(e) => setCnh(e.target.value)}
+                          className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
+                        >
+                          <option value="sim">Sim, possuo CNH</option>
+                          <option value="nao">Não possuo</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Checkbox LGPD */}
+                  <div className="pt-2">
+                    <label className="flex items-start gap-3 text-xs text-[#666666] cursor-pointer font-medium">
+                      <input
+                        type="checkbox"
+                        required
+                        checked={lgpdAccepted}
+                        onChange={(e) => setLgpdAccepted(e.target.checked)}
+                        className="rounded border-[#CCCCCC] text-[#F59C00] focus:ring-0 w-5 h-5 mt-0.5"
+                      />
+                      <span>
+                        Autorizo a consulta e envio das informações para análise cadastral conforme a{' '}
+                        <Link to="/politica-de-privacidade" target="_blank" className="text-[#121212] font-bold underline">
+                          Política de Privacidade
+                        </Link>.
+                      </span>
+                    </label>
+                  </div>
+
+                  {errorMsg && (
+                    <div className="flex items-center gap-2 text-red-600 text-xs bg-red-50 p-4 rounded-xl border border-red-200">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span>{errorMsg}</span>
+                    </div>
+                  )}
+
+                  <div className="pt-4">
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      variant="primary"
+                      size="lg"
+                      icon={<Send className="w-5 h-5 text-black" />}
+                    >
+                      {loading ? 'ENVIANDO DADOS...' : 'SOLICITAR SIMULAÇÃO DE FINANCIAMENTO'}
+                    </Button>
+                  </div>
+
+                </form>
               )}
+            </div>
 
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full sm:w-auto px-10 py-4 bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-sm tracking-wider uppercase rounded-xl transition-all transform active:scale-95 shadow-lg shadow-[#F59C00]/25 disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>{loading ? 'ENVIANDO DADOS...' : 'SOLICITAR SIMULAÇÃO DE FINANCIAMENTO'}</span>
-                </button>
-              </div>
-
-            </form>
-          )}
-        </div>
-
+          </div>
+        </Container>
       </div>
     </div>
   );

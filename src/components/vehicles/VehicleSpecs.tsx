@@ -54,60 +54,60 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
     {
       label: 'Ano Fabricação / Modelo',
       value: `${vehicle.yearManufacture} / ${vehicle.yearModel}`,
-      icon: <Calendar className="w-4 h-4 text-[#d97706]" />,
+      icon: <Calendar className="w-4 h-4 text-[#F59C00]" />,
     },
     {
       label: 'Quilometragem',
       value: formatKm(vehicle.mileage),
-      icon: <Gauge className="w-4 h-4 text-[#d97706]" />,
+      icon: <Gauge className="w-4 h-4 text-[#F59C00]" />,
     },
     {
       label: 'Combustível',
       value: vehicle.fuelLabel || fuelMap[vehicle.fuel] || vehicle.fuel,
-      icon: <Fuel className="w-4 h-4 text-[#d97706]" />,
+      icon: <Fuel className="w-4 h-4 text-[#F59C00]" />,
     },
     {
       label: 'Câmbio',
       value: transMap[vehicle.transmission] || vehicle.transmission,
-      icon: <Cog className="w-4 h-4 text-[#d97706]" />,
+      icon: <Cog className="w-4 h-4 text-[#F59C00]" />,
     },
     ...(vehicle.steering
       ? [
           {
             label: 'Direção',
             value: vehicle.steering,
-            icon: <Compass className="w-4 h-4 text-[#d97706]" />,
+            icon: <Compass className="w-4 h-4 text-[#F59C00]" />,
           },
         ]
       : []),
     {
       label: 'Carroceria',
       value: bodyMap[vehicle.bodyType || ''] || vehicle.bodyType || 'Sedan/SUV',
-      icon: <Car className="w-4 h-4 text-[#d97706]" />,
+      icon: <Car className="w-4 h-4 text-[#F59C00]" />,
     },
     {
       label: 'Cor Externa',
       value: vehicle.color,
-      icon: <Palette className="w-4 h-4 text-[#d97706]" />,
+      icon: <Palette className="w-4 h-4 text-[#F59C00]" />,
     },
     {
       label: 'Portas',
       value: `${vehicle.doors || 4} Portas`,
-      icon: <Car className="w-4 h-4 text-[#d97706]" />,
+      icon: <Car className="w-4 h-4 text-[#F59C00]" />,
     },
     ...(vehicle.seats
       ? [
           {
             label: 'Lugares',
             value: `${vehicle.seats} Lugares`,
-            icon: <Users className="w-4 h-4 text-[#d97706]" />,
+            icon: <Users className="w-4 h-4 text-[#F59C00]" />,
           },
         ]
       : []),
     {
       label: 'Final da Placa',
       value: vehicle.plateEnd ? `Final ${vehicle.plateEnd}` : 'Consulte',
-      icon: <Hash className="w-4 h-4 text-[#d97706]" />,
+      icon: <Hash className="w-4 h-4 text-[#F59C00]" />,
     },
   ];
 
@@ -115,10 +115,10 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
     <div className="space-y-8">
       {/* Informações Adicionais (Chips) */}
       {vehicle.additionalInfo && vehicle.additionalInfo.length > 0 && (
-        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-          <div className="flex items-center gap-2 pb-4 mb-5 border-b border-slate-100">
-            <Info className="w-5 h-5 text-[#d97706]" />
-            <h2 className="font-display font-bold text-xl uppercase text-slate-900 tracking-wide">
+        <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-8 shadow-xs">
+          <div className="flex items-center gap-2 pb-4 mb-5 border-b border-[#E0E0E0]">
+            <Info className="w-5 h-5 text-[#F59C00]" />
+            <h2 className="font-display font-bold text-xl uppercase text-[#121212] tracking-wide">
               Informações Adicionais
             </h2>
           </div>
@@ -127,7 +127,7 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
             {vehicle.additionalInfo.map((info, idx) => (
               <span
                 key={idx}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 text-[#F59C00] font-semibold text-xs border border-slate-800 shadow-xs"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-black text-[#F59C00] font-display font-bold text-xs border border-[#222222] shadow-xs"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#F59C00]" />
                 <span>{info}</span>
@@ -138,10 +138,10 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
       )}
 
       {/* Tabela / Grid de Ficha Técnica */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-        <div className="flex items-center gap-2 pb-4 mb-6 border-b border-slate-100">
-          <ShieldCheck className="w-5 h-5 text-[#d97706]" />
-          <h2 className="font-display font-bold text-xl uppercase text-slate-900 tracking-wide">
+      <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-8 shadow-xs">
+        <div className="flex items-center gap-2 pb-4 mb-6 border-b border-[#E0E0E0]">
+          <ShieldCheck className="w-5 h-5 text-[#F59C00]" />
+          <h2 className="font-display font-bold text-xl uppercase text-[#121212] tracking-wide">
             Ficha Técnica & Dados do Veículo
           </h2>
         </div>
@@ -150,17 +150,17 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
           {specsList.map((spec, idx) => (
             <div
               key={idx}
-              className="flex items-center justify-between p-3.5 bg-slate-50 border border-slate-200/80 rounded-2xl"
+              className="flex items-center justify-between p-3.5 bg-white border border-[#E0E0E0] rounded-2xl shadow-xs"
             >
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-white text-[#d97706] border border-slate-200/80 shadow-xs">
+                <div className="p-2 rounded-xl bg-black text-[#F59C00] shadow-xs">
                   {spec.icon}
                 </div>
-                <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                <span className="text-xs font-display font-bold uppercase tracking-wider text-[#666666]">
                   {spec.label}
                 </span>
               </div>
-              <span className="text-xs sm:text-sm font-bold text-slate-900 text-right">
+              <span className="text-xs sm:text-sm font-bold text-[#121212] text-right">
                 {spec.value}
               </span>
             </div>
@@ -170,10 +170,10 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
 
       {/* Itens e Opcionais */}
       {vehicle.features && vehicle.features.length > 0 && (
-        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-          <div className="flex items-center gap-2 pb-4 mb-6 border-b border-slate-100">
-            <Tag className="w-5 h-5 text-[#d97706]" />
-            <h2 className="font-display font-bold text-xl uppercase text-slate-900 tracking-wide">
+        <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-8 shadow-xs">
+          <div className="flex items-center gap-2 pb-4 mb-6 border-b border-[#E0E0E0]">
+            <Tag className="w-5 h-5 text-[#F59C00]" />
+            <h2 className="font-display font-bold text-xl uppercase text-[#121212] tracking-wide">
               Itens e Opcionais do Veículo
             </h2>
           </div>
@@ -182,9 +182,9 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
             {vehicle.features.map((feature, idx) => (
               <div
                 key={idx}
-                className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/70 text-xs text-slate-800 font-medium"
+                className="flex items-center gap-2.5 p-3.5 rounded-xl bg-white border border-[#E0E0E0] text-xs text-[#121212] font-semibold shadow-xs"
               >
-                <CheckCircle2 className="w-4 h-4 text-[#d97706] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#F59C00] shrink-0" />
                 <span>{feature}</span>
               </div>
             ))}
@@ -194,10 +194,10 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
 
       {/* Diferenciais Carplus */}
       {vehicle.differentials && vehicle.differentials.length > 0 && (
-        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-          <div className="flex items-center gap-2 pb-4 mb-6 border-b border-slate-100">
-            <Sparkles className="w-5 h-5 text-[#d97706]" />
-            <h2 className="font-display font-bold text-xl uppercase text-slate-900 tracking-wide">
+        <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-8 shadow-xs">
+          <div className="flex items-center gap-2 pb-4 mb-6 border-b border-[#E0E0E0]">
+            <Sparkles className="w-5 h-5 text-[#F59C00]" />
+            <h2 className="font-display font-bold text-xl uppercase text-[#121212] tracking-wide">
               Diferenciais Carplus
             </h2>
           </div>
@@ -206,7 +206,7 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
             {vehicle.differentials.map((diff, idx) => (
               <div
                 key={idx}
-                className="flex items-center gap-2.5 p-3.5 rounded-xl bg-slate-900 text-white border border-slate-800 text-xs font-semibold"
+                className="flex items-center gap-2.5 p-4 rounded-xl bg-black text-white border border-[#222222] text-xs font-display font-bold uppercase tracking-wider"
               >
                 <CheckCircle2 className="w-4 h-4 text-[#F59C00] shrink-0" />
                 <span>{diff}</span>
@@ -218,11 +218,11 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
 
       {/* Descrição e Observações */}
       {vehicle.description && (
-        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-          <h2 className="font-display font-bold text-xl uppercase text-slate-900 tracking-wide pb-4 mb-4 border-b border-slate-100">
+        <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-8 shadow-xs">
+          <h2 className="font-display font-bold text-xl uppercase text-[#121212] tracking-wide pb-4 mb-4 border-b border-[#E0E0E0]">
             Sobre este Veículo
           </h2>
-          <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+          <div className="text-sm text-[#333333] leading-relaxed whitespace-pre-line font-medium">
             {vehicle.description}
           </div>
         </div>
