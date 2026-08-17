@@ -1,0 +1,6 @@
+{
+  "name": "Carplus Autos",
+  "description": "Plataforma de compra, venda, troca e consignação de veículos seminovos e novos em Curitiba - Carplus Autos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --surface-2: #f1f5f9;
+    --surface-3: #e2e8f0;
+    --foreground: #0f172a;
+    --muted-foreground: #64748b;
+    --border-color: #e2e8f0;
+
+    --primary: #F59C00;
+    --primary-hover: #F7941D;
+    --primary-foreground: #000000;
+    --accent: #F89400;
+    --highlight: #FFD600;
+
+    --whatsapp: #25D366;
+    --whatsapp-hover: #20BA5A;
+    --success: #16a34a;
+    --destructive: #dc2626;
+    --radius: 0.75rem;
+  }
+
+  * {
+    border-color: var(--border-color);
+  }
+
+  body {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.03em;
+  }
+}
+
+/* Custom Utilities for Carplus Autos theme */
+.bg-surface {
+  background-color: #ffffff;
+}
+
+.bg-surface-2 {
+  background-color: #f1f5f9;
+}
+
+.bg-surface-3 {
+  background-color: #e2e8f0;
+}
+
+.border-theme {
+  border-color: #e2e8f0;
+}
+
+.text-primary-brand {
+  color: #F59C00;
+}
+
+.bg-primary-brand {
+  background-color: #F59C00;
+}
+
+.hover-bg-primary-brand:hover {
+  background-color: #F7941D;
+}
+
+.text-whatsapp {
+  color: #25D366;
+}
+
+.bg-whatsapp {
+  background-color: #25D366;
+}
+
+.hover-bg-whatsapp:hover {
+  background-color: #20BA5A;
+}
+
+.font-display {
+  font-family: 'Oswald', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F59C00;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
