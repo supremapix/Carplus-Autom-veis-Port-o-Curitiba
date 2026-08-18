@@ -1,5 +1,5 @@
-export const CARPLUS_PHONE = '554130827282';
-export const CARPLUS_PHONE_DISPLAY = '(41) 3082-7282';
+export const CARPLUS_PHONE = '5541988740258';
+export const CARPLUS_PHONE_DISPLAY = '(41) 98874-0258';
 
 export function buildWhatsAppLink(message?: string): string {
   const base = `https://wa.me/${CARPLUS_PHONE}`;

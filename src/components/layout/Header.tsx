@@ -123,7 +123,7 @@ export function Header() {
             <div className="flex items-center gap-2 lg:hidden shrink-0">
               {/* Botão LIGAR */}
               <a
-                href="tel:+554130827282"
+                href="tel:+5541988740258"
                 className="flex items-center justify-center gap-1.5 bg-[#1A1A1A] hover:bg-[#252525] text-white border border-[#2A2A2A] font-display font-bold text-xs uppercase px-3 h-10 rounded-[10px] transition-all select-none whitespace-nowrap"
                 aria-label="Ligar para a Carplus Autos"
               >

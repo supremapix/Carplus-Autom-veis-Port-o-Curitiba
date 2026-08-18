@@ -41,21 +41,26 @@ export function LocationSection() {
               </div>
 
               <div className="flex items-start gap-4 bg-[#FAFAFA] p-5 rounded-2xl border border-[#E0E0E0]">
-                <div className="w-12 h-12 rounded-xl bg-black text-[#F59C00] shrink-0 flex items-center justify-center shadow-xs">
-                  <Phone className="w-6 h-6" />
-                </div>
+                {/* Foto do Paulo */}
+                <img
+                  src="https://img.carplusautos.com.br/auto/paulo.jpeg"
+                  alt="Paulo — Carplus Autos"
+                  className="w-14 h-14 rounded-full object-cover border-2 border-[#F59C00] shrink-0 shadow-sm"
+                  referrerPolicy="no-referrer"
+                />
                 <div>
                   <h3 className="text-xs font-display font-bold uppercase tracking-wider text-[#121212]">
-                    Telefone Fixo & Atendimento
+                    Atendimento Exclusivo com Paulo
                   </h3>
-                  <p className="text-sm text-[#666666] mt-1">
-                    <a
-                      href="tel:+554130827282"
-                      className="font-display font-bold text-xl text-[#F59C00] hover:text-[#F7941D] transition-colors"
-                    >
-                      {CARPLUS_PHONE_DISPLAY}
-                    </a>
+                  <p className="text-sm text-[#666666] mt-0.5">
+                    Ligação e WhatsApp Único:
                   </p>
+                  <a
+                    href="tel:+5541988740258"
+                    className="font-display font-bold text-xl text-[#F59C00] hover:text-[#F7941D] transition-colors block mt-0.5"
+                  >
+                    {CARPLUS_PHONE_DISPLAY}
+                  </a>
                 </div>
               </div>
 

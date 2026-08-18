@@ -49,7 +49,7 @@ export function Footer() {
               </a>
 
               <a
-                href="tel:+554130827282"
+                href="tel:+5541988740258"
                 className="w-full sm:w-auto h-14 px-7 rounded-2xl bg-white hover:bg-[#F8F9FA] text-black font-display font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-3 border border-black/15 hover:border-black shadow-lg shadow-black/5 transition-all duration-300 transform hover:-translate-y-0.5 select-none cursor-pointer"
               >
                 <div className="w-8 h-8 rounded-xl bg-black/5 flex items-center justify-center shrink-0">
@@ -208,7 +208,7 @@ export function Footer() {
                     TELEFONE & WHATSAPP
                   </div>
                   <a
-                    href="tel:+554130827282"
+                    href="tel:+5541988740258"
                     className="font-display font-bold text-2xl sm:text-[28px] text-[#F59C00] hover:text-[#F7941D] transition-colors block tracking-wide"
                   >
                     {CARPLUS_PHONE_DISPLAY}

@@ -56,7 +56,7 @@ export function buildVehicleJsonLd(vehicle: Vehicle, originUrl = 'https://www.ca
       'seller': {
         '@type': 'AutoDealer',
         'name': 'Carplus Autos',
-        'telephone': '+55-41-3082-7282',
+        'telephone': '+55-41-98874-0258',
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': 'Av. Presidente Arthur da Silva Bernardes, 1323',
@@ -90,7 +90,7 @@ export function buildGlobalDealerJsonLd() {
     'name': 'Carplus Autos',
     'image': 'https://www.carplusautos.com.br/images/logos/carplus-autos-logo.png',
     'url': 'https://www.carplusautos.com.br',
-    'telephone': '+554130827282',
+    'telephone': '+5541988740258',
     'priceRange': '$$$',
     'address': {
       '@type': 'PostalAddress',

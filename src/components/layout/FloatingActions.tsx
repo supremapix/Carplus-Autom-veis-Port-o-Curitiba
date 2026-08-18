@@ -179,7 +179,7 @@ export function FloatingActions() {
       <div className="fixed bottom-20 lg:bottom-6 right-4 z-30 flex flex-col gap-2.5 items-end">
         {/* Desktop apenas: Ligar */}
         <a
-          href="tel:+554130827282"
+          href="tel:+5541988740258"
           className="hidden lg:flex w-12 h-12 rounded-full bg-black/85 backdrop-blur-md border border-white/12 shadow-[0_8px_24px_rgba(0,0,0,0.35)] items-center justify-center text-white hover:border-[#F59C00] hover:scale-[1.06] transition-all cursor-pointer relative group"
           aria-label="Ligar para a Carplus Autos"
         >

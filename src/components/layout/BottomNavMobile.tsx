@@ -30,7 +30,7 @@ export function BottomNavMobile() {
 
         {/* Botão Ligar */}
         <a
-          href="tel:+554130827282"
+          href="tel:+5541988740258"
           className="flex flex-col items-center justify-center gap-0.5 text-white hover:text-[#F59C00] active:bg-white/5 transition-colors select-none"
         >
           <Phone className="w-5 h-5 text-[#F59C00]" />

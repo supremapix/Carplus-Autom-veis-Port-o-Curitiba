@@ -14,7 +14,7 @@ export function TopBar() {
           <span className="text-white/30 shrink-0">·</span>
           <div className="flex items-center gap-1.5 hover:text-white transition-colors whitespace-nowrap shrink-0">
             <Phone className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
-            <a href="tel:+554130827282" className="hover:text-white transition-colors font-bold text-white tracking-wide">
+            <a href="tel:+5541988740258" className="hover:text-white transition-colors font-bold text-white tracking-wide">
               {CARPLUS_PHONE_DISPLAY}
             </a>
           </div>
