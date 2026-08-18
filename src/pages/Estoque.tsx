@@ -8,6 +8,7 @@ import { Vehicle } from '../types/vehicle';
 import { VehicleFiltersState, VehicleSortOption } from '../types/filters';
 import { Container } from '../components/ui/Container';
 import { PageHero } from '../components/ui/PageHero';
+import { CAR_BRANDS } from '../data/brands';
 
 export function Estoque() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -115,8 +116,62 @@ export function Estoque() {
       />
 
       {/* Conteúdo Principal com Sidebar de Filtros */}
-      <div className="py-12 sm:py-16">
+      <div className="py-8 sm:py-12">
         <Container>
+          {/* Seletor Visual de Marcas com Logos Reais */}
+          <div className="mb-8 bg-[#FAFAFA] border border-[#E0E0E0] rounded-2xl p-4 sm:p-5 shadow-xs">
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <span className="text-xs font-display font-bold text-[#666666] uppercase tracking-wider">
+                Filtrar por Marca:
+              </span>
+              {filters.brand && (
+                <button
+                  type="button"
+                  onClick={() => removeFilterKey('brand')}
+                  className="text-xs font-display font-bold text-[#F59C00] hover:underline cursor-pointer uppercase"
+                >
+                  Ver todas as marcas
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2.5 overflow-x-auto pb-1 scrollbar-none">
+              {CAR_BRANDS.map((brand) => {
+                const isSelected = filters.brand?.toLowerCase() === brand.name.toLowerCase();
+                return (
+                  <button
+                    key={brand.name}
+                    type="button"
+                    onClick={() => {
+                      handleFilterChange({
+                        ...filters,
+                        brand: isSelected ? undefined : brand.name,
+                        model: undefined,
+                      });
+                    }}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-xl border transition-all shrink-0 cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#121212] text-[#F59C00] border-[#121212] shadow-sm scale-105'
+                        : 'bg-white hover:bg-white text-[#121212] border-[#E0E0E0] hover:border-[#F59C00]'
+                    }`}
+                    title={`Filtrar por ${brand.name}`}
+                  >
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="h-6 w-auto max-w-[40px] object-contain"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                    />
+                    <span className="text-xs font-display font-bold uppercase tracking-wider whitespace-nowrap">
+                      {brand.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           <div className="lg:grid lg:grid-cols-[280px_1fr] gap-8 items-start">
             {/* Sidebar de Filtros (Aside) */}
             <aside className="w-full">

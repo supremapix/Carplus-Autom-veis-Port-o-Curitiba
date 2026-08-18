@@ -5,6 +5,7 @@ import { Vehicle } from '../../types/vehicle';
 import { formatPrice, formatKm } from '../../lib/utils';
 import { VehicleImage } from '../ui/VehicleImage';
 import { getVehicleImageUrl } from '../../lib/images';
+import { getBrandLogo } from '../../data/brands';
 
 export interface VehicleCardProps {
   vehicle: Vehicle;
@@ -95,10 +96,22 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
       {/* Conteúdo & Especificações */}
       <div className="p-5 sm:p-6 flex flex-col justify-between flex-grow bg-white">
         <div>
-          {/* Marca e Modelo */}
-          <h3 className="font-display font-bold text-xl sm:text-2xl text-[#121212] uppercase tracking-wide group-hover:text-[#F59C00] transition-colors line-clamp-2 leading-tight">
-            {vehicle.brand} {vehicle.model}
-          </h3>
+          {/* Marca e Modelo com Logo */}
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="font-display font-bold text-xl sm:text-2xl text-[#121212] uppercase tracking-wide group-hover:text-[#F59C00] transition-colors line-clamp-2 leading-tight">
+              {vehicle.brand} {vehicle.model}
+            </h3>
+            {getBrandLogo(vehicle.brand) && (
+              <div className="h-6 w-10 bg-[#FAFAFA] border border-[#E8E8E8] rounded-md px-1 flex items-center justify-center shrink-0 mt-0.5">
+                <img
+                  src={getBrandLogo(vehicle.brand)}
+                  alt={`Logo ${vehicle.brand}`}
+                  className="max-h-4 max-w-[32px] object-contain"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            )}
+          </div>
 
           {/* Versão */}
           <p className="text-xs sm:text-sm text-[#666666] font-medium line-clamp-1 mt-1">

@@ -152,6 +152,56 @@ export function QuickSearchSection() {
               </button>
             </div>
           </form>
+
+          {/* Atalhos Rápidos de Marcas Populares */}
+          <div className="mt-6 pt-6 border-t border-[#E0E0E0]">
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <span className="text-[11px] font-display font-bold text-[#888888] uppercase tracking-wider">
+                Marcas mais procuradas:
+              </span>
+            </div>
+            <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none">
+              {[
+                { name: 'BMW', logo: 'https://www.maiscar.com.br/cdn/shop/collections/BMW-png_450x.webp?v=1756475604' },
+                { name: 'Toyota', logo: 'https://www.maiscar.com.br/cdn/shop/collections/Toyota-80-jpg_450x.webp?v=1756478765' },
+                { name: 'Jeep', logo: 'https://www.maiscar.com.br/cdn/shop/collections/JEEP_450x.png?v=1756477389' },
+                { name: 'Volkswagen', logo: 'https://www.maiscar.com.br/cdn/shop/collections/Volksvaguen-80_450x.jpg?v=1756178743' },
+                { name: 'Chevrolet', logo: 'https://www.maiscar.com.br/cdn/shop/collections/pngwing.com_450x.png?v=1756251450' },
+                { name: 'Audi', logo: 'https://www.maiscar.com.br/cdn/shop/collections/AUDI_450x.png?v=1756475413' },
+                { name: 'Honda', logo: 'https://www.maiscar.com.br/cdn/shop/collections/Honda-80_450x.jpg?v=1756476585' },
+                { name: 'Hyundai', logo: 'https://www.maiscar.com.br/cdn/shop/collections/Hyundai-80_450x.jpg?v=1756476868' },
+                { name: 'Mercedes-Benz', logo: 'https://www.maiscar.com.br/cdn/shop/collections/MERCEDES-BENZ_450x.png?v=1756477831' },
+                { name: 'Land Rover', logo: 'https://www.maiscar.com.br/cdn/shop/collections/LAND_ROVER_450x.png?v=1756477671' },
+                { name: 'BYD', logo: 'https://www.maiscar.com.br/cdn/shop/collections/BYD_450x.png?v=1756475201' },
+                { name: 'Ford', logo: 'https://www.maiscar.com.br/cdn/shop/collections/Ford-1-80_450x.webp?v=1756476222' },
+              ].map((brand) => (
+                <button
+                  key={brand.name}
+                  type="button"
+                  onClick={() => {
+                    setSelectedBrand(brand.name);
+                    navigate(`/estoque?marca=${encodeURIComponent(brand.name)}`);
+                  }}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all shrink-0 cursor-pointer ${
+                    selectedBrand === brand.name
+                      ? 'bg-black text-[#F59C00] border-black shadow-xs'
+                      : 'bg-white hover:bg-white text-[#121212] border-[#E0E0E0] hover:border-[#F59C00]'
+                  }`}
+                >
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    className="h-5 w-auto max-w-[36px] object-contain"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                  <span className="text-xs font-display font-bold uppercase tracking-wider">
+                    {brand.name}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </section>

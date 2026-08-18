@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Sparkles, ShieldCheck, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Sparkles, Fuel, Gauge, Calendar } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Button } from '../ui/Button';
 import { MOCK_VEHICLES } from '../../data/mock/vehicles.mock';
 import { formatPrice, formatKm } from '../../lib/utils';
 import { handleVehicleImageError, FALLBACK_VEHICLE_IMAGES } from '../../lib/images';
+import { getBrandLogo } from '../../data/brands';
 
 export function SellPromo() {
   // Filtra veículos disponíveis no estoque para a rotação automática
@@ -133,12 +134,12 @@ export function SellPromo() {
             <div className="lg:col-span-6 space-y-4">
               {/* Card do Carro com Troca Automática */}
               <div
-                className="relative rounded-2xl overflow-hidden border border-[#E0E0E0] shadow-xl bg-black group"
+                className="relative rounded-2xl overflow-hidden border border-[#E0E0E0] shadow-xl bg-white group flex flex-col"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
               >
-                {/* Imagem do Veículo em Destaque */}
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-black">
+                {/* 1. Imagem do Veículo em Destaque 100% Limpa e Desobstruída */}
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#121212]">
                   <img
                     key={currentVehicle.id}
                     src={coverImage}
@@ -147,32 +148,27 @@ export function SellPromo() {
                     loading="lazy"
                     decoding="async"
                     referrerPolicy="no-referrer"
-                    onError={(e) =>
-                      handleVehicleImageError(e)
-                    }
+                    onError={(e) => handleVehicleImageError(e)}
                   />
 
-                  {/* Gradiente escuro para legibilidade dos dados sobrepostos */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/20" />
-
-                  {/* Badges do topo da foto */}
+                  {/* Badges do topo da foto (discretos e posicionados no canto superior) */}
                   <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-[#F59C00] text-[11px] font-display font-bold uppercase tracking-wider">
-                      <Sparkles className="w-3.5 h-3.5" />
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-[#F59C00] text-[11px] font-display font-bold uppercase tracking-wider shadow-sm">
+                      <Sparkles className="w-3.5 h-3.5 text-[#F59C00]" />
                       <span>DESTAQUE DO ESTOQUE</span>
                     </div>
 
-                    <div className="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-black text-[11px] font-display font-bold uppercase tracking-wide">
+                    <div className="px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-white text-[11px] font-display font-bold uppercase tracking-wide">
                       {currentIndex + 1} de {vehicles.length}
                     </div>
                   </div>
 
-                  {/* Controles de Navegação Rápida do Carrossel */}
-                  <div className="absolute inset-y-0 left-2 right-2 flex items-center justify-between pointer-events-none">
+                  {/* Controles de Navegação do Carrossel */}
+                  <div className="absolute inset-y-0 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
                     <button
                       type="button"
                       onClick={handlePrev}
-                      className="w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center pointer-events-auto backdrop-blur-xs border border-white/20 transition-transform active:scale-90"
+                      className="w-9 h-9 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center pointer-events-auto backdrop-blur-md border border-white/25 transition-all active:scale-90 shadow-md hover:border-[#F59C00] cursor-pointer"
                       aria-label="Carro anterior"
                     >
                       <ChevronLeft className="w-5 h-5" />
@@ -180,40 +176,81 @@ export function SellPromo() {
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center pointer-events-auto backdrop-blur-xs border border-white/20 transition-transform active:scale-90"
+                      className="w-9 h-9 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center pointer-events-auto backdrop-blur-md border border-white/25 transition-all active:scale-90 shadow-md hover:border-[#F59C00] cursor-pointer"
                       aria-label="Próximo carro"
                     >
                       <ChevronRight className="w-5 h-5" />
                     </button>
                   </div>
+                </div>
 
-                  {/* Informações do Veículo + Botão "CONFIRA ESTA OFERTA" */}
-                  <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 bg-gradient-to-t from-black via-black/90 to-transparent">
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-                      <div className="min-w-0">
-                        <span className="text-[11px] font-display font-bold uppercase tracking-widest text-[#F59C00] block">
+                {/* 2. Corpo do Card Elegante & Moderno (Fora da foto) */}
+                <div className="p-5 sm:p-6 bg-white flex flex-col justify-between gap-4 border-t border-[#EDEDED]">
+                  {/* Cabeçalho do Carro */}
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xs font-display font-bold uppercase tracking-widest text-[#F59C00] bg-black px-2 py-0.5 rounded">
                           {currentVehicle.brand}
                         </span>
-                        <h3 className="text-lg sm:text-xl font-display font-bold uppercase text-white truncate leading-tight">
-                          {currentVehicle.model}
-                        </h3>
-                        <p className="text-xs text-[#B3B3B3] truncate mt-0.5">
-                          {currentVehicle.yearModel} · {formatKm(currentVehicle.mileage)} · {currentVehicle.fuelLabel}
-                        </p>
-                        <div className="font-display font-bold text-xl sm:text-2xl text-white mt-1">
-                          {formatPrice(currentVehicle.price)}
-                        </div>
+                        {currentVehicle.version && (
+                          <span className="text-xs text-[#888888] font-medium truncate">
+                            {currentVehicle.version}
+                          </span>
+                        )}
                       </div>
-
-                      {/* Botão de Destaque da Oferta */}
-                      <Link
-                        to={`/estoque/${currentVehicle.slug}`}
-                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#F59C00]/30 shrink-0 select-none hover:scale-102 active:scale-98"
-                      >
-                        <span>CONFIRA ESTA OFERTA</span>
-                        <ArrowRight className="w-4 h-4 text-black" />
-                      </Link>
+                      <h3 className="text-xl sm:text-2xl font-display font-bold uppercase text-[#121212] tracking-tight truncate leading-tight">
+                        {currentVehicle.model}
+                      </h3>
                     </div>
+
+                    {/* Logo da Marca */}
+                    {getBrandLogo(currentVehicle.brand) && (
+                      <div className="h-8 w-12 bg-[#FAFAFA] border border-[#E8E8E8] rounded-lg px-1.5 flex items-center justify-center shrink-0">
+                        <img
+                          src={getBrandLogo(currentVehicle.brand)}
+                          alt={`Logo ${currentVehicle.brand}`}
+                          className="max-h-6 max-w-[38px] object-contain"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Chips de Especificações do Veículo */}
+                  <div className="grid grid-cols-3 gap-2 py-2 border-y border-[#F0F0F0]">
+                    <div className="flex items-center gap-1.5 text-xs text-[#555555]">
+                      <Calendar className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
+                      <span className="font-semibold text-[#121212] truncate">{currentVehicle.yearModel}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs text-[#555555]">
+                      <Gauge className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
+                      <span className="font-semibold text-[#121212] truncate">{formatKm(currentVehicle.mileage)}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs text-[#555555]">
+                      <Fuel className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
+                      <span className="font-semibold text-[#121212] truncate">{currentVehicle.fuelLabel}</span>
+                    </div>
+                  </div>
+
+                  {/* Preço & Ação */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+                    <div>
+                      <span className="text-[11px] font-display font-bold text-[#888888] uppercase tracking-wider block">
+                        Valor à vista
+                      </span>
+                      <div className="font-display font-bold text-2xl sm:text-[26px] text-[#121212] leading-none">
+                        {formatPrice(currentVehicle.price)}
+                      </div>
+                    </div>
+
+                    <Link
+                      to={`/estoque/${currentVehicle.slug}`}
+                      className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#F59C00]/25 select-none hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                    >
+                      <span>CONFIRA ESTA OFERTA</span>
+                      <ArrowRight className="w-4 h-4 text-black" />
+                    </Link>
                   </div>
                 </div>
               </div>

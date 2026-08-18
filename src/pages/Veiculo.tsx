@@ -30,6 +30,7 @@ import { buildWhatsAppLink, buildVehicleWhatsAppMessage, CARPLUS_PHONE_DISPLAY }
 import { buildVehicleTitle, buildVehicleDescription, buildVehicleJsonLd, buildBreadcrumbJsonLd } from '../lib/seo';
 import { Container } from '../components/ui/Container';
 import { Button } from '../components/ui/Button';
+import { getBrandLogo } from '../data/brands';
 
 export function Veiculo() {
   const { slug } = useParams<{ slug: string }>();
@@ -187,6 +188,16 @@ export function Veiculo() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 pb-6 border-b border-[#E0E0E0]">
           <div>
             <div className="flex items-center gap-2.5 mb-2 flex-wrap">
+              {getBrandLogo(vehicle.brand) && (
+                <div className="h-7 w-12 bg-[#FAFAFA] border border-[#E0E0E0] rounded-md px-1.5 flex items-center justify-center">
+                  <img
+                    src={getBrandLogo(vehicle.brand)}
+                    alt={`Logo ${vehicle.brand}`}
+                    className="max-h-5 max-w-[36px] object-contain"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              )}
               <span className="text-xs font-display font-bold uppercase tracking-widest text-[#F59C00] bg-black px-2.5 py-0.5 rounded-md">
                 {vehicle.brand}
               </span>

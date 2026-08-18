@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Hero } from '../components/home/Hero';
 import { QuickSearchSection } from '../components/home/QuickSearchSection';
-import { BrandsMarquee } from '../components/home/BrandsMarquee';
 import { FeaturedVehicles } from '../components/home/FeaturedVehicles';
+import { BrandShowcase } from '../components/home/BrandShowcase';
 import { WhyCarplus } from '../components/home/WhyCarplus';
 import { SellPromo } from '../components/home/SellPromo';
 import { FinancingTradePromo } from '../components/home/FinancingTradePromo';
@@ -29,17 +29,17 @@ export function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 1. Hero */}
+      {/* 1. Hero com Marquee de Marcas Transparente Integrado no Rodapé */}
       <Hero />
 
       {/* 2. Faixa de Busca Rápida (Abaixo do Hero) */}
       <QuickSearchSection />
 
-      {/* 3. Marquee de Marcas */}
-      <BrandsMarquee />
-
-      {/* 4. Veículos em Destaque (Fundo Branco) */}
+      {/* 3. Veículos em Destaque (Fundo Branco) */}
       <FeaturedVehicles vehicles={featuredVehicles} />
+
+      {/* 4. Grade de Marcas com Logos Oficiais */}
+      <BrandShowcase />
 
       {/* 5. Por Que Negociar na Carplus Autos (Bloco Preto 4 Pilares) */}
       <WhyCarplus />
