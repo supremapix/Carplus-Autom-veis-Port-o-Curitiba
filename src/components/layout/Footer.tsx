@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Clock, Instagram, MessageSquare, ExternalLink, Lock, ShieldCheck, FileText } from 'lucide-react';
-import { LOGO_URL } from './Header';
+import { Logo } from '../ui/Logo';
 import { SupremaCredit } from './SupremaCredit';
 import { CARPLUS_PHONE_DISPLAY, buildWhatsAppLink } from '../../lib/whatsapp';
 import { Container } from '../ui/Container';
@@ -65,11 +65,7 @@ export function Footer() {
             {/* Coluna 1: Sobre & Logo Oficial */}
             <div className="space-y-5">
               <Link to="/" className="inline-block" aria-label="Página Inicial Carplus Autos">
-                <img
-                  src={LOGO_URL}
-                  alt="Carplus Autos"
-                  className="h-14 w-auto object-contain"
-                />
+                <Logo variant="dark" className="h-16 sm:h-20 lg:h-24 max-w-[340px] sm:max-w-[380px]" />
               </Link>
               <p className="text-sm text-[#B3B3B3] leading-relaxed">
                 Referência em veículos seminovos selecionados e periciados no bairro Portão em Curitiba. Garantia de motor e caixa, laudo cautelar 100% aprovado e procedência garantida.

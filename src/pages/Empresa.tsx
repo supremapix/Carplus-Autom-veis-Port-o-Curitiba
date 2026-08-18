@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Wrench, Car, ExternalLink, ArrowRight, ShieldCheck, Award } from 'lucide-react';
-import { LOGO_URL } from '../components/layout/Header';
+import { Logo } from '../components/ui/Logo';
 import { Container } from '../components/ui/Container';
 import { PageHero } from '../components/ui/PageHero';
 import { Button } from '../components/ui/Button';
@@ -26,8 +26,8 @@ export function Empresa() {
             {/* Bloco Institucional */}
             <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-8 sm:p-12 space-y-8 shadow-xl">
               
-              <div className="flex items-center justify-center pb-8 border-b border-[#E0E0E0]">
-                <img src={LOGO_URL} alt="Carplus Autos Curitiba" className="h-16 w-auto object-contain" />
+              <div className="flex items-center justify-center p-8 sm:p-12 bg-black rounded-2xl border border-[#2E2E2E] shadow-lg">
+                <Logo variant="dark" className="h-20 sm:h-28 md:h-36 max-w-full" />
               </div>
 
               <div className="space-y-5 text-[#333333] text-base leading-relaxed">

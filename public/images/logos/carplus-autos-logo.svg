@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" fill="none" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB300" />
+      <stop offset="100%" stop-color="#F59C00" />
+    </linearGradient>
+    <linearGradient id="gradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F1F1F" />
+      <stop offset="100%" stop-color="#0A0A0A" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon Badge (Left) -->
+  <g transform="translate(5, 8)">
+    <!-- Slanted Hexagon/Shield Badge -->
+    <path d="M14 0 L58 0 L48 64 L4 64 Z" fill="url(#gradOrange)" rx="6" />
+    <path d="M18 4 L54 4 L45 60 L9 60 Z" fill="#000000" />
+    <!-- Stylized Speed C & Plus -->
+    <path d="M38 18 C30 18 24 24 24 32 C24 40 30 46 38 46 L44 46 L42 40 L38 40 C34 40 30 36 30 32 C30 28 34 24 38 24 L45 24 L47 18 Z" fill="#FFFFFF" />
+    <!-- Orange Plus Accent -->
+    <path d="M43 28 L47 28 L47 24 L51 24 L51 28 L55 28 L55 32 L51 32 L51 36 L47 36 L47 32 L43 32 Z" fill="#F59C00" />
+    <!-- Speed Lines -->
+    <path d="M6 22 L14 22 L12 26 L4 26 Z" fill="#F59C00" opacity="0.9" />
+    <path d="M3 32 L11 32 L9 36 L1 36 Z" fill="#F59C00" opacity="0.9" />
+    <path d="M0 42 L8 42 L6 46 L-2 46 Z" fill="#F59C00" opacity="0.9" />
+  </g>
+
+  <!-- Brand Typography -->
+  <!-- CARPLUS -->
+  <text x="75" y="46" font-family="'Oswald', 'Montserrat', 'Impact', sans-serif" font-size="40" font-weight="800" font-style="italic" fill="#FFFFFF" letter-spacing="1.5">CARPLUS</text>
+  <!-- AUTOS -->
+  <text x="282" y="46" font-family="'Oswald', 'Montserrat', 'Impact', sans-serif" font-size="40" font-weight="800" font-style="italic" fill="#F59C00" letter-spacing="2">AUTOS</text>
+  
+  <!-- Subtitle Tagline -->
+  <text x="76" y="65" font-family="'Inter', 'Segoe UI', sans-serif" font-size="10.5" font-weight="700" fill="#B3B3B3" letter-spacing="3.5">SEMINOVOS SELECIONADOS · CURITIBA</text>
+</svg>

@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Button } from '../ui/Button';
+import { handleVehicleImageError, FALLBACK_VEHICLE_IMAGES } from '../../lib/images';
 
 export function SellPromo() {
   return (
@@ -53,11 +54,13 @@ export function SellPromo() {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden border border-[#E0E0E0] shadow-xl aspect-[4/3] bg-black">
                 <img
-                  src="/images/veiculos/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024/01.webp"
+                  src="/images/veiculos/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024/01.jpg"
                   alt="Avaliação de veículos Carplus Autos Curitiba"
                   className="w-full h-full object-cover"
                   loading="lazy"
                   decoding="async"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES.suv)}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
@@ -77,3 +80,4 @@ export function SellPromo() {
     </section>
   );
 }
+

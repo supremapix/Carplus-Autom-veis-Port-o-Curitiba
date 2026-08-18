@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X, ChevronRight, Car, MessageSquare, Clock, MapPin } from 'lucide-react';
 import { buildWhatsAppLink, CARPLUS_PHONE_DISPLAY } from '../../lib/whatsapp';
+import { Logo } from '../ui/Logo';
 
 export const LOGO_URL = '/images/logos/carplus-autos-logo.png';
 
@@ -58,7 +59,7 @@ export function Header() {
   ];
 
   const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '';
+    if (path === '/') return location.pathname === '/' || location.pathname === '';
     return location.pathname.startsWith(path);
   };
 
@@ -66,23 +67,19 @@ export function Header() {
     <>
       <header className="sticky top-0 z-40 w-full bg-black border-b border-[#2E2E2E] shadow-xl shadow-black/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-[72px] lg:h-[88px] gap-4">
+          <div className="flex items-center justify-between h-[84px] sm:h-[96px] lg:h-[110px] gap-4">
             {/* Logo Oficial Carplus Autos sobre Fundo Preto */}
             <Link
               to="/"
-              className="flex items-center shrink-0 group focus-visible:outline-2 focus-visible:outline-[#F59C00]"
+              className="flex items-center shrink-0 group focus-visible:outline-2 focus-visible:outline-[#F59C00] py-2"
               aria-label="Carplus Autos — Página Inicial"
             >
-              <img
-                src={LOGO_URL}
-                alt="Carplus Autos - Compra e Venda de Veículos em Curitiba"
-                className="h-10 sm:h-11 lg:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
-              />
+              <Logo variant="dark" className="h-14 sm:h-16 lg:h-22 max-w-[260px] sm:max-w-[340px] lg:max-w-[420px] transition-transform duration-200 group-hover:scale-105" />
             </Link>
 
-            {/* Desktop Navigation (visível a partir de lg / 1024px) */}
+            {/* Desktop Navigation (visível a partir de xl / 1280px para evitar encavalamento) */}
             <nav
-              className="hidden lg:flex items-center gap-6 xl:gap-8"
+              className="hidden xl:flex items-center gap-4 2xl:gap-7 shrink-0"
               aria-label="Menu Principal"
             >
               {navLinks.map((link) => {
@@ -92,7 +89,7 @@ export function Header() {
                     key={link.path}
                     to={link.path}
                     aria-current={active ? 'page' : undefined}
-                    className={`text-[15px] font-bold uppercase tracking-wider transition-colors py-2 relative select-none ${
+                    className={`text-[13px] 2xl:text-[15px] font-bold uppercase tracking-wider transition-colors py-2 relative select-none whitespace-nowrap ${
                       active
                         ? 'text-[#F59C00]'
                         : 'text-white hover:text-[#F59C00]'
@@ -107,11 +104,11 @@ export function Header() {
               })}
             </nav>
 
-            {/* Desktop Action Buttons */}
-            <div className="hidden lg:flex items-center gap-3.5">
+            {/* Desktop Action Buttons (xl+) */}
+            <div className="hidden xl:flex items-center gap-3 shrink-0">
               <Link
                 to="/estoque"
-                className="bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-sm tracking-wider uppercase h-12 px-6 rounded-full transition-all flex items-center justify-center gap-2 shadow-md shadow-[#F59C00]/25 active:scale-95 select-none cursor-pointer"
+                className="bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-xs 2xl:text-sm tracking-wider uppercase h-11 2xl:h-12 px-5 2xl:px-6 rounded-full transition-all flex items-center justify-center gap-2 shadow-md shadow-[#F59C00]/25 active:scale-95 select-none cursor-pointer whitespace-nowrap"
               >
                 <Car className="w-4 h-4 text-black shrink-0" />
                 <span>VER ESTOQUE</span>
@@ -121,7 +118,7 @@ export function Header() {
                 href={buildWhatsAppLink('Olá! Gostaria de falar com um consultor da Carplus Autos.')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#25D366] hover:bg-[#20BA5A] text-black font-display font-bold text-sm tracking-wider uppercase h-12 px-5 rounded-full transition-all flex items-center justify-center gap-2 shadow-md shadow-[#25D366]/25 active:scale-95 select-none"
+                className="bg-[#25D366] hover:bg-[#20BA5A] text-black font-display font-bold text-xs 2xl:text-sm tracking-wider uppercase h-11 2xl:h-12 px-4 2xl:px-5 rounded-full transition-all flex items-center justify-center gap-2 shadow-md shadow-[#25D366]/25 active:scale-95 select-none whitespace-nowrap"
                 aria-label="Conversar pelo WhatsApp"
               >
                 <MessageSquare className="w-4 h-4 text-black shrink-0 fill-current" />
@@ -129,12 +126,21 @@ export function Header() {
               </a>
             </div>
 
-            {/* Mobile Header Controls (Botões Grandes Pensados para Idosos) */}
-            <div className="flex items-center gap-2.5 lg:hidden">
+            {/* Mobile / Tablet Controls (< xl) */}
+            <div className="flex items-center gap-2 sm:gap-3 xl:hidden">
+              {/* Botão Ver Estoque no Tablet */}
+              <Link
+                to="/estoque"
+                className="hidden sm:inline-flex items-center justify-center gap-1.5 bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-xs uppercase px-3.5 h-11 rounded-xl transition-all shadow-xs whitespace-nowrap"
+              >
+                <Car className="w-4 h-4 text-black shrink-0" />
+                <span>ESTOQUE</span>
+              </Link>
+
               {/* Botão LIGAR */}
               <a
                 href="tel:+554130827282"
-                className="flex items-center justify-center gap-2 bg-[#2A2A2A] hover:bg-[#333333] active:bg-[#404040] text-white border border-[#3E3E3E] font-display font-bold text-xs uppercase px-3.5 h-12 rounded-xl transition-all shadow-xs select-none"
+                className="flex items-center justify-center gap-1.5 bg-[#2A2A2A] hover:bg-[#333333] active:bg-[#404040] text-white border border-[#3E3E3E] font-display font-bold text-xs uppercase px-3.5 h-11 rounded-xl transition-all shadow-xs select-none whitespace-nowrap"
                 aria-label="Ligar para a Carplus Autos"
               >
                 <Phone className="w-4 h-4 text-[#F59C00] shrink-0" />
@@ -145,7 +151,7 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="flex items-center justify-center gap-2 bg-[#F59C00] hover:bg-[#F7941D] active:bg-[#E68A00] text-black font-display font-bold text-xs uppercase px-4 h-12 rounded-xl transition-all shadow-md shadow-[#F59C00]/30 select-none cursor-pointer"
+                className="flex items-center justify-center gap-1.5 bg-[#F59C00] hover:bg-[#F7941D] active:bg-[#E68A00] text-black font-display font-bold text-xs uppercase px-4 h-11 rounded-xl transition-all shadow-md shadow-[#F59C00]/30 select-none cursor-pointer whitespace-nowrap"
                 aria-label="Abrir Menu de Navegação"
                 aria-expanded={mobileMenuOpen}
               >
@@ -166,18 +172,14 @@ export function Header() {
           aria-label="Menu de Navegação Principal"
         >
           {/* Cabeçalho Preto do Drawer */}
-          <div className="bg-black border-b border-[#2E2E2E] px-4 py-3 flex items-center justify-between shrink-0">
+          <div className="bg-black border-b border-[#2E2E2E] px-4 py-4 flex items-center justify-between shrink-0">
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center"
               aria-label="Carplus Autos"
             >
-              <img
-                src={LOGO_URL}
-                alt="Carplus Autos"
-                className="h-10 w-auto object-contain"
-              />
+              <Logo variant="dark" className="h-14 sm:h-16 max-w-[240px]" />
             </Link>
 
             {/* Botão Fechar com Texto */}

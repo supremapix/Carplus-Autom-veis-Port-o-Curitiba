@@ -3,6 +3,7 @@ import { X, RefreshCw, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
 import { createTradeInRequest } from '../../services/leads';
 import { Button } from '../ui/Button';
+import { handleVehicleImageError, getVehicleImageUrl } from '../../lib/images';
 
 interface TradeInModalProps {
   vehicle: Vehicle;
@@ -105,8 +106,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
         {/* Veículo de Interesse */}
         <div className="mt-4 p-4 bg-[#FAFAFA] border border-[#E0E0E0] rounded-2xl flex items-center gap-4">
           <img
-            src={vehicle.images[0]?.url}
+            src={getVehicleImageUrl(vehicle.images[0]?.url, vehicle.bodyType)}
             alt={vehicle.model}
+            referrerPolicy="no-referrer"
+            onError={(e) => handleVehicleImageError(e)}
             className="w-16 h-12 rounded-xl object-cover"
           />
           <div>

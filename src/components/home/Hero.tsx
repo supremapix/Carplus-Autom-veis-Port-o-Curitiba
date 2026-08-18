@@ -57,6 +57,7 @@ export function Hero() {
           className="w-full h-full object-cover object-center filter grayscale"
           fetchPriority="high"
           decoding="async"
+          referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-black" />
       </div>

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Maximize2, X, Camera } from 'lucide-react';
 import { VehicleImage } from '../../types/vehicle';
+import { handleVehicleImageError, FALLBACK_VEHICLE_IMAGES } from '../../lib/images';
 
 interface VehicleGalleryProps {
   images: VehicleImage[];
@@ -18,14 +19,10 @@ export function VehicleGallery({
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const fallbackImage = '/images/veiculos/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024/01.webp';
+  const fallbackImage = '/images/veiculos/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024/01.jpg';
   const galleryImages = images && images.length > 0 ? images : [{ id: '1', url: fallbackImage, isCover: true, order: 0 }];
 
   const currentImage = galleryImages[activeIndex] || galleryImages[0];
-  const coverUrl = currentImage.url;
-  const webpSrcset = coverUrl.endsWith('.jpg')
-    ? `${coverUrl.replace('.jpg', '-400w.webp')} 400w, ${coverUrl.replace('.jpg', '-800w.webp')} 800w, ${coverUrl.replace('.jpg', '-1600w.webp')} 1600w`
-    : undefined;
 
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -37,6 +34,17 @@ export function VehicleGallery({
     setActiveIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxOpen) return;
+      if (e.key === 'Escape') setLightboxOpen(false);
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, galleryImages.length]);
+
   return (
     <div className="space-y-4">
       {/* Imagem Principal */}
@@ -46,24 +54,17 @@ export function VehicleGallery({
         }`}
         onClick={() => setLightboxOpen(true)}
       >
-        <picture>
-          {webpSrcset && (
-            <source
-              type="image/webp"
-              srcSet={webpSrcset}
-              sizes="(max-width: 1024px) 100vw, 800px"
-            />
-          )}
-          <img
-            src={currentImage.url}
-            alt={`${vehicleTitle} - Foto ${activeIndex + 1}`}
-            width={1200}
-            height={800}
-            fetchPriority="high"
-            decoding="async"
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-102"
-          />
-        </picture>
+        <img
+          src={currentImage.url}
+          alt={`${vehicleTitle} - Foto ${activeIndex + 1}`}
+          width={1200}
+          height={800}
+          fetchPriority="high"
+          decoding="async"
+          referrerPolicy="no-referrer"
+          onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES.default)}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
+        />
 
         {/* Badges de Status */}
         <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
@@ -142,6 +143,8 @@ export function VehicleGallery({
                 height={90}
                 loading="lazy"
                 decoding="async"
+                referrerPolicy="no-referrer"
+                onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES.default)}
                 className="w-full h-full object-cover"
               />
             </button>
@@ -179,6 +182,8 @@ export function VehicleGallery({
             <img
               src={currentImage.url}
               alt={`${vehicleTitle} - Ampliada`}
+              referrerPolicy="no-referrer"
+              onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES.default)}
               className="max-h-[80vh] max-w-full object-contain rounded-2xl shadow-2xl"
             />
 
@@ -214,7 +219,13 @@ export function VehicleGallery({
                   activeIndex === idx ? 'border-[#F59C00]' : 'border-[#2E2E2E] opacity-40'
                 }`}
               >
-                <img src={img.url} alt="" className="w-full h-full object-cover" />
+                <img
+                  src={img.url}
+                  alt=""
+                  referrerPolicy="no-referrer"
+                  onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES.default)}
+                  className="w-full h-full object-cover"
+                />
               </button>
             ))}
           </div>
@@ -223,3 +234,4 @@ export function VehicleGallery({
     </div>
   );
 }
+

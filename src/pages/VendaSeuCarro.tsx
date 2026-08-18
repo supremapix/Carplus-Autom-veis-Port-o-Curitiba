@@ -364,7 +364,12 @@ export function VendaSeuCarro() {
                       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-4">
                         {images.map((img, i) => (
                           <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden border border-[#E0E0E0] group shadow-xs">
-                            <img src={img} alt={`Foto ${i + 1}`} className="w-full h-full object-cover" />
+                            <img
+                              src={img}
+                              alt={`Foto ${i + 1}`}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-cover"
+                            />
                             <button
                               type="button"
                               onClick={() => handleRemoveImage(i)}

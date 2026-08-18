@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, Gauge, Fuel, Cog, ArrowRight, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
 import { formatPrice, formatKm } from '../../lib/utils';
+import { handleVehicleImageError, getVehicleImageUrl, FALLBACK_VEHICLE_IMAGES } from '../../lib/images';
 
 export interface VehicleCardProps {
   vehicle: Vehicle;
@@ -12,13 +13,7 @@ export interface VehicleCardProps {
 export function VehicleCard({ vehicle }: VehicleCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const coverImg = vehicle.images.find((img) => img.isCover) || vehicle.images[0];
-  const coverUrl = coverImg?.url || '/images/veiculos/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024/01.jpg';
-  
-  // Try WebP path if url is .jpg
-  const webpUrl = coverUrl.endsWith('.jpg') ? coverUrl.replace('.jpg', '.webp') : coverUrl;
-  const webpSrcset = coverUrl.endsWith('.jpg')
-    ? `${coverUrl.replace('.jpg', '-400w.webp')} 400w, ${coverUrl.replace('.jpg', '-800w.webp')} 800w, ${coverUrl.replace('.jpg', '-1600w.webp')} 1600w`
-    : undefined;
+  const coverUrl = getVehicleImageUrl(coverImg?.url, vehicle.bodyType);
 
   const isSold = vehicle.status === 'vendido';
   const isReserved = vehicle.status === 'reservado';
@@ -49,33 +44,20 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
         isSold ? 'opacity-75 grayscale-[40%]' : ''
       }`}
     >
-      {/* Imagem do Veículo com Suporte a WebP e Skeleton de Carregamento */}
+      {/* Imagem do Veículo com Suporte a Fallback */}
       <div className="relative aspect-[4/3] bg-[#1A1A1A] overflow-hidden">
-        {!imageLoaded && (
-          <div className="absolute inset-0 bg-[#EAEAEA] animate-pulse" />
-        )}
-
-        <picture>
-          {webpSrcset && (
-            <source
-              type="image/webp"
-              srcSet={webpSrcset}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          )}
-          <img
-            src={coverUrl}
-            alt={imageAlt}
-            width={600}
-            height={450}
-            loading="lazy"
-            decoding="async"
-            onLoad={() => setImageLoaded(true)}
-            className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        </picture>
+        <img
+          src={coverUrl}
+          alt={imageAlt}
+          width={600}
+          height={450}
+          loading="lazy"
+          decoding="async"
+          referrerPolicy="no-referrer"
+          onLoad={() => setImageLoaded(true)}
+          onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES[vehicle.bodyType as keyof typeof FALLBACK_VEHICLE_IMAGES])}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
 
         {/* Badges de Destaque / Oferta / Status */}
         <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-10 items-start">

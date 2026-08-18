@@ -259,6 +259,10 @@ export function Veiculo() {
                   <img
                     src={seller.photoUrl}
                     alt={seller.name}
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400';
+                    }}
                     className="w-16 h-16 rounded-full object-cover border-2 border-[#F59C00] shadow-sm"
                   />
                   <div>

@@ -33,6 +33,7 @@ export function PageHero({
         <img
           src={bgImage}
           alt="Carplus Autos Curitiba"
+          referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center filter grayscale"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/70" />
