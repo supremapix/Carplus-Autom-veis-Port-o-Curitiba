@@ -148,10 +148,7 @@ export function SellPromo() {
                     decoding="async"
                     referrerPolicy="no-referrer"
                     onError={(e) =>
-                      handleVehicleImageError(
-                        e,
-                        FALLBACK_VEHICLE_IMAGES[currentVehicle.bodyType] || FALLBACK_VEHICLE_IMAGES.suv
-                      )
+                      handleVehicleImageError(e)
                     }
                   />
 

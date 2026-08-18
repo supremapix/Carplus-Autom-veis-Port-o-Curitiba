@@ -68,7 +68,7 @@ export function Footer() {
                 <Logo variant="dark" className="h-16 sm:h-20 lg:h-24 max-w-[340px] sm:max-w-[380px]" />
               </Link>
               <p className="text-sm text-[#B3B3B3] leading-relaxed">
-                Referência em veículos seminovos selecionados e periciados no bairro Portão em Curitiba. Garantia de motor e caixa, laudo cautelar 100% aprovado e procedência garantida.
+                Compra, venda e troca de veículos em Curitiba com segurança e transparência.
               </p>
 
               {/* Redes Sociais em Círculos de 48px */}
@@ -249,15 +249,6 @@ export function Footer() {
                 <FileText className="w-3.5 h-3.5 text-[#B3B3B3]" />
                 <span>Sitemap XML</span>
               </a>
-              <span className="text-[#333333]">·</span>
-              <Link
-                to="/admin"
-                className="inline-flex items-center gap-1 hover:text-[#F59C00] transition-colors"
-                title="Acesso Administrativo"
-              >
-                <Lock className="w-3 h-3" />
-                <span>Painel Admin</span>
-              </Link>
             </div>
           </div>
 

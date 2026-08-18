@@ -96,7 +96,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
       <div className="p-5 sm:p-6 flex flex-col justify-between flex-grow bg-white">
         <div>
           {/* Marca e Modelo */}
-          <h3 className="font-display font-bold text-xl sm:text-2xl text-[#121212] uppercase tracking-wide group-hover:text-[#F59C00] transition-colors line-clamp-1 leading-tight">
+          <h3 className="font-display font-bold text-xl sm:text-2xl text-[#121212] uppercase tracking-wide group-hover:text-[#F59C00] transition-colors line-clamp-2 leading-tight">
             {vehicle.brand} {vehicle.model}
           </h3>
 

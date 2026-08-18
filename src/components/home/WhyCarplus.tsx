@@ -14,20 +14,20 @@ export function WhyCarplus() {
     {
       icon: <FileCheck className="w-7 h-7 text-[#F59C00]" />,
       tag: 'INSPEÇÃO TÉCNICA',
-      title: 'Laudo Cautelar 100%',
-      description: 'Estrutura monobloco, pintura, chassi e hodômetro inspecionados e certificados por empresa homologada pelo Detran.',
+      title: 'Laudo cautelar',
+      description: 'Laudo cautelar disponível para consulta.',
     },
     {
       icon: <Scale className="w-7 h-7 text-[#F59C00]" />,
       tag: 'COTAÇÃO JUSTA',
-      title: 'Avaliação Superior no Usado',
-      description: 'Análise criteriosa e transparente do seu seminovo com valorização real de mercado e opção de troca com troco imediato.',
+      title: 'Avaliação justa',
+      description: 'Análise criteriosa e transparente do seu seminovo com valorização real de mercado e opção de troca com troco.',
     },
     {
       icon: <FileText className="w-7 h-7 text-[#F59C00]" />,
       tag: 'SEGURANÇA JURÍDICA',
       title: 'Assessoria & Financiamento',
-      description: 'Processo ágil de transferência documental e condições exclusivas de financiamento em até 60 meses com os maiores bancos.',
+      description: 'Processo ágil de transferência documental e suporte em financiamento.',
     },
   ];
 
@@ -47,7 +47,7 @@ export function WhyCarplus() {
                 POR QUE NEGOCIAR NA <span className="text-[#F59C00] italic">CARPLUS AUTOS?</span>
               </>
             }
-            subtitle="Mais de 15 anos de credibilidade, rigor técnico e atendimento exclusivo no mercado automotivo de Curitiba."
+            subtitle="Seriedade e transparência em todas as etapas da negociação em Curitiba."
           />
         </div>
 

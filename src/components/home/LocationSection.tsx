@@ -90,7 +90,7 @@ export function LocationSection() {
           {/* Iframe Mapa */}
           <div className="lg:col-span-7 h-[420px] sm:h-[480px] rounded-3xl overflow-hidden border border-[#E0E0E0] shadow-xl relative">
             <iframe
-              title="Localização Carplus Autos no Portão Curitiba"
+              title="Mapa Carplus Autos"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.4939227546747!2d-49.2870749!3d-25.4770000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce365e8a75e3f%3A0x6b6070b13524b01e!2sAv.%20Pres.%20Arthur%20da%20Silva%20Bernardes%2C%201323%20-%20Port%C3%A3o%2C%20Curitiba%20-%20PR%2C%2080320-300!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
               width="100%"
               height="100%"

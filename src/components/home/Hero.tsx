@@ -50,18 +50,18 @@ export function Hero() {
   const trustHighlights = [
     {
       icon: <ShieldCheck className="w-5 h-5 text-[#F59C00]" />,
-      title: 'Laudo Cautelar 100%',
-      desc: 'Perícia rigorosa e aprovada',
+      title: 'Procedência garantida',
+      desc: 'Veículos selecionados',
     },
     {
       icon: <FileCheck className="w-5 h-5 text-[#F59C00]" />,
-      title: 'Garantia & Procedência',
-      desc: 'Histórico e motor certificados',
+      title: 'Laudo cautelar',
+      desc: 'Disponível para consulta',
     },
     {
       icon: <RefreshCw className="w-5 h-5 text-[#F59C00]" />,
-      title: 'Melhor Avaliação',
-      desc: 'Troca justa com troco na hora',
+      title: 'Avaliação justa',
+      desc: 'Troca com troco',
     },
     {
       icon: <MapPin className="w-5 h-5 text-[#F59C00]" />,
@@ -103,15 +103,15 @@ export function Hero() {
 
           {/* Título Principal com Tipografia Editorial */}
           <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase text-white tracking-tight leading-[1.04]">
-            EXPERIÊNCIA & PROCEDÊNCIA EM{' '}
+            SEU PRÓXIMO CARRO ESTÁ NA{' '}
             <span className="text-[#F59C00] block mt-1.5 drop-shadow-[0_2px_24px_rgba(245,156,0,0.35)]">
-              SEMINOVOS SELECIONADOS
+              CARPLUS AUTOS
             </span>
           </h1>
 
           {/* Subtítulo Sofisticado */}
           <p className="text-base sm:text-lg md:text-xl text-[#C7C7C7] max-w-2xl mx-auto font-normal leading-relaxed">
-            Veículos periciados com laudo 100% aprovado, garantia certificada e a mais respeitada assessoria de compra, troca e consignação no bairro Portão.
+            Compra, venda e troca de veículos em Curitiba com segurança, transparência e atendimento especializado.
           </p>
 
           {/* 4 Cartões de Confiança com Acabamento Refinado de Luxo */}

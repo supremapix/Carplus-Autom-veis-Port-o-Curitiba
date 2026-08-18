@@ -24,7 +24,7 @@ export function FinancingTradePromo() {
               </h3>
 
               <p className="text-base text-[#666666] leading-relaxed">
-                Parceria com os maiores bancos e financeiras do país (Santander, BV, Itaú, Bradesco, PAN). Financiamento em até 60x com as melhores taxas do Paraná.
+                Envie seus dados para solicitar uma simulação de financiamento.
               </p>
             </div>
 

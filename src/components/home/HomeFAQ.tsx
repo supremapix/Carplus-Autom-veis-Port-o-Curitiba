@@ -15,11 +15,11 @@ export function HomeFAQ() {
     },
     {
       q: 'Como funciona a simulação e aprovação de financiamento?',
-      a: 'Temos parceria direta com os principais bancos e financeiras (Santander, BV, Itaú, Bradesco, PAN). Você envia CPF, data de nascimento e telefone e retornamos em minutos com as melhores condições em até 60 parcelas.',
+      a: 'Envie seus dados para solicitar uma simulação de financiamento.',
     },
     {
       q: 'Todos os veículos do estoque possuem garantia e laudo pericial?',
-      a: 'Sim. Todos os carros do estoque da Carplus Autos passam por rigorosa inspeção técnica e laudo cautelar 100% aprovado, além de garantia de 90 dias para motor e câmbio conforme o Código de Defesa do Consumidor.',
+      a: 'As condições de cada veículo (laudo, garantia, documentação) são informadas na página do próprio veículo e confirmadas pela nossa equipe no atendimento.',
     },
     {
       q: 'O que é a Consignação Segura da Carplus Autos?',

@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Utilitários de Imagem & Fallbacks Resilientes para Carplus Autos
 
 export const FALLBACK_VEHICLE_IMAGES = {

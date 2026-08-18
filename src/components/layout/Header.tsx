@@ -140,10 +140,10 @@ export function Header() {
               {/* Botão LIGAR */}
               <a
                 href="tel:+554130827282"
-                className="flex items-center justify-center gap-1 bg-[#2A2A2A] hover:bg-[#333333] active:bg-[#404040] text-white border border-[#3E3E3E] font-display font-bold text-[11px] sm:text-xs uppercase px-2.5 sm:px-3.5 h-9 sm:h-10 rounded-lg sm:rounded-xl transition-all shadow-xs select-none whitespace-nowrap"
+                className="flex items-center justify-center gap-2 bg-[#2A2A2A] hover:bg-[#333333] active:bg-[#404040] text-white border border-[#3E3E3E] font-display font-bold text-sm uppercase px-3.5 h-[52px] min-w-[92px] rounded-xl transition-all shadow-xs select-none whitespace-nowrap"
                 aria-label="Ligar para a Carplus Autos"
               >
-                <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F59C00] shrink-0" />
+                <Phone className="w-5 h-5 text-[#F59C00] shrink-0" />
                 <span>LIGAR</span>
               </a>
 
@@ -151,11 +151,11 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="flex items-center justify-center gap-1 bg-[#F59C00] hover:bg-[#F7941D] active:bg-[#E68A00] text-black font-display font-bold text-[11px] sm:text-xs uppercase px-2.5 sm:px-4 h-9 sm:h-10 rounded-lg sm:rounded-xl transition-all shadow-md shadow-[#F59C00]/30 select-none cursor-pointer whitespace-nowrap"
+                className="flex items-center justify-center gap-2 bg-[#F59C00] hover:bg-[#F7941D] active:bg-[#E68A00] text-black font-display font-bold text-sm uppercase px-4 h-[52px] min-w-[92px] rounded-xl transition-all shadow-md shadow-[#F59C00]/30 select-none cursor-pointer whitespace-nowrap"
                 aria-label="Abrir Menu de Navegação"
                 aria-expanded={mobileMenuOpen}
               >
-                <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-black shrink-0" />
+                <Menu className="w-5 h-5 text-black shrink-0" />
                 <span>MENU</span>
               </button>
             </div>
