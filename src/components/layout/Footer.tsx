@@ -40,17 +40,21 @@ export function Footer() {
                 href={buildWhatsAppLink('Olá! Gostaria de uma consultoria para comprar ou vender meu veículo.')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto h-14 px-8 rounded-full bg-black hover:bg-[#1A1A1A] active:bg-[#2A2A2A] text-white font-display font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2.5 shadow-xl shadow-black/30 transition-all select-none"
+                className="w-full sm:w-auto h-14 px-8 rounded-2xl bg-black hover:bg-[#151515] text-white font-display font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-3 shadow-xl shadow-black/20 border border-black hover:border-black/80 transition-all duration-300 transform hover:-translate-y-0.5 select-none cursor-pointer"
               >
-                <MessageSquare className="w-5 h-5 text-[#25D366] fill-current" />
+                <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                  <MessageSquare className="w-4 h-4 text-[#25D366] fill-current" />
+                </div>
                 <span>WHATSAPP AGORA</span>
               </a>
 
               <a
                 href="tel:+554130827282"
-                className="w-full sm:w-auto h-14 px-7 rounded-full bg-white hover:bg-black hover:text-white text-black font-display font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2.5 border-2 border-black transition-all select-none"
+                className="w-full sm:w-auto h-14 px-7 rounded-2xl bg-white hover:bg-[#F8F9FA] text-black font-display font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-3 border border-black/15 hover:border-black shadow-lg shadow-black/5 transition-all duration-300 transform hover:-translate-y-0.5 select-none cursor-pointer"
               >
-                <Phone className="w-5 h-5 text-[#F59C00]" />
+                <div className="w-8 h-8 rounded-xl bg-black/5 flex items-center justify-center shrink-0">
+                  <Phone className="w-4 h-4 text-[#F59C00]" />
+                </div>
                 <span>{CARPLUS_PHONE_DISPLAY}</span>
               </a>
             </div>

@@ -4,24 +4,24 @@ import { CARPLUS_PHONE_DISPLAY } from '../../lib/whatsapp';
 
 export function TopBar() {
   return (
-    <div className="bg-black border-b border-[#2E2E2E] text-xs text-[#B3B3B3] py-2 px-4 hidden md:block">
+    <div className="bg-black border-b border-[#2E2E2E] text-xs text-white/60 py-1.5 px-4 hidden md:block">
       <div className="max-w-7xl mx-auto flex justify-between items-center gap-4">
         <div className="flex items-center gap-3 lg:gap-4 overflow-hidden">
           <div className="flex items-center gap-1.5 hover:text-white transition-colors whitespace-nowrap">
             <MapPin className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
             <span className="truncate">Av. Pres. Arthur Bernardes, 1323 · Portão, Curitiba</span>
           </div>
-          <span className="text-[#333333] shrink-0">|</span>
+          <span className="text-white/30 shrink-0">·</span>
           <div className="flex items-center gap-1.5 hover:text-white transition-colors whitespace-nowrap shrink-0">
             <Phone className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
-            <a href="tel:+554130827282" className="hover:text-[#F59C00] transition-colors font-bold text-white tracking-wide">
+            <a href="tel:+554130827282" className="hover:text-white transition-colors font-bold text-white tracking-wide">
               {CARPLUS_PHONE_DISPLAY}
             </a>
           </div>
-          <span className="text-[#333333] shrink-0 hidden lg:inline">|</span>
-          <div className="items-center gap-1.5 text-[#B3B3B3] whitespace-nowrap shrink-0 hidden lg:flex">
+          <span className="text-white/30 shrink-0 hidden lg:inline">·</span>
+          <div className="items-center gap-1.5 text-white/60 whitespace-nowrap shrink-0 hidden lg:flex">
             <Clock className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
-            <span>Seg–Sex 8h–18h | Sáb 8h–12h</span>
+            <span>Seg–Sex 8h–18h · Sáb 8h–12h</span>
           </div>
         </div>
 
@@ -30,7 +30,7 @@ export function TopBar() {
             href="https://www.carpluspneuseoficina.com.br"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 hover:text-[#F59C00] transition-colors text-xs font-semibold text-[#B3B3B3] whitespace-nowrap"
+            className="flex items-center gap-1.5 hover:text-[#F59C00] transition-colors text-xs font-medium text-white/60 whitespace-nowrap"
             title="Acessar Carplus Centro Automotivo"
           >
             <span>Carplus Pneus & Oficina</span>
@@ -40,11 +40,11 @@ export function TopBar() {
             href="https://www.instagram.com/carpluscwb/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 hover:text-[#F59C00] transition-colors text-[#B3B3B3] whitespace-nowrap"
+            className="flex items-center gap-1.5 hover:text-[#F59C00] transition-colors text-white/60 whitespace-nowrap"
             title="Instagram Oficial Carplus"
           >
             <Instagram className="w-3.5 h-3.5 text-[#F59C00]" />
-            <span className="text-xs font-semibold">@carpluscwb</span>
+            <span className="text-xs font-medium">@carpluscwb</span>
           </a>
         </div>
       </div>

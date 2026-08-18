@@ -51,33 +51,28 @@ export function PageHero({
           aria-label="Breadcrumb"
           className="flex items-center flex-wrap gap-2 text-xs sm:text-sm text-[#A0A0A0] mb-6"
         >
-          <Link
-            to="/"
-            className="hover:text-white flex items-center gap-1.5 transition-colors font-medium"
-          >
-            <HomeIcon className="w-3.5 h-3.5 text-[#F59C00]" />
-            <span>Início</span>
-          </Link>
-
           {breadcrumbs.map((item, idx) => {
             const destination = item.to || item.href;
+            const isHome = idx === 0 && (item.label.toLowerCase() === 'início' || destination === '/');
             return (
               <React.Fragment key={idx}>
-                <ChevronRight className="w-3.5 h-3.5 text-[#555555] shrink-0" />
+                {idx > 0 && <ChevronRight className="w-3.5 h-3.5 text-[#555555] shrink-0" />}
                 {destination ? (
                   <Link
                     to={destination}
-                    className="hover:text-white transition-colors font-medium truncate max-w-[200px] sm:max-w-none"
+                    className="hover:text-white flex items-center gap-1.5 transition-colors font-medium truncate max-w-[200px] sm:max-w-none"
                     title={item.label}
                   >
-                    {item.label}
+                    {isHome && <HomeIcon className="w-3.5 h-3.5 text-[#F59C00]" />}
+                    <span>{item.label}</span>
                   </Link>
                 ) : (
                   <span
-                    className="text-[#F59C00] font-bold truncate max-w-[260px] sm:max-w-none"
+                    className="text-[#F59C00] font-bold truncate max-w-[260px] sm:max-w-none flex items-center gap-1.5"
                     title={item.label}
                   >
-                    {item.label}
+                    {isHome && <HomeIcon className="w-3.5 h-3.5 text-[#F59C00]" />}
+                    <span>{item.label}</span>
                   </span>
                 )}
               </React.Fragment>

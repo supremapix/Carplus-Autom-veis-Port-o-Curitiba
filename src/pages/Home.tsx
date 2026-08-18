@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Hero } from '../components/home/Hero';
+import { QuickSearchSection } from '../components/home/QuickSearchSection';
 import { BrandsMarquee } from '../components/home/BrandsMarquee';
 import { FeaturedVehicles } from '../components/home/FeaturedVehicles';
 import { WhyCarplus } from '../components/home/WhyCarplus';
@@ -28,28 +29,31 @@ export function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 1. Hero Preto com Busca Rápida */}
+      {/* 1. Hero */}
       <Hero />
 
-      {/* 2. Marquee de Marcas Preto */}
+      {/* 2. Faixa de Busca Rápida (Abaixo do Hero) */}
+      <QuickSearchSection />
+
+      {/* 3. Marquee de Marcas */}
       <BrandsMarquee />
 
-      {/* 3. Veículos em Destaque (Fundo Branco) */}
+      {/* 4. Veículos em Destaque (Fundo Branco) */}
       <FeaturedVehicles vehicles={featuredVehicles} />
 
-      {/* 4. Por Que Negociar na Carplus Autos (Bloco Preto 4 Pilares) */}
+      {/* 5. Por Que Negociar na Carplus Autos (Bloco Preto 4 Pilares) */}
       <WhyCarplus />
 
-      {/* 5. Quer Vender ou Trocar seu Carro (Fundo Branco com Foto da Loja) */}
+      {/* 6. Quer Vender ou Trocar seu Carro (Fundo Branco com Foto da Loja) */}
       <SellPromo />
 
-      {/* 6. Financiamento e Consignação (Dois Cards Grandes) */}
+      {/* 7. Financiamento e Consignação (Dois Cards Grandes) */}
       <FinancingTradePromo />
 
-      {/* 7. Onde Estamos (Localização & Mapa) */}
+      {/* 8. Onde Estamos (Localização & Mapa) */}
       <LocationSection />
 
-      {/* 8. FAQ Tira-Dúvidas */}
+      {/* 9. FAQ Tira-Dúvidas */}
       <HomeFAQ />
     </div>
   );

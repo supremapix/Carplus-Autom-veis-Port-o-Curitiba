@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { TopBar } from './components/layout/TopBar';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
-import { WhatsAppFloat } from './components/layout/WhatsAppFloat';
+import { FloatingActions } from './components/layout/FloatingActions';
 import { BottomNavMobile } from './components/layout/BottomNavMobile';
 
 import { Home } from './pages/Home';
@@ -94,8 +94,8 @@ export default function App() {
         {/* Barra Inferior Fixa Mobile (3 Ações Imediatas) */}
         <BottomNavMobile />
 
-        {/* Botão Flutuante de Atendimento WhatsApp */}
-        <WhatsAppFloat />
+        {/* Ações Flutuantes (Compartilhamento + Contato Rápido + Topo) */}
+        <FloatingActions />
       </div>
     </BrowserRouter>
   );

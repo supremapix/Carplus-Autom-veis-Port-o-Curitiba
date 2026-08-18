@@ -12,6 +12,8 @@ interface VehicleFiltersProps {
   onSortChange: (newSort: VehicleSortOption) => void;
   onReset: () => void;
   totalCount: number;
+  mobileDrawerOpen: boolean;
+  setMobileDrawerOpen: (open: boolean) => void;
 }
 
 export function VehicleFilters({
@@ -23,8 +25,9 @@ export function VehicleFilters({
   onSortChange,
   onReset,
   totalCount,
+  mobileDrawerOpen,
+  setMobileDrawerOpen,
 }: VehicleFiltersProps) {
-  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
   const fuels: { label: string; value: Fuel }[] = [
     { label: 'Flex', value: 'flex' },
@@ -271,118 +274,6 @@ export function VehicleFilters({
 
   return (
     <div className="space-y-4">
-      {/* Top Bar com Contador, Ordenação e Botão Mobile */}
-      <div className="bg-white border border-[#E0E0E0] rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
-        <div className="flex items-center gap-2">
-          <span className="font-display text-3xl text-[#121212] font-bold tracking-wide">
-            {totalCount}
-          </span>
-          <span className="text-sm text-[#666666] font-semibold">
-            {totalCount === 1 ? 'veículo encontrado' : 'veículos encontrados'}
-          </span>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {/* Botão Mobile Filtros */}
-          <button
-            type="button"
-            onClick={() => setMobileDrawerOpen(true)}
-            className="lg:hidden flex-1 sm:flex-initial h-11 px-4 bg-[#FAFAFA] border border-[#E0E0E0] text-[#121212] rounded-xl text-xs font-display font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:border-[#F59C00]"
-          >
-            <Filter className="w-4 h-4 text-[#F59C00]" />
-            <span>Filtros</span>
-            {hasActiveFilters && (
-              <span className="w-2 h-2 rounded-full bg-[#F59C00]" />
-            )}
-          </button>
-
-          {/* Ordenação */}
-          <div className="flex items-center gap-2 text-xs">
-            <span className="text-[#666666] font-medium hidden sm:inline whitespace-nowrap">Ordenar por:</span>
-            <select
-              value={sort}
-              onChange={(e) => onSortChange(e.target.value as VehicleSortOption)}
-              className="h-11 bg-[#FAFAFA] border border-[#E0E0E0] rounded-xl px-3.5 text-xs sm:text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] focus:bg-white font-medium"
-            >
-              <option value="recent">Mais Recentes</option>
-              <option value="price-asc">Menor Preço</option>
-              <option value="price-desc">Maior Preço</option>
-              <option value="year-desc">Ano (Mais novos)</option>
-              <option value="mileage-asc">Menor KM</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      {/* Chips dos Filtros Ativos */}
-      {hasActiveFilters && (
-        <div className="flex flex-wrap items-center gap-2 pt-1">
-          <span className="text-xs text-[#666666] font-bold uppercase">Filtros:</span>
-          {filters.brand && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF8E7] border border-[#F59C00]/40 text-xs text-[#121212] font-semibold">
-              Marca: {filters.brand}
-              <button onClick={() => removeFilterKey('brand')} className="hover:text-red-500">
-                <X className="w-3.5 h-3.5 text-[#F59C00]" />
-              </button>
-            </span>
-          )}
-          {filters.model && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF8E7] border border-[#F59C00]/40 text-xs text-[#121212] font-semibold">
-              Modelo: {filters.model}
-              <button onClick={() => removeFilterKey('model')} className="hover:text-red-500">
-                <X className="w-3.5 h-3.5 text-[#F59C00]" />
-              </button>
-            </span>
-          )}
-          {filters.bodyType && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF8E7] border border-[#F59C00]/40 text-xs text-[#121212] font-semibold">
-              Carroceria: {filters.bodyType}
-              <button onClick={() => removeFilterKey('bodyType')} className="hover:text-red-500">
-                <X className="w-3.5 h-3.5 text-[#F59C00]" />
-              </button>
-            </span>
-          )}
-          {filters.transmission && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF8E7] border border-[#F59C00]/40 text-xs text-[#121212] font-semibold">
-              Câmbio: {filters.transmission}
-              <button onClick={() => removeFilterKey('transmission')} className="hover:text-red-500">
-                <X className="w-3.5 h-3.5 text-[#F59C00]" />
-              </button>
-            </span>
-          )}
-          {filters.maxPrice && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF8E7] border border-[#F59C00]/40 text-xs text-[#121212] font-semibold">
-              Até R$ {filters.maxPrice.toLocaleString('pt-BR')}
-              <button onClick={() => removeFilterKey('maxPrice')} className="hover:text-red-500">
-                <X className="w-3.5 h-3.5 text-[#F59C00]" />
-              </button>
-            </span>
-          )}
-          {filters.minYear && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF8E7] border border-[#F59C00]/40 text-xs text-[#121212] font-semibold">
-              Ano {filters.minYear}+
-              <button onClick={() => removeFilterKey('minYear')} className="hover:text-red-500">
-                <X className="w-3.5 h-3.5 text-[#F59C00]" />
-              </button>
-            </span>
-          )}
-          {filters.search && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF8E7] border border-[#F59C00]/40 text-xs text-[#121212] font-semibold">
-              "{filters.search}"
-              <button onClick={() => removeFilterKey('search')} className="hover:text-red-500">
-                <X className="w-3.5 h-3.5 text-[#F59C00]" />
-              </button>
-            </span>
-          )}
-          <button
-            onClick={onReset}
-            className="text-xs text-[#666666] hover:text-[#F59C00] underline ml-2 cursor-pointer font-bold"
-          >
-            Limpar todos
-          </button>
-        </div>
-      )}
-
       {/* Sidebar Desktop */}
       <div className="hidden lg:block bg-white border border-[#E0E0E0] rounded-2xl p-6 shadow-xs">
         <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#E0E0E0]">
@@ -423,7 +314,7 @@ export function VehicleFilters({
                 <button
                   type="button"
                   onClick={() => setMobileDrawerOpen(false)}
-                  className="p-2 text-[#666666] hover:text-black"
+                  className="p-2 text-[#666666] hover:text-black cursor-pointer"
                 >
                   <X className="w-6 h-6" />
                 </button>
