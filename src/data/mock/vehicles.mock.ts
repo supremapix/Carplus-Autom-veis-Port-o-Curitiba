@@ -1,19 +1,21 @@
 // ESTOQUE REAL DA CARPLUS AUTOS (FONTE OFICIAL OLX - PORTÃO, CURITIBA)
 import { Vehicle } from '../../types/vehicle';
-import { VEHICLE_IMAGE_SOURCES } from '../vehicle-image-sources';
+import { VEHICLE_IMAGE_COUNT, getVehicleImageUrl as getCdnUrl } from '../vehicle-image-sources';
 
 function getImagesForVehicle(slug: string, vehicleTitle: string) {
-  const sources = VEHICLE_IMAGE_SOURCES[slug] || [];
-  return sources.map((_, idx) => {
+  const count = VEHICLE_IMAGE_COUNT[slug] || 5;
+  const images = [];
+  for (let idx = 0; idx < count; idx++) {
     const n = String(idx + 1).padStart(2, '0');
-    return {
+    images.push({
       id: `${slug}-${n}`,
-      url: `/images/veiculos/${slug}/${n}.jpg`,
+      url: getCdnUrl(slug, idx),
       alt: `${vehicleTitle} — foto ${idx + 1} — Carplus Autos Curitiba`,
       order: idx + 1,
       isCover: idx === 0,
-    };
-  });
+    });
+  }
+  return images;
 }
 
 export const MOCK_VEHICLES: Vehicle[] = [
