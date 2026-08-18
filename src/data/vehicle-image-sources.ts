@@ -1,4 +1,4 @@
-export const IMAGE_BASE = 'https://img.supremasite.com.br/auto';
+export const IMAGE_BASE = 'https://img.carplusautos.com.br/auto';
 
 export const VEHICLE_IMAGE_COUNT: Record<string, number> = {
   "toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024": 14,
