@@ -49,7 +49,27 @@
    - Características: Baixíssima quilometragem, Laudo cautelar aprovado, Sem leilão ou sinistro, Aceita troca.
    - URL: https://www.carplusautos.com.br/estoque/bmw-x3-xdrive-20i-x-line-2017
 
-4. **Nissan Sentra S 2.0 Flex Fuel 16V Aut. 2011**
+4. **Citroën C4 Lounge Origine 1.6 Turbo THP Flex Aut. 2017**
+   - Preço: R$ 52.900 (De R$ 54.900 — OFERTA)
+   - Ano: 2017 / 2017
+   - Quilometragem: 96.000 km
+   - Combustível: Flex
+   - Câmbio: Automático
+   - Cor: Branco
+   - Características: Motor Turbo THP Flex, Câmbio de 6 marchas, Ar digital, Rodas de liga leve aro 16, Multimídia, Laudo cautelar aprovado, Aceita troca.
+   - URL: https://www.carplusautos.com.br/estoque/citroen-c4-lounge-origine-1-6-turbo-flex-automatico-2017
+
+5. **Citroën Aircross Feel 1.6 Flex 16V 5P Aut. 2017**
+   - Preço: R$ 49.800
+   - Ano: 2017 / 2017
+   - Quilometragem: 108.000 km
+   - Combustível: Flex
+   - Câmbio: Automático
+   - Cor: Branco
+   - Características: Posição de dirigir elevada, Para-brisa panorâmico, Multimídia touch, DRL em LED, Sensor de ré, Laudo cautelar aprovado, Aceita troca.
+   - URL: https://www.carplusautos.com.br/estoque/citroen-aircross-feel-1-6-flex-automatico-2017
+
+6. **Nissan Sentra S 2.0 Flex Fuel 16V Aut. 2011**
    - Preço: R$ 34.900 (De R$ 35.900)
    - Ano: 2011 / 2011
    - Quilometragem: 161.000 km
@@ -59,7 +79,7 @@
    - Características: Completo, 4 pneus novos, Revisões em dia, Multimídia, Aceita troca.
    - URL: https://www.carplusautos.com.br/estoque/nissan-sentra-s-2-0-flex-automatico-2011
 
-5. **Ford Focus Sedan 2.0 16V Flex 4P Aut. 2012**
+7. **Ford Focus Sedan 2.0 16V Flex 4P Aut. 2012**
    - Preço: R$ 35.900
    - Ano: 2012 / 2012
    - Quilometragem: 165.200 km

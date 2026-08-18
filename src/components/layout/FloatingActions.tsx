@@ -116,10 +116,12 @@ export function FloatingActions() {
   };
 
   const currentUrl = getCleanUrl();
-  const pageTitle = document.title;
+  const pageTitle = document.title || 'Carplus Autos Curitiba';
   const currentMsg = SHARE_MESSAGES[currentMessageIndex];
   const shareText = encodeURIComponent(currentMsg);
   const encodedUrl = encodeURIComponent(currentUrl);
+  const encodedTitle = encodeURIComponent(pageTitle);
+  const defaultShareImage = encodeURIComponent('https://www.carplusautos.com.br/og-carplus-autos.webp');
 
   const handleNativeShare = async () => {
     if (navigator.share) {
@@ -259,7 +261,7 @@ export function FloatingActions() {
             <div className="grid grid-cols-4 gap-2.5 sm:gap-3">
               {/* WhatsApp */}
               <a
-                href={`https://api.whatsapp.com/send?text=${shareText}%2520-%2520${encodedUrl}`}
+                href={`https://api.whatsapp.com/send?text=${shareText}%20-%20${encodedUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowShareModal(false)}
@@ -283,9 +285,9 @@ export function FloatingActions() {
                 <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">Threads</span>
               </a>
 
-              {/* Pinterest */}
+              {/* Pinterest (com media URL explícita para evitar o erro de imagem não encontrada) */}
               <a
-                href={`https://pinterest.com/pin/create/button/?url=${encodedUrl}&description=${shareText}`}
+                href={`https://pinterest.com/pin/create/button/?url=${encodedUrl}&media=${defaultShareImage}&description=${shareText}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowShareModal(false)}
@@ -324,7 +326,7 @@ export function FloatingActions() {
 
               {/* LinkedIn */}
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&title=${encodedTitle}&summary=${shareText}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowShareModal(false)}
@@ -337,7 +339,7 @@ export function FloatingActions() {
 
               {/* E-mail */}
               <a
-                href={`mailto:?subject=${encodeURIComponent(pageTitle)}&body=${shareText}%0A%0A${encodedUrl}`}
+                href={`mailto:?subject=${encodedTitle}&body=${shareText}%0A%0A${encodedUrl}`}
                 onClick={() => setShowShareModal(false)}
                 className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                 aria-label="Compartilhar por E-mail"

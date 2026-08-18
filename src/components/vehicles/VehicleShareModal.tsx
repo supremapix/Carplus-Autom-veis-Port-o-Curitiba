@@ -15,11 +15,35 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
 
   if (!isOpen) return null;
 
-  const currentUrl = typeof window !== 'undefined' ? window.location.href.split('?')[0] : '';
+  // Extrai a URL absoluta da imagem de capa (ou primeira foto)
+  const getVehicleImageUrl = (): string => {
+    const rawImage = vehicle.images?.find(img => img.isCover)?.url || vehicle.images?.[0]?.url || '';
+    if (!rawImage) return 'https://www.carplusautos.com.br/og-carplus-autos.webp';
+    if (rawImage.startsWith('http://') || rawImage.startsWith('https://')) {
+      return rawImage;
+    }
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.carplusautos.com.br';
+    return `${origin}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
+  };
+
+  const currentUrl = typeof window !== 'undefined' ? window.location.href.split('?')[0] : 'https://www.carplusautos.com.br';
   const encodedUrl = encodeURIComponent(currentUrl);
-  const shareText = encodeURIComponent(`Confira este ${vehicle.brand} ${vehicle.model} ${vehicle.yearModel} por ${formatPrice(vehicle.price)} na Carplus Autos Curitiba:`);
+  const imageUrl = getVehicleImageUrl();
+  const encodedImage = encodeURIComponent(imageUrl);
+  
   const rawText = `Confira este ${vehicle.brand} ${vehicle.model} ${vehicle.yearModel} por ${formatPrice(vehicle.price)} na Carplus Autos Curitiba`;
-  const vehicleImage = vehicle.images?.[0] ? encodeURIComponent(vehicle.images[0]) : '';
+  const shareText = encodeURIComponent(rawText);
+  const shareTitle = encodeURIComponent(`${vehicle.brand} ${vehicle.model} ${vehicle.version} | Carplus Autos`);
+
+  // URLs oficiais e funcionais de compartilhamento
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${shareText}%20-%20${encodedUrl}`;
+  const threadsUrl = `https://threads.net/intent/post?text=${shareText}%20${encodedUrl}`;
+  const pinterestUrl = `https://pinterest.com/pin/create/button/?url=${encodedUrl}&media=${encodedImage}&description=${shareText}`;
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}`;
+  // LinkedIn suporta compartilhamento direto via standard sharing endpoint
+  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&title=${shareTitle}&summary=${shareText}`;
+  const mailUrl = `mailto:?subject=${shareTitle}&body=${shareText}%0A%0A${encodedUrl}`;
 
   const handleCopyLink = () => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -44,6 +68,8 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
       }
     }
   };
+
+  const coverImg = vehicle.images?.find(img => img.isCover)?.url || vehicle.images?.[0]?.url;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -72,9 +98,9 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
 
         {/* Informações do Veículo */}
         <div className="bg-[#141414] border border-[#222222] p-3.5 rounded-xl flex items-center gap-3">
-          {vehicle.images?.[0] && (
+          {coverImg && (
             <img
-              src={vehicle.images[0]}
+              src={coverImg}
               alt={`${vehicle.brand} ${vehicle.model}`}
               className="w-14 h-14 rounded-lg object-cover border border-[#333333] shrink-0"
               referrerPolicy="no-referrer"
@@ -88,11 +114,11 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
           </div>
         </div>
 
-        {/* Grade 4x2 com Pinterest, Threads, WhatsApp, etc */}
+        {/* Grade 4x2 com Pinterest, Threads, WhatsApp, LinkedIn, etc */}
         <div className="grid grid-cols-4 gap-2.5 sm:gap-3">
           {/* WhatsApp */}
           <a
-            href={`https://api.whatsapp.com/send?text=${shareText}%2520-%2520${encodedUrl}`}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
@@ -105,7 +131,7 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
 
           {/* Threads */}
           <a
-            href={`https://threads.net/intent/post?text=${shareText}%20${encodedUrl}`}
+            href={threadsUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
@@ -118,7 +144,7 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
 
           {/* Pinterest */}
           <a
-            href={`https://pinterest.com/pin/create/button/?url=${encodedUrl}&media=${vehicleImage}&description=${shareText}`}
+            href={pinterestUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
@@ -131,7 +157,7 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
 
           {/* Facebook */}
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+            href={facebookUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
@@ -144,7 +170,7 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
 
           {/* Twitter / X */}
           <a
-            href={`https://twitter.com/intent/tweet?text=${shareText}&url=${encodedUrl}`}
+            href={twitterUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
@@ -157,7 +183,7 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
 
           {/* LinkedIn */}
           <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+            href={linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
@@ -170,7 +196,7 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
 
           {/* E-mail */}
           <a
-            href={`mailto:?subject=${encodeURIComponent(`${vehicle.brand} ${vehicle.model} - Carplus Autos`)}&body=${shareText}%0A%0A${encodedUrl}`}
+            href={mailUrl}
             onClick={onClose}
             className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
             aria-label="Compartilhar por E-mail"
