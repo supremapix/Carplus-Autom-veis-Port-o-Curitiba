@@ -20,6 +20,7 @@ import { VehicleGallery } from '../components/vehicles/VehicleGallery';
 import { VehicleSpecs } from '../components/vehicles/VehicleSpecs';
 import { InterestForm } from '../components/vehicles/InterestForm';
 import { TradeInModal } from '../components/vehicles/TradeInModal';
+import { VehicleShareModal } from '../components/vehicles/VehicleShareModal';
 import { RelatedVehicles } from '../components/vehicles/RelatedVehicles';
 import { getVehicleBySlug, getRelatedVehicles } from '../services/vehicles';
 import { getSellerById } from '../services/sellers';
@@ -41,6 +42,7 @@ export function Veiculo() {
   const [related, setRelated] = useState<Vehicle[]>([]);
   const [loading, setLoading] = useState(true);
   const [tradeInModalOpen, setTradeInModalOpen] = useState(false);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
 
   useEffect(() => {
@@ -66,16 +68,7 @@ export function Veiculo() {
   }, [slug]);
 
   const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: vehicle ? `${vehicle.brand} ${vehicle.model} - Carplus Autos Curitiba` : 'Carplus Autos',
-        url: window.location.href,
-      }).catch(() => {});
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      setCopiedLink(true);
-      setTimeout(() => setCopiedLink(false), 2000);
-    }
+    setShareModalOpen(true);
   };
 
   if (loading) {
@@ -320,6 +313,15 @@ export function Veiculo() {
         isOpen={tradeInModalOpen}
         onClose={() => setTradeInModalOpen(false)}
       />
+
+      {/* Modal Completo de Compartilhamento Social (WhatsApp, Threads, Pinterest, Facebook, X, etc.) */}
+      {vehicle && (
+        <VehicleShareModal
+          vehicle={vehicle}
+          isOpen={shareModalOpen}
+          onClose={() => setShareModalOpen(false)}
+        />
+      )}
 
       {/* Barra Fixa Inferior Mobile para Veículo Individual */}
       {!isSold && (

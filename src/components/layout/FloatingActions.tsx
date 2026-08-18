@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Share2, Phone, MessageCircle, ArrowUp, X as CloseIcon, Copy, Check } from 'lucide-react';
 import { SHARE_MESSAGES } from '../../data/share-messages';
 import { CARPLUS_PHONE_DISPLAY, CARPLUS_PHONE } from '../../lib/whatsapp';
+import { PinterestIcon, ThreadsIcon } from '../ui/SocialIcons';
 
 export function FloatingActions() {
   const location = useLocation();
@@ -218,7 +219,7 @@ export function FloatingActions() {
         )}
       </div>
 
-      {/* Modal de Compartilhamento */}
+      {/* Modal de Compartilhamento Completo com Redes */}
       {showShareModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
@@ -254,19 +255,45 @@ export function FloatingActions() {
               <p className="text-sm font-normal text-white italic">"{currentMsg}"</p>
             </div>
 
-            {/* Grade 3x2 de opções de compartilhamento */}
-            <div className="grid grid-cols-3 gap-3">
+            {/* Grade 4x2 de opções de compartilhamento (WhatsApp, Threads, Pinterest, Facebook, X, LinkedIn, E-mail, Mais) */}
+            <div className="grid grid-cols-4 gap-2.5 sm:gap-3">
               {/* WhatsApp */}
               <a
                 href={`https://api.whatsapp.com/send?text=${shareText}%2520-%2520${encodedUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowShareModal(false)}
-                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-colors group cursor-pointer"
+                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                 aria-label="Compartilhar no WhatsApp"
               >
                 <MessageCircle className="w-5 h-5 text-[#25D366] group-hover:scale-110 transition-transform" />
-                <span className="text-[11px] text-[#AAAAAA] font-medium">WhatsApp</span>
+                <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">WhatsApp</span>
+              </a>
+
+              {/* Threads */}
+              <a
+                href={`https://threads.net/intent/post?text=${shareText}%20${encodedUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setShowShareModal(false)}
+                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                aria-label="Compartilhar no Threads"
+              >
+                <ThreadsIcon className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+                <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">Threads</span>
+              </a>
+
+              {/* Pinterest */}
+              <a
+                href={`https://pinterest.com/pin/create/button/?url=${encodedUrl}&description=${shareText}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setShowShareModal(false)}
+                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                aria-label="Compartilhar no Pinterest"
+              >
+                <PinterestIcon className="w-5 h-5 text-[#E60023] group-hover:scale-110 transition-transform" />
+                <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">Pinterest</span>
               </a>
 
               {/* Facebook */}
@@ -275,11 +302,11 @@ export function FloatingActions() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowShareModal(false)}
-                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-colors group cursor-pointer"
+                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                 aria-label="Compartilhar no Facebook"
               >
                 <Share2 className="w-5 h-5 text-[#1877F2] group-hover:scale-110 transition-transform" />
-                <span className="text-[11px] text-[#AAAAAA] font-medium">Facebook</span>
+                <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">Facebook</span>
               </a>
 
               {/* Twitter / X */}
@@ -288,11 +315,11 @@ export function FloatingActions() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowShareModal(false)}
-                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-colors group cursor-pointer"
+                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                 aria-label="Compartilhar no X (Twitter)"
               >
                 <Share2 className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
-                <span className="text-[11px] text-[#AAAAAA] font-medium">X / Twitter</span>
+                <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">X / Twitter</span>
               </a>
 
               {/* LinkedIn */}
@@ -301,22 +328,22 @@ export function FloatingActions() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowShareModal(false)}
-                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-colors group cursor-pointer"
+                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                 aria-label="Compartilhar no LinkedIn"
               >
                 <Share2 className="w-5 h-5 text-[#0A66C2] group-hover:scale-110 transition-transform" />
-                <span className="text-[11px] text-[#AAAAAA] font-medium">LinkedIn</span>
+                <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">LinkedIn</span>
               </a>
 
               {/* E-mail */}
               <a
                 href={`mailto:?subject=${encodeURIComponent(pageTitle)}&body=${shareText}%0A%0A${encodedUrl}`}
                 onClick={() => setShowShareModal(false)}
-                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-colors group cursor-pointer"
+                className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                 aria-label="Compartilhar por E-mail"
               >
                 <Share2 className="w-5 h-5 text-[#F59C00] group-hover:scale-110 transition-transform" />
-                <span className="text-[11px] text-[#AAAAAA] font-medium">E-mail</span>
+                <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">E-mail</span>
               </a>
 
               {/* Native Share (se disponível) */}
@@ -324,17 +351,22 @@ export function FloatingActions() {
                 <button
                   type="button"
                   onClick={handleNativeShare}
-                  className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-colors group cursor-pointer"
+                  className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                   aria-label="Mais opções"
                 >
                   <Share2 className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
-                  <span className="text-[11px] text-[#AAAAAA] font-medium">Mais</span>
+                  <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">Mais</span>
                 </button>
               ) : (
-                <div className="h-16 rounded-xl bg-[#141414]/40 border border-[#222222]/50 flex flex-col items-center justify-center gap-1.5 opacity-40 cursor-not-allowed">
-                  <Share2 className="w-5 h-5 text-white/40" />
-                  <span className="text-[11px] text-white/40">Outros</span>
-                </div>
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  className="h-16 rounded-xl bg-[#141414] hover:bg-[#1E1E1E] border border-[#262626] flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                  aria-label="Copiar link"
+                >
+                  <Copy className="w-5 h-5 text-[#F59C00] group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] sm:text-[11px] text-[#AAAAAA] font-medium">Copiar</span>
+                </button>
               )}
             </div>
 
