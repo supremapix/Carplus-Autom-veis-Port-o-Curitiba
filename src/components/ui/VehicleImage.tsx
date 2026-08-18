@@ -25,7 +25,6 @@ export const VehicleImage: React.FC<VehicleImageProps> = ({
   const [hasError, setHasError] = useState(false);
 
   const mainSrc = getVehicleImageUrl(slug, imageIndex);
-  const srcset = `${getVehicleImageUrl(slug, imageIndex, 400)} 400w, ${getVehicleImageUrl(slug, imageIndex, 800)} 800w, ${getVehicleImageUrl(slug, imageIndex, 1600)} 1600w`;
 
   if (hasError) {
     return (
@@ -46,8 +45,6 @@ export const VehicleImage: React.FC<VehicleImageProps> = ({
   return (
     <img
       src={mainSrc}
-      srcSet={srcset}
-      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       alt={alt}
       className={className}
       loading={priority ? 'eager' : 'lazy'}

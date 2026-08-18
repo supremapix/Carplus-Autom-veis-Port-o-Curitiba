@@ -8,5 +8,5 @@ export const VEHICLE_IMAGE_COUNT: Record<string, number> = {
   "ford-focus-sedan-2-0-16v-flex-automatico-2012": 18
 };
 
-export const getVehicleImageUrl = (slug: string, index: number, size?: 400 | 800 | 1600) =>
-  `${IMAGE_BASE}/${slug}/${String(index + 1).padStart(2, '0')}${size ? `-${size}.webp` : '.jpg'}`;
+export const getVehicleImageUrl = (slug: string, index: number) =>
+  `${IMAGE_BASE}/${slug}/${String(index + 1).padStart(2, '0')}.jpg`;
