@@ -65,7 +65,7 @@ export default function App() {
         Ir para o conteúdo principal
       </a>
 
-      <div className="min-h-screen flex flex-col bg-white text-[#121212] selection:bg-[#F59C00] selection:text-black">
+      <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-[#121212] selection:bg-[#F59C00] selection:text-black">
         {/* Barra Superior com Contato e Horários */}
         <TopBar />
 
@@ -73,7 +73,7 @@ export default function App() {
         <Header />
 
         {/* Conteúdo Principal com compensação para a barra móvel inferior */}
-        <main id="main-content" className="flex-1 pb-16 lg:pb-0">
+        <main id="main-content" className="flex-1 w-full max-w-full overflow-x-clip pb-16 lg:pb-0">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/estoque" element={<Estoque />} />

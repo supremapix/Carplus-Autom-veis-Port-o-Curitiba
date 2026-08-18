@@ -25,23 +25,23 @@ export function SectionHeading({
   }[align];
 
   return (
-    <div className={`flex flex-col ${alignClasses} space-y-3 ${className}`}>
+    <div className={`flex flex-col ${alignClasses} space-y-3.5 ${className}`}>
       {kicker && (
         <div
-          className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-display font-bold uppercase tracking-widest ${
+          className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-display font-bold uppercase tracking-[0.18em] ${
             isDark
-              ? 'bg-[#1A1A1A] border border-[#2E2E2E] text-[#F59C00]'
-              : 'bg-[#FFF8E7] border border-[#F59C00]/30 text-[#D97706]'
+              ? 'bg-white/[0.08] backdrop-blur-md border border-white/20 text-[#F59C00] shadow-sm'
+              : 'bg-[#FFF8E7] border border-[#F59C00]/40 text-[#B45309]'
           }`}
         >
-          <span className="w-2 h-2 rounded-full bg-[#F59C00]" />
+          <span className={`w-2 h-2 rounded-full ${isDark ? 'bg-[#F59C00] shadow-[0_0_8px_#F59C00]' : 'bg-[#F59C00]'}`} />
           <span>{kicker}</span>
         </div>
       )}
 
       <h2
-        className={`font-display font-bold text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide leading-[1.1] ${
-          isDark ? 'text-white' : 'text-[#121212]'
+        className={`font-display font-bold text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight leading-[1.08] ${
+          isDark ? 'text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]' : 'text-[#121212]'
         }`}
       >
         {title}
@@ -49,8 +49,8 @@ export function SectionHeading({
 
       {subtitle && (
         <p
-          className={`text-base sm:text-lg max-w-3xl leading-relaxed ${
-            isDark ? 'text-[#B3B3B3]' : 'text-[#666666]'
+          className={`text-base sm:text-lg max-w-3xl leading-relaxed font-normal ${
+            isDark ? 'text-[#D0D0D0]' : 'text-[#4B5563]'
           }`}
         >
           {subtitle}

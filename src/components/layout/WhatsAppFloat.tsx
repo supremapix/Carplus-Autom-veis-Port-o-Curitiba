@@ -6,7 +6,7 @@ export function WhatsAppFloat() {
   const link = buildWhatsAppLink('Olá! Gostaria de falar com um consultor da Carplus Autos.');
 
   return (
-    <aside aria-label="Atendimento Rápido WhatsApp" className="fixed bottom-20 lg:bottom-8 right-6 z-40">
+    <aside aria-label="Atendimento Rápido WhatsApp" className="hidden lg:block fixed bottom-8 right-8 z-40">
       <a
         href={link}
         target="_blank"

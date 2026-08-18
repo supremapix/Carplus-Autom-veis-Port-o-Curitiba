@@ -24,29 +24,32 @@ export function PageHero({
   subtitle,
   breadcrumbs = [],
   badge,
-  bgImage = 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=1920',
+  bgImage = 'https://img.supremasite.com.br/carplus-autos.webp',
 }: PageHeroProps) {
   return (
-    <section className="relative bg-black text-white py-12 sm:py-16 md:py-20 border-b border-[#2E2E2E] overflow-hidden">
-      {/* Background Decorativo com overlay escuro suave */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+    <section className="relative bg-[#0A0A0A] text-white py-14 sm:py-18 md:py-24 border-b border-[#242424] overflow-hidden">
+      {/* Background Decorativo com imagem oficial da Carplus */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src={bgImage}
           alt="Carplus Autos Curitiba"
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center filter grayscale"
+          fetchPriority="high"
+          className="w-full h-full object-cover object-center scale-105 filter brightness-75 contrast-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/70" />
+        {/* Camada cinematográfica de profundidade */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-black/60" />
       </div>
 
-      {/* Brilho decorativo sutil */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#F59C00]/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Iluminação de luxo sutil */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#F59C00]/10 rounded-full blur-[120px] pointer-events-none" />
 
       <Container className="relative z-10">
         {/* Breadcrumb de Navegação */}
         <nav
           aria-label="Breadcrumb"
-          className="flex items-center flex-wrap gap-2 text-xs sm:text-sm text-[#B3B3B3] mb-6"
+          className="flex items-center flex-wrap gap-2 text-xs sm:text-sm text-[#A0A0A0] mb-6"
         >
           <Link
             to="/"
@@ -60,7 +63,7 @@ export function PageHero({
             const destination = item.to || item.href;
             return (
               <React.Fragment key={idx}>
-                <ChevronRight className="w-3.5 h-3.5 text-[#666666] shrink-0" />
+                <ChevronRight className="w-3.5 h-3.5 text-[#555555] shrink-0" />
                 {destination ? (
                   <Link
                     to={destination}
@@ -83,26 +86,26 @@ export function PageHero({
         </nav>
 
         {/* Conteúdo Principal do Hero */}
-        <div className="max-w-4xl space-y-3">
+        <div className="max-w-4xl space-y-4">
           {kicker && (
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1A1A1A] border border-[#2E2E2E] text-[#F59C00] text-xs font-display font-bold uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-[#F59C00]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] backdrop-blur-md border border-white/15 text-[#F59C00] text-xs font-display font-bold uppercase tracking-[0.18em] shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#F59C00] shadow-[0_0_8px_#F59C00]" />
               <span>{kicker}</span>
             </div>
           )}
 
           {badge && (
-            <div className="inline-block ml-2 px-3 py-1 rounded-full bg-[#F59C00] text-black text-xs font-display font-bold uppercase tracking-wider">
+            <div className="inline-block ml-2 px-3 py-1 rounded-full bg-[#F59C00] text-black text-xs font-display font-bold uppercase tracking-wider shadow-sm">
               {badge}
             </div>
           )}
 
-          <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-wide text-white leading-tight">
+          <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[1.08]">
             {title}
           </h1>
 
           {subtitle && (
-            <p className="text-base sm:text-lg md:text-xl text-[#B3B3B3] font-normal leading-relaxed pt-1 max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl text-[#CCCCCC] font-normal leading-relaxed pt-1 max-w-3xl">
               {subtitle}
             </p>
           )}
