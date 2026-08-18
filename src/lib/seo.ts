@@ -88,7 +88,7 @@ export function buildGlobalDealerJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'AutoDealer',
     'name': 'Carplus Autos',
-    'image': 'https://carplus-pixelperfect.lovable.app/__l5e/assets-v1/a327ddc8-0465-4c4f-87d4-97f5f46faf8e/carplus-autos-logo.png',
+    'image': 'https://www.carplusautos.com.br/images/logos/carplus-autos-logo.png',
     'url': 'https://www.carplusautos.com.br',
     'telephone': '+554130827282',
     'priceRange': '$$$',
