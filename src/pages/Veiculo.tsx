@@ -244,6 +244,7 @@ export function Veiculo() {
             {/* Galeria de Fotos */}
             <VehicleGallery
               images={vehicle.images}
+              slug={vehicle.slug}
               isSold={isSold}
               isReserved={isReserved}
               vehicleTitle={`${vehicle.brand} ${vehicle.model} ${vehicle.yearModel}`}

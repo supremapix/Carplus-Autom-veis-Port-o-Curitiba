@@ -157,7 +157,7 @@ export async function createVehicle(payload: Partial<Vehicle>): Promise<Vehicle>
     images: payload.images && payload.images.length > 0 ? payload.images : [
       {
         id: `img-${Date.now()}`,
-        url: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=1200',
+        url: '',
         alt: `${payload.brand} ${payload.model}`,
         order: 1,
         isCover: true,

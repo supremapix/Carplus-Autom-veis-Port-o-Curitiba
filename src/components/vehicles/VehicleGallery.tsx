@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Maximize2, X, Camera } from 'lucide-react';
-import { VehicleImage } from '../../types/vehicle';
-import { handleVehicleImageError, FALLBACK_VEHICLE_IMAGES } from '../../lib/images';
+import { VehicleImage as VehicleImageType } from '../../types/vehicle';
+import { VehicleImage } from '../ui/VehicleImage';
 
 interface VehicleGalleryProps {
-  images: VehicleImage[];
+  images: VehicleImageType[];
+  slug: string;
   isSold?: boolean;
   isReserved?: boolean;
   vehicleTitle: string;
@@ -12,6 +13,7 @@ interface VehicleGalleryProps {
 
 export function VehicleGallery({
   images,
+  slug,
   isSold = false,
   isReserved = false,
   vehicleTitle,
@@ -19,19 +21,17 @@ export function VehicleGallery({
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const fallbackImage = '/images/veiculos/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024/01.jpg';
-  const galleryImages = images && images.length > 0 ? images : [{ id: '1', url: fallbackImage, isCover: true, order: 0 }];
-
-  const currentImage = galleryImages[activeIndex] || galleryImages[0];
+  const count = images && images.length > 0 ? images.length : 5;
+  const galleryIndices = Array.from({ length: count }, (_, i) => i);
 
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    setActiveIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+    setActiveIndex((prev) => (prev === 0 ? count - 1 : prev - 1));
   };
 
   const handleNext = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    setActiveIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+    setActiveIndex((prev) => (prev === count - 1 ? 0 : prev + 1));
   };
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export function VehicleGallery({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxOpen, galleryImages.length]);
+  }, [lightboxOpen, count]);
 
   return (
     <div className="space-y-4">
@@ -54,15 +54,11 @@ export function VehicleGallery({
         }`}
         onClick={() => setLightboxOpen(true)}
       >
-        <img
-          src={currentImage.url}
+        <VehicleImage
+          slug={slug}
+          imageIndex={activeIndex}
           alt={`${vehicleTitle} - Foto ${activeIndex + 1}`}
-          width={1200}
-          height={800}
-          fetchPriority="high"
-          decoding="async"
-          referrerPolicy="no-referrer"
-          onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES.default)}
+          priority={activeIndex === 0}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
         />
 
@@ -84,7 +80,7 @@ export function VehicleGallery({
         <div className="absolute bottom-4 right-4 bg-black/85 backdrop-blur-xs text-white text-xs px-3.5 py-1.5 rounded-full border border-white/15 flex items-center gap-2 shadow-md">
           <Camera className="w-4 h-4 text-[#F59C00]" />
           <span className="font-semibold">
-            {activeIndex + 1} / {galleryImages.length}
+            {activeIndex + 1} / {count}
           </span>
         </div>
 
@@ -100,7 +96,7 @@ export function VehicleGallery({
         </button>
 
         {/* Botões Navegação na Imagem Principal */}
-        {galleryImages.length > 1 && (
+        {count > 1 && (
           <>
             <button
               type="button"
@@ -123,11 +119,11 @@ export function VehicleGallery({
       </div>
 
       {/* Miniaturas em Carrossel */}
-      {galleryImages.length > 1 && (
+      {count > 1 && (
         <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
-          {galleryImages.map((img, idx) => (
+          {galleryIndices.map((idx) => (
             <button
-              key={img.id || idx}
+              key={idx}
               type="button"
               onClick={() => setActiveIndex(idx)}
               className={`relative shrink-0 w-24 sm:w-28 aspect-[4/3] rounded-2xl overflow-hidden border-2 transition-all cursor-pointer bg-black ${
@@ -136,15 +132,10 @@ export function VehicleGallery({
                   : 'border-[#E0E0E0] opacity-60 hover:opacity-100'
               }`}
             >
-              <img
-                src={img.url}
+              <VehicleImage
+                slug={slug}
+                imageIndex={idx}
                 alt={`Miniatura ${idx + 1}`}
-                width={120}
-                height={90}
-                loading="lazy"
-                decoding="async"
-                referrerPolicy="no-referrer"
-                onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES.default)}
                 className="w-full h-full object-cover"
               />
             </button>
@@ -165,7 +156,7 @@ export function VehicleGallery({
                 {vehicleTitle}
               </h3>
               <span className="text-xs text-[#B3B3B3]">
-                Foto {activeIndex + 1} de {galleryImages.length}
+                Foto {activeIndex + 1} de {count}
               </span>
             </div>
             <button
@@ -179,15 +170,14 @@ export function VehicleGallery({
           </div>
 
           <div className="relative flex-1 flex items-center justify-center py-4">
-            <img
-              src={currentImage.url}
+            <VehicleImage
+              slug={slug}
+              imageIndex={activeIndex}
               alt={`${vehicleTitle} - Ampliada`}
-              referrerPolicy="no-referrer"
-              onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES.default)}
               className="max-h-[80vh] max-w-full object-contain rounded-2xl shadow-2xl"
             />
 
-            {galleryImages.length > 1 && (
+            {count > 1 && (
               <>
                 <button
                   type="button"
@@ -210,20 +200,19 @@ export function VehicleGallery({
           </div>
 
           <div className="flex justify-center gap-2 overflow-x-auto py-2">
-            {galleryImages.map((img, idx) => (
+            {galleryIndices.map((idx) => (
               <button
-                key={img.id || idx}
+                key={idx}
                 type="button"
                 onClick={() => setActiveIndex(idx)}
                 className={`w-16 sm:w-20 aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
                   activeIndex === idx ? 'border-[#F59C00]' : 'border-[#2E2E2E] opacity-40'
                 }`}
               >
-                <img
-                  src={img.url}
+                <VehicleImage
+                  slug={slug}
+                  imageIndex={idx}
                   alt=""
-                  referrerPolicy="no-referrer"
-                  onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES.default)}
                   className="w-full h-full object-cover"
                 />
               </button>
@@ -234,4 +223,3 @@ export function VehicleGallery({
     </div>
   );
 }
-

@@ -24,7 +24,7 @@ export function PageHero({
   subtitle,
   breadcrumbs = [],
   badge,
-  bgImage = '/images/carplus-hero-wide.png',
+  bgImage = 'https://img.supremasite.com.br/carplus-autos.webp',
 }: PageHeroProps) {
   return (
     <section className="relative bg-[#0A0A0A] text-white py-14 sm:py-18 md:py-24 border-b border-[#242424] overflow-hidden">

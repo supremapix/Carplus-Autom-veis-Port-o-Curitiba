@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Calendar, Gauge, Fuel, Cog, ArrowRight, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
 import { formatPrice, formatKm } from '../../lib/utils';
-import { handleVehicleImageError, getVehicleImageUrl, FALLBACK_VEHICLE_IMAGES } from '../../lib/images';
+import { VehicleImage } from '../ui/VehicleImage';
+import { getVehicleImageUrl } from '../../lib/images';
 
 export interface VehicleCardProps {
   vehicle: Vehicle;
@@ -46,16 +47,10 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
     >
       {/* Imagem do Veículo com Suporte a Fallback */}
       <div className="relative aspect-[4/3] bg-[#1A1A1A] overflow-hidden">
-        <img
-          src={coverUrl}
+        <VehicleImage
+          slug={vehicle.slug}
+          imageIndex={0}
           alt={imageAlt}
-          width={600}
-          height={450}
-          loading="lazy"
-          decoding="async"
-          referrerPolicy="no-referrer"
-          onLoad={() => setImageLoaded(true)}
-          onError={(e) => handleVehicleImageError(e, FALLBACK_VEHICLE_IMAGES[vehicle.bodyType as keyof typeof FALLBACK_VEHICLE_IMAGES])}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
 

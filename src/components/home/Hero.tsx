@@ -75,7 +75,7 @@ export function Hero() {
       {/* Background Hero com Imagem Oficial Carplus Autos */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="/images/carplus-hero-wide.png"
+          src="https://img.supremasite.com.br/carplus-autos.webp"
           alt="Carplus Autos — Showroom de Seminovos Curitiba"
           className="w-full h-full object-cover object-center filter brightness-[0.70] contrast-[1.12]"
           fetchPriority="high"
