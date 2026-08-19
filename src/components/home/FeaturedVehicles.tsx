@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Car } from 'lucide-react';
+import { ArrowRight, Car, ShieldCheck } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
 import { VehicleCard } from '../vehicles/VehicleCard';
 import { Container } from '../ui/Container';
@@ -43,16 +43,22 @@ export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
           ))}
         </div>
 
-        {/* Botão no Fim do Grid */}
-        <div className="mt-14 text-center">
+        {/* Botão no Fim do Grid com tipografia compacta e texto explicativo sutil abaixo */}
+        <div className="mt-12 sm:mt-14 flex flex-col items-center justify-center text-center">
           <Button
             to="/estoque"
             variant="outline"
-            size="lg"
-            icon={<Car className="w-5 h-5 text-[#F59C00]" />}
+            size="md"
+            icon={<Car className="w-4 h-4 text-[#F59C00]" />}
+            iconRight={<ArrowRight className="w-4 h-4 text-[#888888] group-hover:text-white" />}
+            className="px-6 py-2.5 text-xs sm:text-[13px] tracking-wider border-[#D5D5D5] hover:border-black hover:bg-black hover:text-white shadow-xs"
           >
-            EXPLORAR TODOS OS VEÍCULOS DISPONÍVEIS
+            EXPLORAR TODOS OS VEÍCULOS
           </Button>
+          <p className="mt-2.5 text-xs text-[#8A8A8A] font-normal tracking-wide flex items-center justify-center gap-1.5 max-w-md mx-auto">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
+            <span>Todos os seminovos revisados com garantia e laudo pericial aprovado</span>
+          </p>
         </div>
       </Container>
     </section>

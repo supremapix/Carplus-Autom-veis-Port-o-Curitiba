@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Sparkles, Fuel, Gauge, Calendar } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Sparkles, Fuel, Gauge, Calendar, ShieldCheck } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Button } from '../ui/Button';
@@ -90,7 +90,7 @@ export function SellPromo() {
       <Container>
         <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-10 lg:p-14 relative overflow-hidden shadow-xl shadow-black/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
-            {/* Coluna Texto / Avaliação (5 colunas no Desktop) */}
+            {/* Coluna Texto / Avaliação (6 colunas no Desktop) */}
             <div className="lg:col-span-6 space-y-6">
               <SectionHeading
                 kicker="AVALIAÇÃO DE VEÍCULOS"
@@ -117,16 +117,21 @@ export function SellPromo() {
                 </div>
               </div>
 
-              <div className="pt-3">
+              {/* Botão de Avaliação Reduzido com Legenda Explicativa Discreta */}
+              <div className="pt-2 flex flex-col items-start">
                 <Button
                   to="/venda-seu-carro"
                   variant="primary"
-                  size="lg"
-                  iconRight={<ArrowRight className="w-5 h-5 text-black" />}
-                  className="w-full sm:w-auto shadow-lg shadow-[#F59C00]/20"
+                  size="md"
+                  iconRight={<ArrowRight className="w-4 h-4 text-black" />}
+                  className="px-5 py-2.5 text-xs sm:text-[13px] tracking-wider shadow-md shadow-[#F59C00]/20"
                 >
                   SOLICITAR AVALIAÇÃO DO MEU CARRO
                 </Button>
+                <span className="mt-2 text-xs text-[#8A8A8A] font-normal tracking-wide flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
+                  <span>Avaliação rápida sem compromisso com proposta justa à vista</span>
+                </span>
               </div>
             </div>
 
@@ -244,13 +249,18 @@ export function SellPromo() {
                       </div>
                     </div>
 
-                    <Link
-                      to={`/estoque/${currentVehicle.slug}`}
-                      className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#F59C00]/25 select-none hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-                    >
-                      <span>CONFIRA ESTA OFERTA</span>
-                      <ArrowRight className="w-4 h-4 text-black" />
-                    </Link>
+                    <div className="flex flex-col items-start sm:items-end">
+                      <Link
+                        to={`/estoque/${currentVehicle.slug}`}
+                        className="inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-lg bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold text-[11px] uppercase tracking-wider transition-all shadow-sm select-none hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                      >
+                        <span>VER DETALHES</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-black" />
+                      </Link>
+                      <span className="text-[10px] text-[#888888] mt-1">
+                        Fotos completas, opcionais e laudo
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
