@@ -100,21 +100,6 @@
   border-radius: 4px;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 35s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
 ::-webkit-scrollbar-thumb:hover {
   background: #F59C00;
 }
@@ -131,16 +116,50 @@
 
 .animate-marquee {
   display: flex;
-  width: 200%;
-  animation: marquee 28s linear infinite;
+  width: max-content;
+  animation: marquee 26s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
+/* Ticker Marquee suave (velocidade média fluida) */
+@keyframes ticker {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 32s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Shimmer pulse effect para botões de destaque */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(245, 156, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(245, 156, 0, 0.8), 0 6px 18px rgba(245, 156, 0, 0.35);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee, .animate-ticker {
     animation: none;
     overflow-x: auto;
   }
