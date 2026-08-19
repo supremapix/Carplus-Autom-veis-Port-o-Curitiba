@@ -58,6 +58,31 @@ export function Veiculo() {
           if (metaDesc) {
             metaDesc.setAttribute('content', buildVehicleDescription(data));
           }
+
+          // Atualiza as meta tags OpenGraph e Twitter dinamicamente para redes como LinkedIn, Threads e Facebook
+          const coverImg = data.images?.find(img => img.isCover)?.url || data.images?.[0]?.url || 'https://www.carplusautos.com.br/og-carplus-autos.webp';
+          const fullImgUrl = coverImg.startsWith('http') ? coverImg : `${window.location.origin}${coverImg.startsWith('/') ? '' : '/'}${coverImg}`;
+
+          const updateMeta = (prop: string, content: string, isName = false) => {
+            const selector = isName ? `meta[name="${prop}"]` : `meta[property="${prop}"]`;
+            let el = document.querySelector(selector);
+            if (!el) {
+              el = document.createElement('meta');
+              if (isName) el.setAttribute('name', prop);
+              else el.setAttribute('property', prop);
+              document.head.appendChild(el);
+            }
+            el.setAttribute('content', content);
+          };
+
+          updateMeta('og:title', buildVehicleTitle(data));
+          updateMeta('og:description', buildVehicleDescription(data));
+          updateMeta('og:image', fullImgUrl);
+          updateMeta('og:url', window.location.href);
+          updateMeta('twitter:title', buildVehicleTitle(data), true);
+          updateMeta('twitter:description', buildVehicleDescription(data), true);
+          updateMeta('twitter:image', fullImgUrl, true);
+
           getSellerById(data.sellerId).then(setSeller);
           getRelatedVehicles(data.id).then(setRelated);
         }
