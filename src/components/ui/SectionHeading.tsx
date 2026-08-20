@@ -40,18 +40,18 @@ export function SectionHeading({
       )}
 
       <h2
-        className={`font-display font-bold text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight leading-[1.08] ${
+        className={`font-display font-bold text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight leading-[1.12] [text-wrap:balance] max-w-3xl ${
           isDark ? 'text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]' : 'text-[#121212]'
-        }`}
+        } ${align === 'center' ? 'mx-auto' : ''}`}
       >
         {title}
       </h2>
 
       {subtitle && (
         <p
-          className={`text-base sm:text-lg max-w-3xl leading-relaxed font-normal ${
+          className={`text-base sm:text-lg max-w-2xl leading-relaxed font-normal [text-wrap:balance] ${
             isDark ? 'text-[#D0D0D0]' : 'text-[#4B5563]'
-          }`}
+          } ${align === 'center' ? 'mx-auto' : ''}`}
         >
           {subtitle}
         </p>

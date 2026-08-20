@@ -95,12 +95,12 @@ export function PageHero({
             </div>
           )}
 
-          <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[1.08]">
+          <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[1.12] [text-wrap:balance] max-w-4xl">
             {title}
           </h1>
 
           {subtitle && (
-            <p className="text-base sm:text-lg md:text-xl text-[#CCCCCC] font-normal leading-relaxed pt-1 max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl text-[#CCCCCC] font-normal leading-relaxed pt-1 max-w-2xl [text-wrap:balance]">
               {subtitle}
             </p>
           )}

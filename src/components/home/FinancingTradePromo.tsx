@@ -19,11 +19,11 @@ export function FinancingTradePromo() {
                 FACILIDADE DE PAGAMENTO
               </span>
 
-              <h3 className="font-display font-bold text-2xl sm:text-3xl uppercase text-[#121212] tracking-wide">
+              <h3 className="font-display font-bold text-2xl sm:text-3xl uppercase text-[#121212] tracking-wide leading-snug [text-wrap:balance]">
                 SIMULAÇÃO DE FINANCIAMENTO
               </h3>
 
-              <p className="text-base text-[#666666] leading-relaxed">
+              <p className="text-base text-[#666666] leading-relaxed [text-wrap:balance]">
                 Envie seus dados para solicitar uma simulação de financiamento em até 60x com os principais bancos.
               </p>
             </div>
@@ -56,11 +56,11 @@ export function FinancingTradePromo() {
                 VENDA COM TRANQUILIDADE
               </span>
 
-              <h3 className="font-display font-bold text-2xl sm:text-3xl uppercase text-[#121212] tracking-wide">
+              <h3 className="font-display font-bold text-2xl sm:text-3xl uppercase text-[#121212] tracking-wide leading-snug [text-wrap:balance]">
                 CONSIGNAÇÃO SEGURA
               </h3>
 
-              <p className="text-base text-[#666666] leading-relaxed">
+              <p className="text-base text-[#666666] leading-relaxed [text-wrap:balance]">
                 Deixe seu seminovo no nosso showroom na Av. Arthur Bernardes. Cuidamos das fotos profissionais, anúncios, atendimento a interessados e documentação.
               </p>
             </div>
