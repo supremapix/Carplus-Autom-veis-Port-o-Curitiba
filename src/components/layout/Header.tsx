@@ -18,7 +18,7 @@ import {
 import { buildWhatsAppLink, CARPLUS_PHONE_DISPLAY } from '../../lib/whatsapp';
 import { Logo } from '../ui/Logo';
 
-export const LOGO_URL = '/images/logos/carplus-autos-logo.png';
+export const LOGO_URL = 'https://img.carplusautos.com.br/carplus-autos-logo.png?v=20260820_1';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
