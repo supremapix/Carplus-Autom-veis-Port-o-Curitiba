@@ -8,15 +8,17 @@ import { SellPromo } from '../components/home/SellPromo';
 import { FinancingTradePromo } from '../components/home/FinancingTradePromo';
 import { LocationSection } from '../components/home/LocationSection';
 import { HomeFAQ } from '../components/home/HomeFAQ';
-import { getFeaturedVehicles } from '../services/vehicles';
+import { getFeaturedVehicles, getVehicles } from '../services/vehicles';
 import { Vehicle } from '../types/vehicle';
 import { buildGlobalDealerJsonLd } from '../lib/seo';
 
 export function Home() {
   const [featuredVehicles, setFeaturedVehicles] = useState<Vehicle[]>([]);
+  const [totalVehiclesCount, setTotalVehiclesCount] = useState<number>(0);
 
   useEffect(() => {
     getFeaturedVehicles().then(setFeaturedVehicles);
+    getVehicles().then((all) => setTotalVehiclesCount(all.length));
   }, []);
 
   const jsonLd = buildGlobalDealerJsonLd();
@@ -33,7 +35,7 @@ export function Home() {
       <Hero />
 
       {/* 2. Estoque Selecionado / Veículos em Destaque (Fundo Branco) */}
-      <FeaturedVehicles vehicles={featuredVehicles} />
+      <FeaturedVehicles vehicles={featuredVehicles} totalCount={totalVehiclesCount} />
 
       {/* 3. Faixa de Busca Rápida */}
       <QuickSearchSection />

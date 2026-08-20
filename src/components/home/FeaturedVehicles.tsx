@@ -8,9 +8,12 @@ import { Button } from '../ui/Button';
 
 interface FeaturedVehiclesProps {
   vehicles: Vehicle[];
+  totalCount?: number;
 }
 
-export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
+export function FeaturedVehicles({ vehicles, totalCount }: FeaturedVehiclesProps) {
+  const displayTotal = totalCount !== undefined && totalCount > 0 ? totalCount : vehicles.length;
+
   return (
     <section className="py-16 sm:py-24 bg-white border-b border-[#E0E0E0]">
       <Container>
@@ -35,7 +38,7 @@ export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
               iconRight={<ArrowRight className="w-4 h-4 text-[#F59C00]" />}
               className="border border-[#D5D5D5] hover:border-black hover:bg-black hover:text-white px-5 py-2 text-xs uppercase tracking-wider shadow-xs"
             >
-              VER ESTOQUE COMPLETO ({vehicles.length})
+              VER ESTOQUE COMPLETO ({displayTotal})
             </Button>
             <span className="text-[11px] text-[#888888] mt-1.5 font-normal tracking-wide">
               Clique para navegar por todas as ofertas e modelos disponíveis
