@@ -32,13 +32,13 @@ export function Home() {
       {/* 1. Hero com Marquee de Marcas Transparente Integrado no Rodapé */}
       <Hero />
 
-      {/* 2. Faixa de Busca Rápida (Abaixo do Hero) */}
-      <QuickSearchSection />
-
-      {/* 3. Veículos em Destaque (Fundo Branco) */}
+      {/* 2. Estoque Selecionado / Veículos em Destaque (Fundo Branco) */}
       <FeaturedVehicles vehicles={featuredVehicles} />
 
-      {/* 4. Grade de Marcas com Logos Oficiais */}
+      {/* 3. Faixa de Busca Rápida */}
+      <QuickSearchSection />
+
+      {/* 4. Grade de Marcas com Logos Oficiais (Acordeon Multimarcas) */}
       <BrandShowcase />
 
       {/* 5. Por Que Negociar na Carplus Autos (Bloco Preto 4 Pilares) */}

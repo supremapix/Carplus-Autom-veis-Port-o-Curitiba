@@ -43,12 +43,12 @@ export function QuickSearchSection() {
     <section className="bg-white py-10 sm:py-14 border-b border-[#E0E0E0]">
       <Container>
         <div className="max-w-6xl mx-auto bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-10 shadow-sm">
-          <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E0E0E0]">
+          <div className="flex flex-col items-center justify-center text-center mb-8 pb-4 border-b border-[#E0E0E0]">
             <div>
               <h2 className="font-display font-bold text-xl sm:text-2xl uppercase tracking-wide text-[#121212]">
                 Buscar veículo
               </h2>
-              <p className="text-xs sm:text-sm text-[#666666] mt-0.5">
+              <p className="text-xs sm:text-sm text-[#666666] mt-1">
                 Filtre pelo modelo, ano e faixa de investimento ideal
               </p>
             </div>

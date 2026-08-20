@@ -14,9 +14,10 @@ export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
   return (
     <section className="py-16 sm:py-24 bg-white border-b border-[#E0E0E0]">
       <Container>
-        {/* Título da Seção no Padrão Carplus */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-6 border-b border-[#E0E0E0]">
+        {/* Título da Seção Centralizado e Alinhado com Subtítulo e Botão */}
+        <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto mb-12 pb-6 border-b border-[#E0E0E0]">
           <SectionHeading
+            align="center"
             kicker="ESTOQUE SELECIONADO"
             title={
               <>
@@ -26,14 +27,20 @@ export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
             subtitle="Seminovos revisados, periciados com laudo aprovado e prontos para entrega em Curitiba."
           />
 
-          <Button
-            to="/estoque"
-            variant="ghost"
-            iconRight={<ArrowRight className="w-4 h-4 text-[#F59C00]" />}
-            className="self-start md:self-end border border-[#E0E0E0] hover:border-black"
-          >
-            VER ESTOQUE COMPLETO ({vehicles.length})
-          </Button>
+          <div className="mt-6 flex flex-col items-center justify-center">
+            <Button
+              to="/estoque"
+              variant="outline"
+              size="md"
+              iconRight={<ArrowRight className="w-4 h-4 text-[#F59C00]" />}
+              className="border border-[#D5D5D5] hover:border-black hover:bg-black hover:text-white px-5 py-2 text-xs uppercase tracking-wider shadow-xs"
+            >
+              VER ESTOQUE COMPLETO ({vehicles.length})
+            </Button>
+            <span className="text-[11px] text-[#888888] mt-1.5 font-normal tracking-wide">
+              Clique para navegar por todas as ofertas e modelos disponíveis
+            </span>
+          </div>
         </div>
 
         {/* Grid de Veículos */}

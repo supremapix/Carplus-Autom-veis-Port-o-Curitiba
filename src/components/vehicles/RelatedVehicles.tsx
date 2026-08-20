@@ -12,11 +12,14 @@ export function RelatedVehicles({ vehicles }: RelatedVehiclesProps) {
 
   return (
     <section className="py-12 border-t border-[#E0E0E0] mt-12">
-      <SectionHeading
-        kicker="OPÇÕES SEMELHANTES"
-        title="VEÍCULOS RELACIONADOS EM ESTOQUE"
-        subtitle="Confira outras opções de procedência selecionada disponíveis em nosso showroom."
-      />
+      <div className="text-center max-w-3xl mx-auto mb-10">
+        <SectionHeading
+          align="center"
+          kicker="OPÇÕES SEMELHANTES"
+          title="VEÍCULOS RELACIONADOS EM ESTOQUE"
+          subtitle="Confira outras opções de procedência selecionada disponíveis em nosso showroom."
+        />
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {vehicles.slice(0, 3).map((vehicle) => (

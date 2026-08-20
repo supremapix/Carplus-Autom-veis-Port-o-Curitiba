@@ -47,8 +47,10 @@ export function GoogleReviewsPlaceholder() {
   return (
     <section className="py-16 sm:py-24 bg-[#FAFAFA] border-b border-[#E0E0E0]">
       <Container>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-6 border-b border-[#E0E0E0]">
+        {/* Cabeçalho Centralizado e Alinhado */}
+        <div className="text-center max-w-3xl mx-auto mb-12 pb-6 border-b border-[#E0E0E0] flex flex-col items-center">
           <SectionHeading
+            align="center"
             kicker="REPUTAÇÃO & CONFIANÇA"
             title={
               <>
@@ -58,14 +60,14 @@ export function GoogleReviewsPlaceholder() {
             subtitle="Veja o que nossos clientes dizem sobre a experiência de compra, venda e pós-venda na Carplus Autos."
           />
 
-          <div className="flex items-center gap-3 self-start md:self-end bg-white border border-[#E0E0E0] rounded-2xl px-4 py-2.5 shadow-xs">
+          <div className="inline-flex items-center gap-3 bg-white border border-[#E0E0E0] rounded-2xl px-5 py-2.5 shadow-xs mt-5">
             <div className="flex items-center gap-1 text-[#F59C00]">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 fill-[#F59C00]" />
               ))}
             </div>
             <span className="font-display font-bold text-base text-[#121212]">5.0</span>
-            <span className="text-xs text-[#666666] font-medium">· Avaliação Máxima</span>
+            <span className="text-xs text-[#666666] font-medium">· Avaliação Máxima no Google</span>
           </div>
         </div>
 
