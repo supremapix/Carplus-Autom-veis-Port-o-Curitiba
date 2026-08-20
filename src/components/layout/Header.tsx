@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Phone,
   Menu,
   X,
   ChevronRight,
+  ChevronDown,
   Car,
   MessageSquare,
   Home,
@@ -22,12 +23,26 @@ export const LOGO_URL = 'https://img.carplusautos.com.br/carplus-autos-logo.png?
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
   }, [location.pathname]);
+
+  // Fecha o dropdown ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setServicesDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Listener suave de scroll para diminuir a logo e botões quando começa a navegar
   useEffect(() => {
@@ -58,23 +73,49 @@ export function Header() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && mobileMenuOpen) {
+      if (e.key === 'Escape') {
         setMobileMenuOpen(false);
+        setServicesDropdownOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileMenuOpen]);
 
+  // Serviços agrupados para o Dropdown Desktop
+  const serviceDropdownLinks = [
+    {
+      name: 'Venda seu Carro',
+      path: '/venda-seu-carro',
+      desc: 'Compramos ou avaliamos na troca',
+      icon: <DollarSign className="w-4 h-4 text-[#F59C00]" />,
+    },
+    {
+      name: 'Simular Financiamento',
+      path: '/financiamento',
+      desc: 'Crédito facilitado em até 60x',
+      icon: <FileCheck className="w-4 h-4 text-[#F59C00]" />,
+    },
+    {
+      name: 'Consignação Segura',
+      path: '/consignacao',
+      desc: 'Vendemos seu carro no showroom',
+      icon: <Sparkles className="w-4 h-4 text-[#F59C00]" />,
+    },
+  ];
+
+  // Links completos para o Menu Mobile
   const navLinks = [
     { name: 'INÍCIO', path: '/', icon: <Home className="w-6 h-6 text-[#F59C00]" />, desc: 'Página inicial da loja' },
-    { name: 'ESTOQUE DE CARROS', path: '/estoque', icon: <Car className="w-6 h-6 text-[#F59C00]" />, desc: 'Ver todos os veículos à venda', highlight: true },
+    { name: 'ESTOQUE', path: '/estoque', icon: <Car className="w-6 h-6 text-[#F59C00]" />, desc: 'Ver todos os veículos à venda', highlight: true },
     { name: 'VENDA SEU CARRO', path: '/venda-seu-carro', icon: <DollarSign className="w-6 h-6 text-[#F59C00]" />, desc: 'Avaliamos e compramos seu veículo' },
     { name: 'SIMULAR FINANCIAMENTO', path: '/financiamento', icon: <FileCheck className="w-6 h-6 text-[#F59C00]" />, desc: 'Parcelas em até 60x fáceis' },
     { name: 'CONSIGNAÇÃO', path: '/consignacao', icon: <Sparkles className="w-6 h-6 text-[#F59C00]" />, desc: 'Deixe seu carro para vendermos' },
     { name: 'A EMPRESA', path: '/empresa', icon: <Building2 className="w-6 h-6 text-[#F59C00]" />, desc: 'Quem somos e nossa garantia' },
     { name: 'FALE CONOSCO', path: '/contato', icon: <Phone className="w-6 h-6 text-[#F59C00]" />, desc: 'Telefone, WhatsApp e endereço' },
   ];
+
+  const isServicesActive = serviceDropdownLinks.some((s) => location.pathname.startsWith(s.path));
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/' || location.pathname === '';
@@ -88,12 +129,12 @@ export function Header() {
           isScrolled ? 'shadow-2xl shadow-black/90' : 'shadow-none'
         }`}
       >
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 xl:px-8">
           <div
             className={`flex items-center justify-between gap-2 sm:gap-4 transition-all duration-300 w-full ${
               isScrolled
                 ? 'h-[48px] sm:h-[54px] lg:h-[58px]'
-                : 'h-[78px] sm:h-[88px] lg:h-[100px]'
+                : 'h-[74px] sm:h-[84px] lg:h-[94px]'
             }`}
           >
             {/* Logo Oficial Carplus Autos: Sempre shrink-0 para nunca sofrer sobreposição */}
@@ -106,39 +147,152 @@ export function Header() {
                 variant="dark"
                 className={`transition-all duration-300 group-hover:scale-105 ${
                   isScrolled
-                    ? 'h-[28px] sm:h-[32px] lg:h-[38px] max-w-[130px] sm:max-w-[150px] lg:max-w-[180px]'
-                    : 'h-[52px] sm:h-[62px] lg:h-[74px] max-w-[190px] sm:max-w-[230px] lg:max-w-[280px]'
+                    ? 'h-[28px] sm:h-[32px] lg:h-[36px] max-w-[130px] sm:max-w-[150px] lg:max-w-[170px]'
+                    : 'h-[48px] sm:h-[58px] lg:h-[68px] max-w-[170px] sm:max-w-[210px] lg:max-w-[250px]'
                 }`}
               />
             </Link>
 
-            {/* Desktop Navigation (lg / 1024px+) com espaçamento proporcional e sem sobreposição */}
+            {/* Desktop Navigation (lg / 1024px+): Agrupado e Compacto */}
             <nav
-              className="hidden lg:flex items-center gap-3.5 xl:gap-5.5 shrink-0"
+              className="hidden lg:flex items-center gap-2 xl:gap-4 shrink-0"
               aria-label="Menu Principal"
             >
-              {navLinks.map((link) => {
-                const active = isActive(link.path);
-                return (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    aria-current={active ? 'page' : undefined}
-                    className={`font-bold uppercase tracking-[0.05em] transition-all py-1 relative select-none whitespace-nowrap ${
-                      isScrolled ? 'text-[11.5px] xl:text-[12.5px]' : 'text-[12.5px] xl:text-[13.5px]'
-                    } ${
-                      active
-                        ? 'text-[#F59C00]'
-                        : 'text-white/90 hover:text-[#F59C00]'
+              {/* Início */}
+              <Link
+                to="/"
+                aria-current={isActive('/') ? 'page' : undefined}
+                className={`font-bold uppercase tracking-[0.05em] transition-all py-1 px-1 relative select-none whitespace-nowrap ${
+                  isScrolled ? 'text-[11.5px] xl:text-[12.5px]' : 'text-[12px] xl:text-[13px]'
+                } ${
+                  isActive('/')
+                    ? 'text-[#F59C00]'
+                    : 'text-white/90 hover:text-[#F59C00]'
+                }`}
+              >
+                INÍCIO
+                {isActive('/') && (
+                  <span className="absolute bottom-0 left-1 right-1 h-[2px] bg-[#F59C00]" />
+                )}
+              </Link>
+
+              {/* Estoque */}
+              <Link
+                to="/estoque"
+                aria-current={isActive('/estoque') ? 'page' : undefined}
+                className={`font-bold uppercase tracking-[0.05em] transition-all py-1 px-1 relative select-none whitespace-nowrap ${
+                  isScrolled ? 'text-[11.5px] xl:text-[12.5px]' : 'text-[12px] xl:text-[13px]'
+                } ${
+                  isActive('/estoque')
+                    ? 'text-[#F59C00]'
+                    : 'text-white/90 hover:text-[#F59C00]'
+                }`}
+              >
+                ESTOQUE
+                {isActive('/estoque') && (
+                  <span className="absolute bottom-0 left-1 right-1 h-[2px] bg-[#F59C00]" />
+                )}
+              </Link>
+
+              {/* Dropdown Agrupado: SERVIÇOS (Venda seu Carro, Financiamento, Consignação) */}
+              <div
+                ref={dropdownRef}
+                className="relative"
+                onMouseEnter={() => setServicesDropdownOpen(true)}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
+              >
+                <button
+                  type="button"
+                  onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                  aria-expanded={servicesDropdownOpen}
+                  className={`font-bold uppercase tracking-[0.05em] transition-all py-1 px-1.5 rounded flex items-center gap-1 select-none whitespace-nowrap cursor-pointer ${
+                    isScrolled ? 'text-[11.5px] xl:text-[12.5px]' : 'text-[12px] xl:text-[13px]'
+                  } ${
+                    isServicesActive || servicesDropdownOpen
+                      ? 'text-[#F59C00]'
+                      : 'text-white/90 hover:text-[#F59C00]'
+                  }`}
+                >
+                  <span>SERVIÇOS</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      servicesDropdownOpen ? 'rotate-180 text-[#F59C00]' : 'text-white/60'
                     }`}
-                  >
-                    {link.name}
-                    {active && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#F59C00]" />
-                    )}
-                  </Link>
-                );
-              })}
+                  />
+                  {isServicesActive && (
+                    <span className="absolute bottom-0 left-1.5 right-1.5 h-[2px] bg-[#F59C00]" />
+                  )}
+                </button>
+
+                {/* Dropdown Menu Flutuante */}
+                {servicesDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-[#141414] border border-[#2E2E2E] rounded-xl shadow-2xl p-2 z-50 animate-fade-in backdrop-blur-md">
+                    {serviceDropdownLinks.map((service) => {
+                      const active = isActive(service.path);
+                      return (
+                        <Link
+                          key={service.path}
+                          to={service.path}
+                          onClick={() => setServicesDropdownOpen(false)}
+                          className={`flex items-start gap-3 p-2.5 rounded-lg transition-colors group ${
+                            active
+                              ? 'bg-[#F59C00]/15 text-[#F59C00]'
+                              : 'hover:bg-white/5 text-white'
+                          }`}
+                        >
+                          <div className="p-1.5 rounded-md bg-black/60 border border-white/10 shrink-0 group-hover:border-[#F59C00]/40 transition-colors">
+                            {service.icon}
+                          </div>
+                          <div>
+                            <span className="font-display font-bold text-xs uppercase tracking-wide block group-hover:text-[#F59C00] transition-colors">
+                              {service.name}
+                            </span>
+                            <span className="text-[11px] text-white/60 block leading-tight font-normal">
+                              {service.desc}
+                            </span>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* A Empresa */}
+              <Link
+                to="/empresa"
+                aria-current={isActive('/empresa') ? 'page' : undefined}
+                className={`font-bold uppercase tracking-[0.05em] transition-all py-1 px-1 relative select-none whitespace-nowrap ${
+                  isScrolled ? 'text-[11.5px] xl:text-[12.5px]' : 'text-[12px] xl:text-[13px]'
+                } ${
+                  isActive('/empresa')
+                    ? 'text-[#F59C00]'
+                    : 'text-white/90 hover:text-[#F59C00]'
+                }`}
+              >
+                A EMPRESA
+                {isActive('/empresa') && (
+                  <span className="absolute bottom-0 left-1 right-1 h-[2px] bg-[#F59C00]" />
+                )}
+              </Link>
+
+              {/* Contato */}
+              <Link
+                to="/contato"
+                aria-current={isActive('/contato') ? 'page' : undefined}
+                className={`font-bold uppercase tracking-[0.05em] transition-all py-1 px-1 relative select-none whitespace-nowrap ${
+                  isScrolled ? 'text-[11.5px] xl:text-[12.5px]' : 'text-[12px] xl:text-[13px]'
+                } ${
+                  isActive('/contato')
+                    ? 'text-[#F59C00]'
+                    : 'text-white/90 hover:text-[#F59C00]'
+                }`}
+              >
+                CONTATO
+                {isActive('/contato') && (
+                  <span className="absolute bottom-0 left-1 right-1 h-[2px] bg-[#F59C00]" />
+                )}
+              </Link>
             </nav>
 
             {/* Desktop Action Buttons (lg+) */}
@@ -147,8 +301,8 @@ export function Header() {
                 to="/estoque"
                 className={`bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold tracking-wider uppercase rounded-full transition-all duration-300 flex items-center justify-center gap-1.5 select-none cursor-pointer whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(245,156,0,0.4)] active:scale-95 ${
                   isScrolled
-                    ? 'h-7.5 px-3 text-[10.5px] xl:text-[11px]'
-                    : 'h-10 px-4 xl:px-5 text-[12px] xl:text-[12.5px]'
+                    ? 'h-8 px-3.5 text-[11px] xl:text-[11.5px]'
+                    : 'h-9 px-4 xl:px-4.5 text-[11.5px] xl:text-[12px]'
                 }`}
               >
                 <span>VER ESTOQUE</span>
@@ -160,11 +314,11 @@ export function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`rounded-full bg-[#1A1A1A] hover:bg-[#252525] border border-[#2E2E2E] flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95 ${
-                    isScrolled ? 'w-7.5 h-7.5' : 'w-10 h-10'
+                    isScrolled ? 'w-8 h-8' : 'w-9 h-9'
                   }`}
                   aria-label="Conversar pelo WhatsApp"
                 >
-                  <MessageSquare className={`${isScrolled ? 'w-3 h-3' : 'w-4 h-4'} text-[#25D366] fill-current transition-all`} />
+                  <MessageSquare className={`${isScrolled ? 'w-3.5 h-3.5' : 'w-4 h-4'} text-[#25D366] fill-current transition-all`} />
                 </a>
                 <span className="absolute right-full mr-3 px-3 py-1 bg-black text-white text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-md border border-white/10">
                   WhatsApp
