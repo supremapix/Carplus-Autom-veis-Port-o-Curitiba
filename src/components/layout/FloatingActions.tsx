@@ -121,7 +121,7 @@ export function FloatingActions() {
   const shareText = encodeURIComponent(currentMsg);
   const encodedUrl = encodeURIComponent(currentUrl);
   const encodedTitle = encodeURIComponent(pageTitle);
-  const defaultShareImage = encodeURIComponent('https://www.carplusautos.com.br/og-carplus-autos.webp');
+  const defaultShareImage = encodeURIComponent('https://img.carplusautos.com.br/redes.png');
 
   const handleNativeShare = async () => {
     if (navigator.share) {

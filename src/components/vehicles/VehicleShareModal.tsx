@@ -15,21 +15,12 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
 
   if (!isOpen) return null;
 
-  // Garante uma URL absoluta e pública para a foto do carro
-  const getVehicleImageUrl = (): string => {
-    const rawImage = vehicle.images?.find(img => img.isCover)?.url || vehicle.images?.[0]?.url || '';
-    if (!rawImage) return 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=1200';
-    if (rawImage.startsWith('http://') || rawImage.startsWith('https://')) {
-      return rawImage;
-    }
-    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.carplusautos.com.br';
-    return `${origin}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
-  };
+  // URL oficial da imagem para compartilhamento nas redes
+  const REDES_SHARE_IMAGE = 'https://img.carplusautos.com.br/redes.png';
+  const encodedImage = encodeURIComponent(REDES_SHARE_IMAGE);
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href.split('?')[0] : 'https://www.carplusautos.com.br';
   const encodedUrl = encodeURIComponent(currentUrl);
-  const imageUrl = getVehicleImageUrl();
-  const encodedImage = encodeURIComponent(imageUrl);
   
   const rawTitle = `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel}`;
   const rawPrice = formatPrice(vehicle.price);
