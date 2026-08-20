@@ -107,7 +107,7 @@ export function Header() {
                 className={`transition-all duration-300 group-hover:scale-105 ${
                   isScrolled
                     ? 'h-[28px] sm:h-[32px] lg:h-[38px] max-w-[130px] sm:max-w-[150px] lg:max-w-[180px]'
-                    : 'h-[44px] sm:h-[50px] lg:h-[58px] max-w-[160px] sm:max-w-[190px] lg:max-w-[230px]'
+                    : 'h-[52px] sm:h-[62px] lg:h-[74px] max-w-[190px] sm:max-w-[230px] lg:max-w-[280px]'
                 }`}
               />
             </Link>
