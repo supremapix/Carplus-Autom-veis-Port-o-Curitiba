@@ -67,25 +67,25 @@ export function WhyCarplus() {
           {pillars.map((pillar, index) => (
             <div
               key={index}
-              className="bg-[#141414] hover:bg-[#1A1A1A] border border-white/15 hover:border-[#F59C00]/60 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/70 flex flex-col justify-between group relative overflow-hidden"
+              className="bg-[#F59C00] hover:bg-[#FFA31A] text-black border border-[#FFB833] rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#F59C00]/30 flex flex-col justify-between group relative overflow-hidden shadow-lg"
             >
-              {/* Linha de acento sutil no topo do card ao passar o mouse */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#F59C00] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Linha de acento de brilho no topo do card */}
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-70 group-hover:opacity-100 transition-opacity" />
 
               <div>
                 <div className="flex items-center justify-between mb-5">
-                  <div className="w-14 h-14 rounded-2xl bg-black/80 border border-white/15 group-hover:border-[#F59C00]/50 flex items-center justify-center transition-all group-hover:scale-105 shadow-inner">
+                  <div className="w-14 h-14 rounded-2xl bg-black border border-black/20 flex items-center justify-center transition-all group-hover:scale-105 shadow-md">
                     {pillar.icon}
                   </div>
-                  <span className="text-[10px] font-display font-bold uppercase tracking-[0.2em] text-[#F59C00] group-hover:text-white transition-colors bg-white/[0.04] px-2.5 py-1 rounded-full border border-white/10">
+                  <span className="text-[10px] font-display font-bold uppercase tracking-[0.18em] text-black bg-black/10 px-2.5 py-1 rounded-full border border-black/15">
                     {pillar.tag}
                   </span>
                 </div>
 
-                <h3 className="font-display font-bold text-xl uppercase text-white tracking-wide mb-2.5 group-hover:text-[#F59C00] transition-colors leading-snug">
+                <h3 className="font-display font-bold text-xl uppercase text-black tracking-wide mb-2.5 leading-snug">
                   {pillar.title}
                 </h3>
-                <p className="text-sm text-[#CCCCCC] leading-relaxed font-normal">
+                <p className="text-sm text-black/85 leading-relaxed font-medium">
                   {pillar.description}
                 </p>
               </div>
