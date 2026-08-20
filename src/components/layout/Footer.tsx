@@ -69,8 +69,20 @@ export function Footer() {
       {/* ========================================================================= */}
       {/* 2. CONTEÚDO PRINCIPAL DO FOOTER: CLARO, ORGANIZADO E COM TEXTOS GRANDES   */}
       {/* ========================================================================= */}
-      <div className="py-12 sm:py-16">
-        <Container>
+      <div className="py-12 sm:py-16 relative overflow-hidden">
+        {/* Background com imagem do Showroom e overlay escuro de alto contraste */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img
+            src="https://img.carplusautos.com.br/hero.webp"
+            alt="Carplus Autos Showroom"
+            className="w-full h-full object-cover object-center opacity-15 filter brightness-75 contrast-125"
+            referrerPolicy="no-referrer"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-[#0A0A0A]/80" />
+        </div>
+
+        <Container className="relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 pb-12 border-b border-[#2E2E2E]">
             {/* Coluna 1: Sobre a Loja & Redes */}
             <div className="space-y-5">

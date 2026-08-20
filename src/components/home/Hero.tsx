@@ -148,7 +148,7 @@ export function Hero() {
           />
           {/* Fallback de imagem enquanto o vídeo carrega */}
           <img
-            src="https://img.supremasite.com.br/carplus-autos.webp"
+            src="https://img.carplusautos.com.br/hero.webp"
             alt="Carplus Autos Showroom"
             className={`absolute inset-0 w-full h-full object-cover object-[60%_center] filter brightness-[0.80] transition-opacity duration-1000 ${
               isVideoLoaded ? 'opacity-0' : 'opacity-100'
@@ -165,14 +165,14 @@ export function Hero() {
         {/* DESKTOP BACKGROUND IMAGE (Exclusivo lg: >= 1024px) */}
         <div className="hidden lg:block absolute inset-0 w-full h-full">
           <img
-            src="https://img.supremasite.com.br/carplus-autos.webp"
+            src="https://img.carplusautos.com.br/hero.webp"
             alt="Carplus Autos Showroom"
-            className="w-full h-full object-cover object-[left_center] filter brightness-[0.88] contrast-[1.05]"
+            className="w-full h-full object-cover object-[center_center] filter brightness-[0.88] contrast-[1.05]"
             fetchPriority="high"
             decoding="async"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/40" />
           <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#050505] via-[#050505]/75 to-transparent" />
         </div>
       </motion.div>

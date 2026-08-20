@@ -33,6 +33,18 @@ export function WhyCarplus() {
 
   return (
     <section className="py-16 sm:py-24 bg-[#080808] text-white border-b border-[#222222] relative overflow-hidden">
+      {/* Background Decorativo com foto da Carplus */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="https://img.carplusautos.com.br/hero.webp"
+          alt="Carplus Autos"
+          className="w-full h-full object-cover object-center opacity-10 filter brightness-50 contrast-125"
+          referrerPolicy="no-referrer"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-transparent to-[#080808]" />
+      </div>
+
       {/* Halo de iluminação de fundo suave */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#F59C00]/5 rounded-full blur-[140px] pointer-events-none" />
 

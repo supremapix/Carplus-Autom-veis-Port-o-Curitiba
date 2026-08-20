@@ -96,25 +96,25 @@ export function Header() {
                 : 'h-[78px] sm:h-[88px] lg:h-[100px]'
             }`}
           >
-            {/* Logo Oficial Carplus Autos: Bem destacada na entrada e ultra compacta no scroll */}
+            {/* Logo Oficial Carplus Autos: Sempre shrink-0 para nunca sofrer sobreposição */}
             <Link
               to="/"
-              className="flex items-center shrink min-w-0 group focus-visible:outline-2 focus-visible:outline-[#F59C00] py-0.5"
+              className="flex items-center shrink-0 group focus-visible:outline-2 focus-visible:outline-[#F59C00] py-0.5 z-10"
               aria-label="Carplus Autos — Página Inicial"
             >
               <Logo
                 variant="dark"
                 className={`transition-all duration-300 group-hover:scale-105 ${
                   isScrolled
-                    ? 'h-[28px] sm:h-[34px] lg:h-[38px] max-w-[120px] sm:max-w-[160px] lg:max-w-[190px]'
-                    : 'h-[54px] sm:h-[66px] lg:h-[76px] max-w-[170px] sm:max-w-[250px] lg:max-w-[320px]'
+                    ? 'h-[28px] sm:h-[32px] lg:h-[38px] max-w-[130px] sm:max-w-[150px] lg:max-w-[180px]'
+                    : 'h-[44px] sm:h-[50px] lg:h-[58px] max-w-[160px] sm:max-w-[190px] lg:max-w-[230px]'
                 }`}
               />
             </Link>
 
-            {/* Desktop Navigation (lg / 1024px+) */}
+            {/* Desktop Navigation (lg / 1024px+) com espaçamento proporcional e sem sobreposição */}
             <nav
-              className="hidden lg:flex items-center gap-5 xl:gap-6 shrink-0"
+              className="hidden lg:flex items-center gap-3.5 xl:gap-5.5 shrink-0"
               aria-label="Menu Principal"
             >
               {navLinks.map((link) => {
@@ -124,12 +124,12 @@ export function Header() {
                     key={link.path}
                     to={link.path}
                     aria-current={active ? 'page' : undefined}
-                    className={`font-bold uppercase tracking-[0.06em] transition-all py-1 relative select-none whitespace-nowrap ${
-                      isScrolled ? 'text-[12px]' : 'text-[14px]'
+                    className={`font-bold uppercase tracking-[0.05em] transition-all py-1 relative select-none whitespace-nowrap ${
+                      isScrolled ? 'text-[11.5px] xl:text-[12.5px]' : 'text-[12.5px] xl:text-[13.5px]'
                     } ${
                       active
                         ? 'text-[#F59C00]'
-                        : 'text-white hover:text-[#F59C00]'
+                        : 'text-white/90 hover:text-[#F59C00]'
                     }`}
                   >
                     {link.name}
@@ -142,13 +142,13 @@ export function Header() {
             </nav>
 
             {/* Desktop Action Buttons (lg+) */}
-            <div className="hidden lg:flex items-center gap-2 shrink-0">
+            <div className="hidden lg:flex items-center gap-2 xl:gap-2.5 shrink-0">
               <Link
                 to="/estoque"
-                className={`bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold tracking-wider uppercase rounded-full transition-all duration-300 flex items-center justify-center gap-1.5 select-none cursor-pointer whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(245,156,0,0.4)] ${
+                className={`bg-[#F59C00] hover:bg-[#F7941D] text-black font-display font-bold tracking-wider uppercase rounded-full transition-all duration-300 flex items-center justify-center gap-1.5 select-none cursor-pointer whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(245,156,0,0.4)] active:scale-95 ${
                   isScrolled
-                    ? 'h-7.5 px-3.5 text-[11px]'
-                    : 'h-11 px-6 text-[13px]'
+                    ? 'h-7.5 px-3 text-[10.5px] xl:text-[11px]'
+                    : 'h-10 px-4 xl:px-5 text-[12px] xl:text-[12.5px]'
                 }`}
               >
                 <span>VER ESTOQUE</span>
@@ -159,8 +159,8 @@ export function Header() {
                   href={buildWhatsAppLink('Olá! Gostaria de falar com um consultor da Carplus Autos.')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`rounded-full bg-[#1A1A1A] hover:bg-[#252525] border border-[#2E2E2E] flex items-center justify-center transition-all duration-300 cursor-pointer ${
-                    isScrolled ? 'w-7.5 h-7.5' : 'w-11 h-11'
+                  className={`rounded-full bg-[#1A1A1A] hover:bg-[#252525] border border-[#2E2E2E] flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95 ${
+                    isScrolled ? 'w-7.5 h-7.5' : 'w-10 h-10'
                   }`}
                   aria-label="Conversar pelo WhatsApp"
                 >
