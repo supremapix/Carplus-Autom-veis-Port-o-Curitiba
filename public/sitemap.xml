@@ -50,7 +50,7 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- Veículos do Estoque Atual (7 veículos) -->
+  <!-- Veículos do Estoque Atual (8 veículos) -->
   <url>
     <loc>https://www.carplusautos.com.br/estoque/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024</loc>
     <lastmod>2026-08-18</lastmod>
@@ -92,5 +92,11 @@
     <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.carplusautos.com.br/estoque/peugeot-408-griffe-2-0-16v-flex-automatico-2012</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>

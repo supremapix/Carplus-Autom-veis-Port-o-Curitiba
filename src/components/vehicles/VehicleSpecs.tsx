@@ -109,6 +109,15 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
       value: vehicle.plateEnd ? `Final ${vehicle.plateEnd}` : 'Consulte',
       icon: <Hash className="w-4 h-4 text-[#F59C00]" />,
     },
+    ...(vehicle.engine
+      ? [
+          {
+            label: 'Motorização',
+            value: vehicle.engine,
+            icon: <Cog className="w-4 h-4 text-[#F59C00]" />,
+          },
+        ]
+      : []),
   ];
 
   return (

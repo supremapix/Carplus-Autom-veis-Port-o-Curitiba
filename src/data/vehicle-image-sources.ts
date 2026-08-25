@@ -7,7 +7,8 @@ export const VEHICLE_IMAGE_COUNT: Record<string, number> = {
   "citroen-c4-lounge-origine-1-6-turbo-flex-automatico-2017": 11,
   "citroen-aircross-feel-1-6-flex-automatico-2017": 18,
   "ford-focus-sedan-2-0-16v-flex-automatico-2012": 18,
-  "nissan-sentra-s-2-0-flex-automatico-2011": 16
+  "nissan-sentra-s-2-0-flex-automatico-2011": 16,
+  "peugeot-408-griffe-2-0-16v-flex-automatico-2012": 20
 };
 
 export const getVehicleImageUrl = (slug: string, index: number) =>

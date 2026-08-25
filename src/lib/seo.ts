@@ -1,12 +1,18 @@
 import { Vehicle } from '../types/vehicle';
 
 export function buildVehicleTitle(vehicle: Vehicle): string {
+  if (vehicle.metaTitle) {
+    return vehicle.metaTitle;
+  }
   // Extract main version keywords if too long (e.g. "SRX Platinum" from "SRX Platinum 4x4 2.8 Turbo Diesel Aut. 7 lugares")
   const primaryVersion = vehicle.version.split(' 4x4')[0] || vehicle.version;
   return `${vehicle.brand} ${vehicle.model} ${primaryVersion} ${vehicle.yearModel} à Venda em Curitiba | Carplus Autos`;
 }
 
 export function buildVehicleDescription(vehicle: Vehicle): string {
+  if (vehicle.metaDescription) {
+    return vehicle.metaDescription;
+  }
   const parts: string[] = [];
   if (vehicle.seats && vehicle.seats > 5) {
     parts.push(`${vehicle.seats} lugares`);

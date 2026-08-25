@@ -31,6 +31,9 @@ export interface Vehicle {
   doors?: number;
   seats?: number;
   plateEnd?: string | null;
+  engine?: string;
+  metaTitle?: string;
+  metaDescription?: string;
   description?: string;
   features: string[];
   differentials?: string[];
