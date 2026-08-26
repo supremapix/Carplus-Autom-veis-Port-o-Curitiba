@@ -212,7 +212,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
     yearModel: 2017,
     price: 52900,
     previousPrice: 54900,
-    mileage: 96000,
+    mileage: 111000,
     fuel: 'flex',
     fuelLabel: 'Flex',
     transmission: 'automatico',
