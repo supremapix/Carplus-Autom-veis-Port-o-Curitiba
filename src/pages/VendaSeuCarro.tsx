@@ -5,6 +5,8 @@ import { createSellRequest } from '../services/leads';
 import { Container } from '../components/ui/Container';
 import { PageHero } from '../components/ui/PageHero';
 import { Button } from '../components/ui/Button';
+import { SeoHead } from '../components/ui/SeoHead';
+import { buildBreadcrumbJsonLd } from '../lib/seo';
 
 export function VendaSeuCarro() {
   const [name, setName] = useState('');
@@ -88,8 +90,20 @@ export function VendaSeuCarro() {
     }
   };
 
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Início', url: 'https://www.carplusautos.com.br/' },
+    { name: 'Venda seu Carro', url: 'https://www.carplusautos.com.br/venda-seu-carro' },
+  ]);
+
   return (
     <div className="bg-white min-h-screen">
+      <SeoHead
+        title="Venda Seu Carro em Curitiba | Avaliação Justa e Pagamento à Vista"
+        description="Quer vender seu carro em Curitiba? Avaliamos seu veículo seminovo com base no valor de mercado real e oferecemos pagamento à vista ou troco na troca na Carplus Autos."
+        canonicalUrl="https://www.carplusautos.com.br/venda-seu-carro"
+        jsonLd={breadcrumbJsonLd}
+      />
+
       {/* Page Hero Preto */}
       <PageHero
         kicker="AVALIAÇÃO EM CURITIBA"

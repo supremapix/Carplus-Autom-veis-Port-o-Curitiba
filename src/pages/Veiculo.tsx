@@ -32,6 +32,7 @@ import { buildVehicleTitle, buildVehicleDescription, buildVehicleJsonLd, buildBr
 import { Container } from '../components/ui/Container';
 import { Button } from '../components/ui/Button';
 import { getBrandLogo } from '../data/brands';
+import { SeoHead } from '../components/ui/SeoHead';
 
 export function Veiculo() {
   const { slug } = useParams<{ slug: string }>();
@@ -148,16 +149,18 @@ export function Veiculo() {
     slug: vehicle.slug,
   });
 
+  const coverImg = vehicle.images?.find(img => img.isCover)?.url || vehicle.images?.[0]?.url || 'https://www.carplusautos.com.br/og-carplus-autos.webp';
+  const fullImgUrl = coverImg.startsWith('http') ? coverImg : `https://www.carplusautos.com.br${coverImg.startsWith('/') ? '' : '/'}${coverImg}`;
+
   return (
     <div className="bg-white min-h-screen py-8 sm:py-12">
-      {/* Schema.org Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(vehicleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      <SeoHead
+        title={buildVehicleTitle(vehicle)}
+        description={buildVehicleDescription(vehicle)}
+        canonicalUrl={`https://www.carplusautos.com.br/estoque/${vehicle.slug}`}
+        ogType="article"
+        ogImage={fullImgUrl}
+        jsonLd={[vehicleJsonLd, breadcrumbJsonLd]}
       />
 
       <Container>

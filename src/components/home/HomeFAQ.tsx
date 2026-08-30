@@ -2,49 +2,58 @@ import React from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
+import { buildFaqPageJsonLd } from '../../lib/seo';
 
 export function HomeFAQ() {
   const faqs = [
     {
-      q: 'Como funciona o processo de compra de um seminovo na Carplus Autos?',
-      a: 'Você escolhe o modelo no estoque online e entra em contato via WhatsApp ou nos visita na loja física no bairro Portão. Apresentamos todo o histórico, laudo pericial cautelar, realizamos test-drive e cuidamos de toda a transferência documental com total transparência.',
+      q: 'Onde comprar veículos seminovos em Curitiba com garantia e procedência?',
+      a: 'A Carplus Autos é referência na compra de veículos seminovos em Curitiba. Nosso showroom está localizado na Av. Pres. Arthur Bernardes, 1323, no bairro Portão. Todos os carros passam por laudo pericial cautelar 100% aprovado, revisão mecânica e possuem garantia legal de 3 meses para motor e câmbio.',
     },
     {
-      q: 'Posso dar meu carro usado como parte do pagamento (troca ou troco na troca)?',
-      a: 'Sim! Avaliamos seu veículo seminovo com base no valor de mercado real de Curitiba. Você pode utilizar seu carro como entrada e financiar a diferença, ou se o seu seminovo valer mais, devolvemos a diferença em dinheiro na hora (troco na troca).',
+      q: 'Onde e como vender meu carro usado em Curitiba com pagamento à vista?',
+      a: 'Você pode vender seu carro diretamente para a Carplus Autos no bairro Portão em Curitiba. Avaliamos seu seminovo com base nas cotações reais do mercado local e realizamos a compra imediata com pagamento via PIX/transferência à vista e quitação de débitos.',
     },
     {
-      q: 'Como funciona a simulação e aprovação de financiamento?',
-      a: 'Envie seus dados para solicitar uma simulação de financiamento.',
+      q: 'Como funciona a troca de carros e o troco na troca na Carplus Autos?',
+      a: 'Avaliamos seu veículo usado como entrada para a compra de qualquer seminovo do nosso estoque em Curitiba. Se o valor da avaliação do seu carro for superior ao modelo escolhido, realizamos o troco na troca, pagando a diferença para você na hora.',
     },
     {
-      q: 'Todos os veículos do estoque possuem garantia e laudo pericial?',
-      a: 'As condições de cada veículo (laudo, garantia, documentação) são informadas na página do próprio veículo e confirmadas pela nossa equipe no atendimento.',
+      q: 'Como funciona o financiamento de veículos seminovos na Carplus Autos?',
+      a: 'Trabalhamos em parceria com os principais bancos e financeiras do Brasil para oferecer crédito facilitado com prazos em até 60 parcelas e taxas competitivas. Você pode fazer a simulação online em nosso site ou presencialmente em nosso showroom.',
     },
     {
-      q: 'O que é a Consignação Segura da Carplus Autos?',
-      a: 'Na consignação, você deixa seu carro em nosso showroom na Av. Arthur Bernardes. Cuidamos das fotos profissionais, anúncios em portais especializados, atendimento e recebimento de propostas, garantindo que você venda seu veículo pelo melhor preço com total segurança e sem riscos.',
+      q: 'Como funciona a consignação de veículos em Curitiba?',
+      a: 'Na consignação da Carplus Autos, deixamos seu veículo exposto em nosso showroom no Portão. Cuidamos das fotos de alta resolução, divulgação nos maiores portais automotivos e da triagem de compradores, garantindo uma venda segura pelo valor justo sem você precisar receber estranhos em casa.',
     },
     {
-      q: 'Onde a Carplus Autos está localizada em Curitiba?',
-      a: 'Estamos localizados na Avenida Presidente Arthur da Silva Bernardes, 1323, no bairro Portão, em Curitiba - PR (CEP 80320-300), com estacionamento próprio e fácil acesso.',
+      q: 'Onde fica localizada a loja física da Carplus Autos em Curitiba?',
+      a: 'Estamos localizados na Avenida Presidente Arthur da Silva Bernardes, 1323, no bairro Portão, em Curitiba - PR (CEP 80320-300), com estacionamento próprio, centro automotivo integrado e atendimento presencial de segunda a sábado.',
     },
   ];
 
+  const faqJsonLd = buildFaqPageJsonLd(faqs);
+
   return (
     <section className="py-16 sm:py-24 bg-[#FAFAFA] border-b border-[#E0E0E0]">
+      {/* FAQ Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       <Container>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <SectionHeading
               align="center"
-              kicker="TIRA-DÚVIDAS"
+              kicker="TIRA-DÚVIDAS & SEO LOCAL"
               title={
                 <>
                   PERGUNTAS <span className="text-[#F59C00] italic">FREQUENTES</span>
                 </>
               }
-              subtitle="Tire suas dúvidas sobre compra, venda, troca, financiamento e consignação."
+              subtitle="Respostas diretas sobre compra, venda, troca, financiamento e localização da Carplus Autos em Curitiba."
             />
           </div>
 

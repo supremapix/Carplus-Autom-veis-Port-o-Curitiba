@@ -5,10 +5,24 @@ import { Logo } from '../components/ui/Logo';
 import { Container } from '../components/ui/Container';
 import { PageHero } from '../components/ui/PageHero';
 import { Button } from '../components/ui/Button';
+import { SeoHead } from '../components/ui/SeoHead';
+import { buildBreadcrumbJsonLd } from '../lib/seo';
 
 export function Empresa() {
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Início', url: 'https://www.carplusautos.com.br/' },
+    { name: 'A Empresa', url: 'https://www.carplusautos.com.br/empresa' },
+  ]);
+
   return (
     <div className="bg-white min-h-screen">
+      <SeoHead
+        title="Carplus Autos | Revenda de Seminovos no Portão em Curitiba"
+        description="Conheça a história e a estrutura da Carplus Autos em Curitiba. Showroom moderno no Portão integrado ao centro mecânico especializado com procedência garantida."
+        canonicalUrl="https://www.carplusautos.com.br/empresa"
+        jsonLd={breadcrumbJsonLd}
+      />
+
       {/* Page Hero Preto */}
       <PageHero
         kicker="TRADIÇÃO & TRANSPARÊNCIA"

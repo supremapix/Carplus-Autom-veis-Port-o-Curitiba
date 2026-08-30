@@ -7,6 +7,8 @@ import { Vehicle } from '../types/vehicle';
 import { Container } from '../components/ui/Container';
 import { PageHero } from '../components/ui/PageHero';
 import { Button } from '../components/ui/Button';
+import { SeoHead } from '../components/ui/SeoHead';
+import { buildBreadcrumbJsonLd } from '../lib/seo';
 
 export function Financiamento() {
   const [searchParams] = useSearchParams();
@@ -82,8 +84,20 @@ export function Financiamento() {
     }
   };
 
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Início', url: 'https://www.carplusautos.com.br/' },
+    { name: 'Financiamento', url: 'https://www.carplusautos.com.br/financiamento' },
+  ]);
+
   return (
     <div className="bg-white min-h-screen">
+      <SeoHead
+        title="Financiamento de Veículos em Curitiba | Taxas Especiais até 60x"
+        description="Simule o financiamento do seu carro seminovo em Curitiba na Carplus Autos. Trabalhamos com os principais bancos para oferecer as melhores taxas em até 60 parcelas."
+        canonicalUrl="https://www.carplusautos.com.br/financiamento"
+        jsonLd={breadcrumbJsonLd}
+      />
+
       {/* Page Hero Preto */}
       <PageHero
         kicker="TAXAS COMPETITIVAS"

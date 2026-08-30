@@ -4,8 +4,15 @@ import { ShieldCheck, Camera, Users, ArrowRight, CheckCircle2 } from 'lucide-rea
 import { Container } from '../components/ui/Container';
 import { PageHero } from '../components/ui/PageHero';
 import { Button } from '../components/ui/Button';
+import { SeoHead } from '../components/ui/SeoHead';
+import { buildBreadcrumbJsonLd } from '../lib/seo';
 
 export function Consignacao() {
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Início', url: 'https://www.carplusautos.com.br/' },
+    { name: 'Consignação', url: 'https://www.carplusautos.com.br/consignacao' },
+  ]);
+
   const advantages = [
     {
       icon: <Camera className="w-6 h-6 text-[#F59C00]" />,
@@ -26,6 +33,13 @@ export function Consignacao() {
 
   return (
     <div className="bg-white min-h-screen">
+      <SeoHead
+        title="Consignação de Veículos em Curitiba | Venda Seu Carro com Segurança"
+        description="Deixe seu veículo em consignação no showroom da Carplus Autos na Av. Arthur Bernardes em Curitiba. Cuidamos de anúncios profissionais, fotos e negociação."
+        canonicalUrl="https://www.carplusautos.com.br/consignacao"
+        jsonLd={breadcrumbJsonLd}
+      />
+
       {/* Page Hero Preto */}
       <PageHero
         kicker="VENDA COM SEGURANÇA"

@@ -9,6 +9,8 @@ import { VehicleFiltersState, VehicleSortOption } from '../types/filters';
 import { Container } from '../components/ui/Container';
 import { PageHero } from '../components/ui/PageHero';
 import { CAR_BRANDS } from '../data/brands';
+import { SeoHead } from '../components/ui/SeoHead';
+import { buildBreadcrumbJsonLd } from '../lib/seo';
 
 export function Estoque() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -101,8 +103,28 @@ export function Estoque() {
     handleFilterChange(updated);
   }, [filters, handleFilterChange]);
 
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Início', url: 'https://www.carplusautos.com.br/' },
+    { name: 'Estoque', url: 'https://www.carplusautos.com.br/estoque' },
+  ]);
+
+  const seoTitle = filters.brand
+    ? `Carros ${filters.brand} Seminovos em Curitiba | Estoque Carplus Autos`
+    : 'Estoque de Carros Seminovos em Curitiba | Carplus Autos';
+
+  const seoDescription = filters.brand
+    ? `Confira nosso estoque de seminovos ${filters.brand} à venda em Curitiba na Carplus Autos. Veículos revisados, laudo pericial cautelar aprovado e garantia.`
+    : 'Confira nosso estoque atualizado de carros e veículos seminovos à venda em Curitiba. Opções revisadas com garantia, procedência periciada e aceitação de troca.';
+
   return (
     <div className="bg-white min-h-screen">
+      <SeoHead
+        title={seoTitle}
+        description={seoDescription}
+        canonicalUrl="https://www.carplusautos.com.br/estoque"
+        jsonLd={breadcrumbJsonLd}
+      />
+
       {/* Page Hero Preto no Padrão Carplus */}
       <PageHero
         kicker="SHOWROOM CURITIBA"

@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { TopBar } from './components/layout/TopBar';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -84,6 +84,18 @@ export default function App() {
             <Route path="/empresa" element={<Empresa />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
+
+            {/* Redirecionamentos de Aliases de Intenção SEO */}
+            <Route path="/compramos-seu-carro" element={<Navigate to="/venda-seu-carro" replace />} />
+            <Route path="/vender-carro-curitiba" element={<Navigate to="/venda-seu-carro" replace />} />
+            <Route path="/troca-de-carro" element={<Navigate to="/venda-seu-carro" replace />} />
+            <Route path="/avaliacao-de-veiculos-curitiba" element={<Navigate to="/venda-seu-carro" replace />} />
+            <Route path="/carros-usados-curitiba" element={<Navigate to="/estoque" replace />} />
+            <Route path="/carros-seminovos-curitiba" element={<Navigate to="/estoque" replace />} />
+            <Route path="/comprar-carro-curitiba" element={<Navigate to="/estoque" replace />} />
+            <Route path="/loja-de-carros-curitiba" element={<Navigate to="/empresa" replace />} />
+            <Route path="/loja-de-carros-portao" element={<Navigate to="/empresa" replace />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

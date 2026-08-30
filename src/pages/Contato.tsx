@@ -6,6 +6,8 @@ import { createLead } from '../services/leads';
 import { Container } from '../components/ui/Container';
 import { PageHero } from '../components/ui/PageHero';
 import { Button } from '../components/ui/Button';
+import { SeoHead } from '../components/ui/SeoHead';
+import { buildBreadcrumbJsonLd, buildGlobalDealerJsonLd } from '../lib/seo';
 
 export function Contato() {
   const [name, setName] = useState('');
@@ -50,8 +52,22 @@ export function Contato() {
     }
   };
 
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Início', url: 'https://www.carplusautos.com.br/' },
+    { name: 'Contato', url: 'https://www.carplusautos.com.br/contato' },
+  ]);
+
+  const dealerJsonLd = buildGlobalDealerJsonLd();
+
   return (
     <div className="bg-white min-h-screen">
+      <SeoHead
+        title="Contato e Localização | Carplus Autos - Portão, Curitiba"
+        description="Fale com a equipe da Carplus Autos em Curitiba. Atendimento presencial na Av. Pres. Arthur Bernardes, 1323 - Portão, ou via WhatsApp (41) 98874-0258."
+        canonicalUrl="https://www.carplusautos.com.br/contato"
+        jsonLd={[breadcrumbJsonLd, dealerJsonLd]}
+      />
+
       {/* Page Hero Preto */}
       <PageHero
         kicker="ATENDIMENTO OFICIAL"

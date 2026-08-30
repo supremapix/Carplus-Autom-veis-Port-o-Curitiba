@@ -3,10 +3,24 @@ import { ShieldCheck } from 'lucide-react';
 import { CARPLUS_PHONE_DISPLAY } from '../lib/whatsapp';
 import { Container } from '../components/ui/Container';
 import { PageHero } from '../components/ui/PageHero';
+import { SeoHead } from '../components/ui/SeoHead';
+import { buildBreadcrumbJsonLd } from '../lib/seo';
 
 export function PoliticaPrivacidade() {
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Início', url: 'https://www.carplusautos.com.br/' },
+    { name: 'Política de Privacidade', url: 'https://www.carplusautos.com.br/politica-de-privacidade' },
+  ]);
+
   return (
     <div className="bg-white min-h-screen">
+      <SeoHead
+        title="Política de Privacidade | Carplus Autos Curitiba"
+        description="Conheça nossa política de privacidade e como tratamos seus dados pessoais de acordo com a LGPD na Carplus Autos em Curitiba."
+        canonicalUrl="https://www.carplusautos.com.br/politica-de-privacidade"
+        jsonLd={breadcrumbJsonLd}
+      />
+
       {/* Page Hero Preto */}
       <PageHero
         kicker="LGPD & TRANSPARÊNCIA"
