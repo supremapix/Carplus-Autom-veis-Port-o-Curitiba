@@ -90,6 +90,20 @@ export function buildBreadcrumbJsonLd(items: { name: string; url: string }[]) {
   };
 }
 
+export function buildItemListJsonLd(vehicles: Vehicle[], originUrl = 'https://www.carplusautos.com.br') {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    'numberOfItems': vehicles.length,
+    'itemListElement': vehicles.map((v, index) => ({
+      '@type': 'ListItem',
+      'position': index + 1,
+      'url': `${originUrl}/estoque/${v.slug}`,
+      'name': `${v.brand} ${v.model} ${v.version} ${v.yearModel}`,
+    })),
+  };
+}
+
 export function buildGlobalDealerJsonLd() {
   return {
     '@context': 'https://schema.org',

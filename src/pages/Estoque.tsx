@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { Filter, X } from 'lucide-react';
+import { useSearchParams, Link } from 'react-router-dom';
+import { Filter, X, ChevronRight, Home as HomeIcon, Car } from 'lucide-react';
 import { VehicleFilters } from '../components/vehicles/VehicleFilters';
 import { VehicleGrid } from '../components/vehicles/VehicleGrid';
 import { getVehicles, getBrands, getModelsByBrand } from '../services/vehicles';
 import { Vehicle } from '../types/vehicle';
 import { VehicleFiltersState, VehicleSortOption } from '../types/filters';
 import { Container } from '../components/ui/Container';
-import { PageHero } from '../components/ui/PageHero';
 import { CAR_BRANDS } from '../data/brands';
 import { SeoHead } from '../components/ui/SeoHead';
-import { buildBreadcrumbJsonLd } from '../lib/seo';
+import { buildBreadcrumbJsonLd, buildItemListJsonLd } from '../lib/seo';
 
 export function Estoque() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -116,29 +115,55 @@ export function Estoque() {
     ? `Confira nosso estoque de seminovos ${filters.brand} à venda em Curitiba na Carplus Autos. Veículos revisados, laudo pericial cautelar aprovado e garantia.`
     : 'Confira nosso estoque atualizado de carros e veículos seminovos à venda em Curitiba. Opções revisadas com garantia, procedência periciada e aceitação de troca.';
 
+  const itemListJsonLd = buildItemListJsonLd(vehicles);
+
   return (
     <div className="bg-white min-h-screen">
       <SeoHead
         title={seoTitle}
         description={seoDescription}
         canonicalUrl="https://www.carplusautos.com.br/estoque"
-        jsonLd={breadcrumbJsonLd}
+        jsonLd={[breadcrumbJsonLd, itemListJsonLd]}
       />
 
-      {/* Page Hero Preto no Padrão Carplus */}
-      <PageHero
-        kicker="SHOWROOM CURITIBA"
-        title={filters.brand ? `ESTOQUE ${filters.brand.toUpperCase()}` : 'ESTOQUE DE VEÍCULOS'}
-        subtitle="Confira os veículos disponíveis na Carplus Autos em Curitiba. Fotos, quilometragem e características de cada carro."
-        breadcrumbs={[
-          { label: 'Início', href: '/' },
-          { label: 'Estoque', href: '/estoque' },
-          ...(filters.brand ? [{ label: filters.brand }] : []),
-        ]}
-      />
+      {/* Header Compacto e Discreto (Foco 100% Direto no Estoque) */}
+      <div className="bg-[#0A0A0A] border-b border-[#242424] py-3.5 sm:py-4 text-white">
+        <Container>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+            {/* Breadcrumb de Navegação Slim */}
+            <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-xs text-[#A0A0A0]">
+              <Link to="/" className="hover:text-[#F59C00] flex items-center gap-1 transition-colors">
+                <HomeIcon className="w-3.5 h-3.5 text-[#F59C00]" />
+                <span>Início</span>
+              </Link>
+              <ChevronRight className="w-3 h-3 text-[#555555]" />
+              <Link to="/estoque" className={`hover:text-[#F59C00] transition-colors ${!filters.brand ? 'text-[#F59C00] font-bold' : ''}`}>
+                Estoque
+              </Link>
+              {filters.brand && (
+                <>
+                  <ChevronRight className="w-3 h-3 text-[#555555]" />
+                  <span className="text-[#F59C00] font-bold">{filters.brand}</span>
+                </>
+              )}
+            </nav>
+
+            {/* Título Discreto + Badge de Unidades em Estoque */}
+            <div className="flex items-center gap-3">
+              <h1 className="font-display font-bold text-base sm:text-lg uppercase tracking-wide text-white flex items-center gap-2">
+                <Car className="w-4 h-4 text-[#F59C00]" />
+                <span>{filters.brand ? `Estoque ${filters.brand}` : 'Estoque de Seminovos'}</span>
+              </h1>
+              <span className="px-2.5 py-0.5 rounded-full bg-[#F59C00]/15 text-[#F59C00] border border-[#F59C00]/30 text-xs font-display font-bold">
+                {vehicles.length} {vehicles.length === 1 ? 'veículo' : 'veículos'}
+              </span>
+            </div>
+          </div>
+        </Container>
+      </div>
 
       {/* Conteúdo Principal com Sidebar de Filtros */}
-      <div className="py-8 sm:py-12">
+      <div className="py-6 sm:py-8">
         <Container>
           {/* Seletor Visual de Marcas com Logos Reais */}
           <div className="mb-8 bg-[#FAFAFA] border border-[#E0E0E0] rounded-2xl p-4 sm:p-5 shadow-xs">

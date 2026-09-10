@@ -234,10 +234,7 @@ export function Veiculo() {
             </div>
 
             <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl uppercase text-[#121212] tracking-wide leading-tight">
-              {vehicle.brand} {vehicle.model}{' '}
-              <span className="text-[#666666] font-normal block text-xl sm:text-2xl mt-1">
-                {vehicle.version}
-              </span>
+              {vehicle.brand} {vehicle.model} {vehicle.version} {vehicle.yearModel} em Curitiba
             </h1>
           </div>
 
