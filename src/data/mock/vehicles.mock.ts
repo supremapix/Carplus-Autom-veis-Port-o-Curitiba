@@ -432,7 +432,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
     version: 'Griffe 2.0 Flex 16V Aut.',
     yearManufacture: 2012,
     yearModel: 2012,
-    price: 35900,
+    price: 32900,
     previousPrice: null,
     mileage: 137069,
     fuel: 'flex',
