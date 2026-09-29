@@ -343,7 +343,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
     doors: 4,
     seats: 5,
     plateEnd: '2',
-    status: 'disponivel',
+    status: 'vendido',
     featured: false,
     acceptsTrade: true,
     additionalInfo: [
