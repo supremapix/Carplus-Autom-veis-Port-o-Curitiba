@@ -27,8 +27,8 @@ export const MOCK_VEHICLES: Vehicle[] = [
     version: 'SE 2.0 4x4 Diesel Híbrido (MHEV) Aut.',
     yearManufacture: 2023,
     yearModel: 2023,
-    price: 219900,
-    previousPrice: 229900,
+    price: 209900,
+    previousPrice: 219900,
     mileage: 61300,
     fuel: 'diesel',
     fuelLabel: 'Diesel híbrido (MHEV)',
@@ -49,7 +49,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
       'IPVA pago',
     ],
     description:
-      'Impecável, versão SE 2.0 Diesel Híbrido (MHEV) 4x4. Veículo de procedência, revisado na rede autorizada, com teto panorâmico e excelente nível de sofisticação.',
+      'Ótima oportunidade! Impecável, versão SE 2.0 Diesel Híbrido (MHEV) 4x4. Veículo de procedência, revisado na rede autorizada, com teto panorâmico e excelente nível de sofisticação.',
     features: [
       'Airbag',
       'Ar-condicionado dual zone',
@@ -97,7 +97,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
     doors: 4,
     seats: 5,
     plateEnd: '9',
-    status: 'disponivel',
+    status: 'vendido',
     featured: true,
     acceptsTrade: true,
     additionalInfo: [
@@ -151,7 +151,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
     doors: 4,
     seats: 7,
     plateEnd: '5',
-    status: 'disponivel',
+    status: 'vendido',
     featured: true,
     acceptsTrade: true,
     additionalInfo: [
@@ -394,7 +394,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
     doors: 4,
     seats: 5,
     plateEnd: '4',
-    status: 'disponivel',
+    status: 'vendido',
     featured: false,
     acceptsTrade: true,
     additionalInfo: [

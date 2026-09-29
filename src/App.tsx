@@ -14,6 +14,7 @@ import { Financiamento } from './pages/Financiamento';
 import { Consignacao } from './pages/Consignacao';
 import { Empresa } from './pages/Empresa';
 import { Contato } from './pages/Contato';
+import { HistoricoVeiculos } from './pages/HistoricoVeiculos';
 import { PoliticaPrivacidade } from './pages/PoliticaPrivacidade';
 import { NotFound } from './pages/NotFound';
 
@@ -83,6 +84,7 @@ export default function App() {
             <Route path="/consignacao" element={<Consignacao />} />
             <Route path="/empresa" element={<Empresa />} />
             <Route path="/contato" element={<Contato />} />
+            <Route path="/historico-veiculos" element={<HistoricoVeiculos />} />
             <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
 
             {/* Redirecionamentos de Aliases de Intenção SEO */}

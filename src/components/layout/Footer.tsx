@@ -168,6 +168,15 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
+                    to="/historico-veiculos"
+                    className="flex items-center gap-2.5 text-[#E0E0E0] hover:text-[#F59C00] transition-colors py-1"
+                  >
+                    <Car className="w-5 h-5 text-[#F59C00] shrink-0" />
+                    <span>Histórico de Veículos Vendidos</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     to="/contato"
                     className="flex items-center gap-2.5 text-[#E0E0E0] hover:text-[#F59C00] transition-colors py-1"
                   >
