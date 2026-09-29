@@ -1,4 +1,5 @@
-export const IMAGE_BASE = 'https://img.supremasite.com.br/auto';
+export const IMAGE_BASE_OLD = 'https://img.carplusautos.com.br/auto';
+export const IMAGE_BASE_NEW = 'https://img.supremasite.com.br/auto';
 
 export const VEHICLE_IMAGE_COUNT: Record<string, number> = {
   "toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024": 14,
@@ -15,5 +16,14 @@ export const VEHICLE_IMAGE_COUNT: Record<string, number> = {
   "bmw-220i-active-tourer-2-0-turbo-flex-automatico-2018": 11
 };
 
-export const getVehicleImageUrl = (slug: string, index: number) =>
-  `${IMAGE_BASE}/${slug}/${String(index + 1).padStart(2, '0')}.jpg`;
+export const NEW_VEHICLES = [
+  "volkswagen-fox-connect-1-6-8v-flex-manual-2019",
+  "hyundai-creta-prestige-2-0-16v-flex-automatico-2018",
+  "toyota-rav4-2-0-16v-4x4-automatico-2014",
+  "bmw-220i-active-tourer-2-0-turbo-flex-automatico-2018"
+];
+
+export const getVehicleImageUrl = (slug: string, index: number) => {
+  const base = NEW_VEHICLES.includes(slug) ? IMAGE_BASE_NEW : IMAGE_BASE_OLD;
+  return `${base}/${slug}/${String(index + 1).padStart(2, '0')}.jpg`;
+};
