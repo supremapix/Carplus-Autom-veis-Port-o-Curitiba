@@ -16,6 +16,11 @@ export async function getVehicles(
 
   let result = [...localVehicles];
 
+  // Default: show only 'disponivel' unless status is specified in filters
+  if (!filters || !filters.status) {
+    result = result.filter(v => v.status === 'disponivel');
+  }
+
   if (filters) {
     if (filters.brand) {
       result = result.filter(v => v.brand.toLowerCase() === filters.brand?.toLowerCase());
