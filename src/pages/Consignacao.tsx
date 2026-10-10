@@ -32,7 +32,7 @@ export function Consignacao() {
   ];
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen" data-track-location="consignacao">
       <SeoHead
         title="Consignação de Veículos em Curitiba | Venda Seu Carro com Segurança"
         description="Deixe seu veículo em consignação no showroom da Carplus Autos na Av. Arthur Bernardes em Curitiba. Cuidamos de anúncios profissionais, fotos e negociação."

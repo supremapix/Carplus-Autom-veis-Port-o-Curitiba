@@ -313,6 +313,7 @@ export function Header() {
                   href={buildWhatsAppLink('Olá! Gostaria de falar com um consultor da Carplus Autos.')}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-track-location="header"
                   className={`rounded-full bg-[#1A1A1A] hover:bg-[#252525] border border-[#2E2E2E] flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95 ${
                     isScrolled ? 'w-8 h-8' : 'w-9 h-9'
                   }`}
@@ -331,6 +332,7 @@ export function Header() {
               {/* Botão LIGAR */}
               <a
                 href="tel:+5541988740258"
+                data-track-location="header"
                 className={`flex items-center justify-center gap-1 bg-[#1A1A1A] hover:bg-[#252525] text-white border border-[#3A3A3A] font-display font-bold uppercase rounded-lg transition-all duration-300 select-none whitespace-nowrap active:scale-95 ${
                   isScrolled ? 'h-7 px-2 text-[9.5px]' : 'h-10 sm:h-10.5 px-2.5 sm:px-3 text-[11px] sm:text-xs'
                 }`}
@@ -396,6 +398,8 @@ export function Header() {
             <div className="p-3 sm:p-4 bg-[#141414] border-b border-[#2E2E2E] grid grid-cols-2 gap-2.5">
               <a
                 href="tel:+5541988740258"
+                data-track-location="menu_mobile"
+                aria-label="Ligar para a Carplus Autos"
                 className="flex items-center justify-center gap-2 h-13 rounded-2xl bg-[#1E1E1E] hover:bg-[#252525] border-2 border-[#444444] text-white active:scale-95 transition-all text-center"
               >
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-[#F59C00]" />
@@ -409,6 +413,8 @@ export function Header() {
                 href={buildWhatsAppLink('Olá! Estou com o menu aberto no site e gostaria de atendimento.')}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track-location="menu_mobile"
+                aria-label="Conversar pelo WhatsApp"
                 className="flex items-center justify-center gap-2 h-13 rounded-2xl bg-[#25D366]/20 hover:bg-[#25D366]/30 border-2 border-[#25D366] text-white active:scale-95 transition-all text-center"
               >
                 <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366] fill-current" />

@@ -9,7 +9,7 @@ export function LocationSection() {
   const addressUrl = 'https://maps.google.com/?q=Av.+Presidente+Arthur+da+Silva+Bernardes,+1323+-+Port%C3%A3o,+Curitiba+-+PR';
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-b border-[#E0E0E0]">
+    <section className="py-16 sm:py-24 bg-white border-b border-[#E0E0E0]" data-track-location="home_secao">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Informações da Loja */}
@@ -57,6 +57,7 @@ export function LocationSection() {
                   </p>
                   <a
                     href="tel:+5541988740258"
+                    aria-label="Ligar para a Carplus Autos"
                     className="font-display font-bold text-xl text-[#F59C00] hover:text-[#F7941D] transition-colors block mt-0.5"
                   >
                     {CARPLUS_PHONE_DISPLAY}

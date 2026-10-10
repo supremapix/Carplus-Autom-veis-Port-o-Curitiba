@@ -24,7 +24,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0A0A0A] text-white border-t-2 border-[#2E2E2E]">
+    <footer className="bg-[#0A0A0A] text-white border-t-2 border-[#2E2E2E]" data-track-location="rodape">
       {/* ========================================================================= */}
       {/* 1. SEÇÃO DE AJUDA DIRETA: BOTÕES GRANDES PARA CONTATO E LOCALIZAÇÃO       */}
       {/* ========================================================================= */}
@@ -48,6 +48,7 @@ export function Footer() {
                 href={buildWhatsAppLink('Olá! Gostaria de ajuda para ver os carros disponíveis.')}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Conversar pelo WhatsApp"
                 className="w-full sm:w-auto h-14 px-8 rounded-2xl bg-black hover:bg-[#1A1A1A] active:bg-[#252525] text-white font-display font-bold text-base tracking-wider uppercase flex items-center justify-center gap-3 shadow-xl border-2 border-black active:scale-95 transition-all select-none cursor-pointer"
               >
                 <MessageSquare className="w-5 h-5 text-[#25D366] fill-current" />
@@ -56,6 +57,7 @@ export function Footer() {
 
               <a
                 href="tel:+5541988740258"
+                aria-label="Ligar para a Carplus Autos"
                 className="w-full sm:w-auto h-14 px-8 rounded-2xl bg-white hover:bg-[#F2F2F2] active:bg-[#E5E5E5] text-black font-display font-bold text-base tracking-wider uppercase flex items-center justify-center gap-3 border-2 border-black shadow-lg active:scale-95 transition-all select-none cursor-pointer"
               >
                 <Phone className="w-5 h-5 text-[#F59C00]" />

@@ -68,7 +68,7 @@ export function Contato() {
   const dealerJsonLd = buildGlobalDealerJsonLd();
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen" data-track-location="contato">
       <SeoHead
         title="Contato e Localização | Carplus Autos - Portão, Curitiba"
         description="Fale com a equipe da Carplus Autos em Curitiba. Atendimento presencial na Av. Pres. Arthur Bernardes, 1323 - Portão, ou via WhatsApp (41) 98874-0258."
@@ -129,6 +129,7 @@ export function Contato() {
                       <p className="text-xs text-[#666666] mt-0.5">Ligação e WhatsApp Único:</p>
                       <a
                         href="tel:+5541988740258"
+                        aria-label="Ligar para a Carplus Autos"
                         className="font-display font-bold text-xl text-[#F59C00] hover:text-[#F7941D] transition-colors block mt-0.5"
                       >
                         {CARPLUS_PHONE_DISPLAY}
@@ -157,6 +158,7 @@ export function Contato() {
                     href={buildWhatsAppLink('Olá! Gostaria de falar com a equipe da Carplus Autos.')}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Conversar pelo WhatsApp"
                     className="w-full h-14 bg-[#25D366] hover:bg-[#20BA5A] text-black font-display font-bold text-sm tracking-wider uppercase rounded-full flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#25D366]/25 select-none"
                   >
                     <MessageSquare className="w-5 h-5 text-black fill-current" />

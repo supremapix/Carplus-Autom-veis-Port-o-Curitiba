@@ -183,6 +183,7 @@ export function FloatingActions() {
         {/* Desktop apenas: Ligar */}
         <a
           href="tel:+5541988740258"
+          data-track-location="botao_flutuante"
           className="hidden lg:flex w-12 h-12 rounded-full bg-black/85 backdrop-blur-md border border-white/12 shadow-[0_8px_24px_rgba(0,0,0,0.35)] items-center justify-center text-white hover:border-[#F59C00] hover:scale-[1.06] transition-all cursor-pointer relative group"
           aria-label="Ligar para a Carplus Autos"
         >
@@ -197,6 +198,7 @@ export function FloatingActions() {
           href={`https://wa.me/${CARPLUS_PHONE}?text=${encodeURIComponent('Olá! Gostaria de atendimento via WhatsApp da Carplus Autos.')}`}
           target="_blank"
           rel="noopener noreferrer"
+          data-track-location={businessOpen ? 'botao_flutuante' : 'fora_do_horario'}
           className="hidden lg:flex w-12 h-12 rounded-full bg-[#25D366] shadow-[0_8px_24px_rgba(0,0,0,0.35)] items-center justify-center text-black hover:scale-[1.06] transition-all cursor-pointer relative group"
           aria-label="Atendimento via WhatsApp"
         >

@@ -20,6 +20,8 @@ export function BottomNavMobile() {
         {/* Botão Ligar (Estilo Glass Escuro Minimalista) */}
         <a
           href="tel:+5541988740258"
+          data-track-location="menu_mobile"
+          aria-label="Ligar para a Carplus Autos"
           className="flex-1 flex items-center justify-center gap-2 h-[48px] rounded-xl bg-[#141414] hover:bg-[#1E1E1E] active:bg-[#252525] border border-white/10 text-white/90 transition-all active:scale-95 shadow-sm"
         >
           <Phone className="w-4 h-4 text-white/70" />
@@ -50,6 +52,8 @@ export function BottomNavMobile() {
           href={buildWhatsAppLink('Olá! Estou navegando pelo site da Carplus Autos e gostaria de atendimento.')}
           target="_blank"
           rel="noopener noreferrer"
+          data-track-location="menu_mobile"
+          aria-label="Conversar pelo WhatsApp"
           className="flex-1 flex items-center justify-center gap-1.5 h-[48px] rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 active:bg-[#25D366]/35 border border-[#25D366]/40 text-[#25D366] transition-all active:scale-95 shadow-sm"
         >
           <MessageSquare className="w-4 h-4 text-[#25D366] fill-[#25D366]" />

@@ -96,7 +96,7 @@ export function VendaSeuCarro() {
   ]);
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen" data-track-location="venda_seu_carro">
       <SeoHead
         title="Venda Seu Carro em Curitiba | Avaliação Justa e Pagamento à Vista"
         description="Quer vender seu carro em Curitiba? Avaliamos seu veículo seminovo com base no valor de mercado real e oferecemos pagamento à vista ou troco na troca na Carplus Autos."

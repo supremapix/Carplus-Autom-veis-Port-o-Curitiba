@@ -90,7 +90,7 @@ export function Financiamento() {
   ]);
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen" data-track-location="financiamento">
       <SeoHead
         title="Financiamento de Veículos em Curitiba | Taxas Especiais até 60x"
         description="Simule o financiamento do seu carro seminovo em Curitiba na Carplus Autos. Trabalhamos com os principais bancos para oferecer as melhores taxas em até 60 parcelas."

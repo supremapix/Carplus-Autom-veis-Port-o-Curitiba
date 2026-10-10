@@ -72,7 +72,11 @@ export function initAnalyticsListeners() {
 
     const anchor = target.tagName === 'A' ? (target as HTMLAnchorElement) : target.querySelector('a') || target.closest('a');
     const href = anchor?.getAttribute('href') || target.getAttribute('data-href') || '';
-    const buttonText = (target.textContent || '').trim().substring(0, 100);
+    const textContent = (target.textContent || '').trim();
+    const ariaLabel = target.getAttribute('aria-label') || '';
+    const titleAttr = target.getAttribute('title') || '';
+    const rawText = textContent || ariaLabel || titleAttr || (target.querySelector('svg') || href.includes('whatsapp') || target.classList.contains('fixed') ? 'WhatsApp flutuante' : 'Botão');
+    const buttonText = rawText.substring(0, 100);
 
     // Find click_location via data-track-location or closest ancestor
     const locationEl = target.closest('[data-track-location]');

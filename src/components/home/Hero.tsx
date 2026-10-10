@@ -122,6 +122,7 @@ export function Hero() {
   return (
     <section
       ref={heroRef}
+      data-track-location="hero"
       className="relative bg-[#050505] text-white min-h-[82vh] sm:min-h-[86vh] lg:min-h-[92vh] lg:max-h-[900px] flex flex-col justify-between overflow-hidden select-none"
     >
       {/* ========================================================================= */}
