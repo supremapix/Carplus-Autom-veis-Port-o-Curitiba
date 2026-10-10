@@ -1,10 +1,11 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { TopBar } from './components/layout/TopBar';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { FloatingActions } from './components/layout/FloatingActions';
 import { BottomNavMobile } from './components/layout/BottomNavMobile';
+import { initAnalyticsListeners } from './lib/analytics';
 
 import { Home } from './pages/Home';
 import { Estoque } from './pages/Estoque';
@@ -55,6 +56,10 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  useEffect(() => {
+    initAnalyticsListeners();
+  }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />

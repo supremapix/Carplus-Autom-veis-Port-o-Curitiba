@@ -6,6 +6,7 @@ import { formatPrice, formatKm } from '../../lib/utils';
 import { VehicleImage } from '../ui/VehicleImage';
 import { getVehicleImageUrl } from '../../lib/images';
 import { getBrandLogo } from '../../data/brands';
+import { trackEvent } from '../../lib/analytics';
 
 export interface VehicleCardProps {
   vehicle: Vehicle;
@@ -42,6 +43,25 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
   return (
     <Link
       to={`/estoque/${vehicle.slug}`}
+      data-track-location="card_veiculo"
+      data-vehicle-name={`${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel}`}
+      data-vehicle-brand={vehicle.brand}
+      data-vehicle-year={vehicle.yearModel.toString()}
+      data-vehicle-price={vehicle.price.toString()}
+      onClick={() => {
+        trackEvent('select_item', {
+          item_list_name: 'estoque',
+          items: [{
+            item_id: vehicle.slug,
+            item_name: `${vehicle.brand} ${vehicle.model} ${vehicle.version}`,
+            item_brand: vehicle.brand,
+            item_category: 'Veiculos',
+            item_variant: vehicle.version,
+            price: vehicle.price,
+            quantity: 1
+          }]
+        });
+      }}
       className={`group flex flex-col bg-white rounded-2xl border border-[#E0E0E0] overflow-hidden transition-all duration-300 hover:border-[#F59C00] hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/8 select-none ${
         isSold ? 'opacity-75 grayscale-[40%]' : ''
       }`}

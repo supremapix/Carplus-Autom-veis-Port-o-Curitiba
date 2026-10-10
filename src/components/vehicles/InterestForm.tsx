@@ -4,6 +4,7 @@ import { MessageSquare, RefreshCw, Send, CheckCircle2, AlertCircle, Calculator }
 import { Vehicle } from '../../types/vehicle';
 import { createLead } from '../../services/leads';
 import { buildWhatsAppLink, buildVehicleWhatsAppMessage } from '../../lib/whatsapp';
+import { trackEvent } from '../../lib/analytics';
 
 interface InterestFormProps {
   vehicle: Vehicle;
@@ -56,6 +57,16 @@ export function InterestForm({ vehicle, onOpenTradeInModal }: InterestFormProps)
         vehicleName: `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel}`,
         hasTradeIn,
         message: `Interesse enviado através da página do veículo ${vehicle.brand} ${vehicle.model} ${vehicle.yearModel}.${hasTradeIn ? ' Possui veículo na troca.' : ''}`,
+      });
+
+      trackEvent('generate_lead', {
+        form_name: 'veiculo',
+        contact_method: 'formulario',
+        vehicle_name: `${vehicle.brand} ${vehicle.model} ${vehicle.version}`,
+        vehicle_brand: vehicle.brand,
+        vehicle_year: vehicle.yearModel,
+        currency: 'BRL',
+        value: vehicle.price,
       });
 
       setSuccess(true);

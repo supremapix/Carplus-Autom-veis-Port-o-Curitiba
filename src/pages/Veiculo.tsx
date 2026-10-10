@@ -33,6 +33,7 @@ import { Container } from '../components/ui/Container';
 import { Button } from '../components/ui/Button';
 import { getBrandLogo } from '../data/brands';
 import { SeoHead } from '../components/ui/SeoHead';
+import { trackEvent } from '../lib/analytics';
 
 export function Veiculo() {
   const { slug } = useParams<{ slug: string }>();
@@ -54,6 +55,20 @@ export function Veiculo() {
       .then((data) => {
         setVehicle(data);
         if (data) {
+          trackEvent('view_item', {
+            currency: 'BRL',
+            value: data.price,
+            items: [{
+              item_id: data.slug,
+              item_name: `${data.brand} ${data.model} ${data.version}`,
+              item_brand: data.brand,
+              item_category: 'Veiculos',
+              item_variant: data.version,
+              price: data.price,
+              quantity: 1
+            }]
+          });
+
           document.title = buildVehicleTitle(data);
           const metaDesc = document.querySelector('meta[name="description"]');
           if (metaDesc) {
@@ -153,7 +168,14 @@ export function Veiculo() {
   const fullImgUrl = coverImg.startsWith('http') ? coverImg : `https://www.carplusautos.com.br${coverImg.startsWith('/') ? '' : '/'}${coverImg}`;
 
   return (
-    <div className="bg-white min-h-screen py-8 sm:py-12">
+    <div
+      data-track-location="pagina_veiculo"
+      data-vehicle-name={`${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel}`}
+      data-vehicle-brand={vehicle.brand}
+      data-vehicle-year={vehicle.yearModel.toString()}
+      data-vehicle-price={vehicle.price.toString()}
+      className="bg-white min-h-screen py-8 sm:py-12"
+    >
       <SeoHead
         title={buildVehicleTitle(vehicle)}
         description={buildVehicleDescription(vehicle)}

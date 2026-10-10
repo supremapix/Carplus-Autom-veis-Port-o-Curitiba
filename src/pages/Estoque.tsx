@@ -10,6 +10,7 @@ import { Container } from '../components/ui/Container';
 import { CAR_BRANDS } from '../data/brands';
 import { SeoHead } from '../components/ui/SeoHead';
 import { buildBreadcrumbJsonLd, buildItemListJsonLd } from '../lib/seo';
+import { trackEvent } from '../lib/analytics';
 
 export function Estoque() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -58,6 +59,24 @@ export function Estoque() {
     getVehicles(filters, sort)
       .then((data) => {
         setVehicles(data);
+        trackEvent('view_item_list', {
+          item_list_name: 'estoque',
+          items: data.map(v => ({
+            item_id: v.slug,
+            item_name: `${v.brand} ${v.model} ${v.version}`,
+            item_brand: v.brand,
+            item_category: 'Veiculos',
+            item_variant: v.version,
+            price: v.price,
+            quantity: 1
+          }))
+        });
+
+        if (filters.search) {
+          trackEvent('search', {
+            search_term: filters.search
+          });
+        }
       })
       .finally(() => {
         setLoading(false);

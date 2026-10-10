@@ -8,6 +8,7 @@ import { PageHero } from '../components/ui/PageHero';
 import { Button } from '../components/ui/Button';
 import { SeoHead } from '../components/ui/SeoHead';
 import { buildBreadcrumbJsonLd, buildGlobalDealerJsonLd } from '../lib/seo';
+import { trackEvent } from '../lib/analytics';
 
 export function Contato() {
   const [name, setName] = useState('');
@@ -42,6 +43,13 @@ export function Contato() {
         email: email.trim() || undefined,
         message: `Mensagem via formulário de contato: ${message.trim()}`,
         source: 'direto',
+      });
+
+      trackEvent('generate_lead', {
+        form_name: 'contato',
+        contact_method: 'formulario',
+        currency: 'BRL',
+        value: 0,
       });
 
       setSuccess(true);
