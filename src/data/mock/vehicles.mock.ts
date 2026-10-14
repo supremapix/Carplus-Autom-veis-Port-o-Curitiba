@@ -448,7 +448,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
     metaTitle: 'Peugeot 408 Griffe 2.0 16V Flex Aut. 2012 à Venda em Curitiba | Carplus Autos',
     metaDescription:
       'Peugeot 408 Griffe 2.0 Flex 2012 branco, 137.069 km, automático, teto solar e bancos de couro. Seminovo revisado com laudo aprovado na Carplus Autos, Portão, Curitiba. Aceita troca e financiamento em até 60x.',
-    status: 'disponivel',
+    status: 'vendido',
     featured: false,
     acceptsTrade: true,
     additionalInfo: [
