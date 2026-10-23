@@ -4,7 +4,7 @@ import { Container } from '../ui/Container';
 
 export function HomeIntroSection() {
   return (
-    <section className="py-12 sm:py-16 bg-[#FAFAFA] border-b border-[#E0E0E0]">
+    <section className="py-12 sm:py-16 lg:py-12 bg-[#FAFAFA] border-b border-[#E0E0E0]">
       <Container>
         <div className="max-w-4xl mx-auto text-center space-y-6">
           {/* Badge de Destaque Semântico */}
@@ -20,7 +20,7 @@ export function HomeIntroSection() {
 
           {/* Parágrafo de Apresentação Factual para Motores de Busca e LLMs */}
           <p className="text-base sm:text-lg text-[#444444] font-medium leading-relaxed max-w-3xl mx-auto">
-            A <strong className="text-[#121212]">Carplus Autos</strong> é uma empresa de compra e venda de veículos localizada no bairro <strong className="text-[#121212]">Portão, em Curitiba</strong>. Oferecemos estoque de veículos seminovos selecionados e periciados, compra à vista com pagamento imediato, avaliação justa para troca de carros, financiamento em até 60x e consignação segura.
+            A <strong className="text-[#121212]">Carplus Autos</strong> é uma empresa de compra e venda de veículos localizada no bairro <strong className="text-[#121212]">Portão, em Curitiba</strong>. Oferecemos estoque de veículos seminovos selecionados e periciados, compra à vista sujeita à avaliação, avaliação justa para troca de carros, financiamento em até 60x e consignação segura.
           </p>
 
           {/* Grid de Serviços Confirmados */}
@@ -32,11 +32,11 @@ export function HomeIntroSection() {
                 </div>
                 <div>
                   <h2 className="font-display font-bold text-sm uppercase text-[#121212]">Seminovos Periciados</h2>
-                  <span className="text-xs text-[#777777]">Laudo 100% aprovado e garantia</span>
+                  <span className="text-xs text-[#777777]">Consulte o histórico e as condições</span>
                 </div>
               </div>
               <p className="text-xs text-[#555555] leading-normal pt-1 border-t border-[#F0F0F0]">
-                Carros revisados com histórico veicular verificado e total procedência.
+                Fotos, especificações e informações de histórico na página de cada veículo.
               </p>
             </div>
 
@@ -51,7 +51,7 @@ export function HomeIntroSection() {
                 </div>
               </div>
               <p className="text-xs text-[#555555] leading-normal pt-1 border-t border-[#F0F0F0]">
-                Avaliamos seu seminovo pela tabela real de mercado para compra imediata ou troca.
+                Avaliamos seu seminovo conforme estado, documentação e condições de mercado para compra ou troca.
               </p>
             </div>
 

@@ -131,8 +131,8 @@ export function Estoque() {
     : 'Estoque de Carros Seminovos em Curitiba | Carplus Autos';
 
   const seoDescription = filters.brand
-    ? `Confira nosso estoque de seminovos ${filters.brand} à venda em Curitiba na Carplus Autos. Veículos revisados, laudo pericial cautelar aprovado e garantia.`
-    : 'Confira nosso estoque atualizado de carros e veículos seminovos à venda em Curitiba. Opções revisadas com garantia, procedência periciada e aceitação de troca.';
+    ? `Confira nosso estoque de seminovos ${filters.brand} à venda em Curitiba na Carplus Autos. Veja fotos, preços, quilometragem e informações de cada veículo.`
+    : 'Confira nosso estoque atualizado de carros e veículos seminovos à venda em Curitiba. Veja fotos, preços, quilometragem e condições de negociação.';
 
   const itemListJsonLd = buildItemListJsonLd(vehicles);
 
@@ -286,7 +286,7 @@ export function Estoque() {
                   <div className="flex items-center gap-2 text-xs min-w-0 flex-1 sm:flex-initial justify-end">
                     <span className="text-[#666666] font-medium hidden sm:inline whitespace-nowrap">Ordenar por:</span>
                     <select
-                      value={sort}
+                      aria-label="Ordenar veículos" value={sort}
                       onChange={(e) => handleSortChange(e.target.value as VehicleSortOption)}
                       className="min-w-0 w-full sm:max-w-[220px] h-11 bg-[#FAFAFA] border border-[#E0E0E0] rounded-xl px-3.5 text-xs sm:text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] focus:bg-white font-medium cursor-pointer"
                     >

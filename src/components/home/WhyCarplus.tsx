@@ -7,15 +7,15 @@ export function WhyCarplus() {
   const pillars = [
     {
       icon: <ShieldCheck className="w-7 h-7 text-[#F59C00]" />,
-      tag: 'ORIGEM COMPROVADA',
-      title: 'Procedência Garantida',
-      description: 'Veículos rigorosamente selecionados com histórico limpo, manual, chave reserva e sem qualquer passagem por leilão ou sinistro.',
+      tag: 'CONSULTA AO HISTÓRICO',
+      title: 'Histórico do veículo',
+      description: 'Consulte o histórico, a documentação e os itens disponíveis de cada veículo. Informações específicas constam no anúncio.',
     },
     {
       icon: <FileCheck className="w-7 h-7 text-[#F59C00]" />,
       tag: 'INSPEÇÃO TÉCNICA',
       title: 'Laudo cautelar',
-      description: 'Laudo cautelar disponível para consulta.',
+      description: 'Consulte a equipe sobre a disponibilidade do laudo do veículo.',
     },
     {
       icon: <Scale className="w-7 h-7 text-[#F59C00]" />,

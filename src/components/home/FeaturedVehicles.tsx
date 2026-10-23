@@ -16,16 +16,16 @@ export function FeaturedVehicles({ vehicles, totalCount }: FeaturedVehiclesProps
   const displayTotal = totalCount !== undefined && totalCount > 0 ? totalCount : vehicles.length;
 
   return (
-    <section aria-label="Veículos em destaque" className="py-16 sm:py-24 bg-white border-b border-[#E0E0E0]">
+    <section aria-label="Veículos em destaque" className="py-12 sm:py-16 bg-white border-b border-[#E0E0E0]">
       <Container>
         {/* Título da Seção Centralizado e Alinhado com Subtítulo e Botão */}
-        <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto mb-12 pb-6 border-b border-[#E0E0E0]">
+        <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto mb-8 pb-6 border-b border-[#E0E0E0]">
           <SectionHeading
             align="center"
             kicker="ESTOQUE SELECIONADO"
             title={
               <>
-                VEÍCULOS EM <span className="text-[#F59C00] italic">DESTAQUE</span>
+                VEÍCULOS EM <span className="text-[#F59C00]">DESTAQUE</span>
               </>
             }
             subtitle="Confira os veículos disponíveis adicionados ou atualizados mais recentemente no nosso estoque."
@@ -48,7 +48,7 @@ export function FeaturedVehicles({ vehicles, totalCount }: FeaturedVehiclesProps
         </div>
 
         {/* Grid de Veículos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {vehicles.slice(0, HOME_VEHICLE_LIMIT).map((vehicle) => (
             <VehicleCard key={vehicle.id} vehicle={vehicle} />
           ))}
@@ -68,7 +68,7 @@ export function FeaturedVehicles({ vehicles, totalCount }: FeaturedVehiclesProps
           </Button>
           <p className="mt-2.5 text-xs text-[#8A8A8A] font-normal tracking-wide flex items-center justify-center gap-1.5 max-w-md mx-auto">
             <ShieldCheck className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
-            <span>Todos os seminovos revisados com garantia e laudo pericial aprovado</span>
+            <span>Consulte as fotos, o histórico e as condições de cada veículo</span>
           </p>
         </div>
       </Container>

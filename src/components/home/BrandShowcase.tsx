@@ -65,7 +65,7 @@ export function BrandShowcase() {
             <div className="p-4 sm:p-6 border-t border-[#E5E7EB] bg-[#FAFAFA] animate-fade-in">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-3 border-b border-[#E5E7EB]">
                 <p className="text-xs sm:text-sm text-[#6B7280]">
-                  Selecione uma marca para ver os veículos revisados com procedência e garantia:
+                  Selecione uma marca para consultar os veículos disponíveis:
                 </p>
 
                 {/* Botão compacto de ação com texto explicativo sutil */}

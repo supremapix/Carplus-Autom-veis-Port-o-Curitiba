@@ -32,7 +32,7 @@ export function Home() {
       {/* Head Meta Tags + JSON-LD */}
       <SeoHead
         title="Compra e Venda de Veículos em Curitiba | Carplus Autos"
-        description="Compre, venda, troque ou consigne seu veículo em Curitiba na Carplus Autos, no Portão. Seminovos revisados, laudo pericial aprovado e garantia de procedência."
+        description="Compre, venda, troque ou consigne seu veículo em Curitiba na Carplus Autos, no Portão. Consulte fotos, preços e informações dos veículos disponíveis."
         canonicalUrl="https://www.carplusautos.com.br/"
         jsonLd={jsonLd}
       />

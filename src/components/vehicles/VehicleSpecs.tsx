@@ -82,7 +82,7 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
       : []),
     {
       label: 'Carroceria',
-      value: bodyMap[vehicle.bodyType || ''] || vehicle.bodyType || 'Sedan/SUV',
+      value: bodyMap[vehicle.bodyType || ''] || vehicle.bodyType || 'Não informada',
       icon: <Car className="w-4 h-4 text-[#F59C00]" />,
     },
     {
@@ -92,7 +92,7 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
     },
     {
       label: 'Portas',
-      value: `${vehicle.doors || 4} Portas`,
+      value: vehicle.doors ? `${vehicle.doors} portas` : 'Não informado',
       icon: <Car className="w-4 h-4 text-[#F59C00]" />,
     },
     ...(vehicle.seats

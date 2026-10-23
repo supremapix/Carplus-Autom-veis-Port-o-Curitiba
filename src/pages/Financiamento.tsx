@@ -1,3 +1,4 @@
+import { RequestContinuation } from '../components/ui/RequestContinuation';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Calculator, CheckCircle2, AlertCircle, Send, Banknote, ShieldCheck } from 'lucide-react';
@@ -92,17 +93,17 @@ export function Financiamento() {
   return (
     <div className="bg-white min-h-screen" data-track-location="financiamento">
       <SeoHead
-        title="Financiamento de Veículos em Curitiba | Taxas Especiais até 60x"
-        description="Simule o financiamento do seu carro seminovo em Curitiba na Carplus Autos. Trabalhamos com os principais bancos para oferecer as melhores taxas em até 60 parcelas."
+        title="Financiamento de Veículos em Curitiba | Carplus Autos"
+        description="Solicite informações sobre financiamento de veículos na Carplus Autos, em Curitiba. Taxas, prazos e aprovação dependem de análise da instituição financeira."
         canonicalUrl="https://www.carplusautos.com.br/financiamento"
         jsonLd={breadcrumbJsonLd}
       />
 
       {/* Page Hero Preto */}
       <PageHero
-        kicker="TAXAS COMPETITIVAS"
+        kicker="CONSULTE AS CONDIÇÕES"
         title="SIMULAÇÃO DE FINANCIAMENTO"
-        subtitle="Parceria direta com os principais bancos e financeiras. Simule prazos em até 60x com as menores taxas de juros de Curitiba."
+        subtitle="Solicite uma simulação. Taxas, entrada, prazos e aprovação dependem da análise da instituição financeira e do veículo escolhido."
         breadcrumbs={[
           { label: 'Início', href: '/' },
           { label: 'Financiamento' },
@@ -123,7 +124,7 @@ export function Financiamento() {
                   Até 60 Parcelas
                 </h2>
                 <p className="text-xs text-[#666666] mt-1.5 leading-relaxed">
-                  Planos flexíveis que cabem no seu orçamento mensal.
+                  O prazo solicitado depende das condições e da aprovação da instituição financeira.
                 </p>
               </div>
 
@@ -132,10 +133,10 @@ export function Financiamento() {
                   <Calculator className="w-6 h-6" />
                 </div>
                 <h2 className="font-display font-bold text-base uppercase text-[#121212] tracking-wide">
-                  Aprovação Ágil
+                  Análise de crédito
                 </h2>
                 <p className="text-xs text-[#666666] mt-1.5 leading-relaxed">
-                  Resposta rápida dos bancos parceiros diretamente no WhatsApp.
+                  A simulação não representa aprovação nem oferta definitiva de crédito.
                 </p>
               </div>
 
@@ -144,7 +145,7 @@ export function Financiamento() {
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <h2 className="font-display font-bold text-base uppercase text-[#121212] tracking-wide">
-                  Sem Burocracia
+                  Orientação sobre documentos
                 </h2>
                 <p className="text-xs text-[#666666] mt-1.5 leading-relaxed">
                   Cuidamos de todo o processo de análise e documentação.
@@ -160,11 +161,9 @@ export function Financiamento() {
                     <CheckCircle2 className="w-12 h-12 text-emerald-600" />
                   </div>
                   <h2 className="font-display font-bold text-3xl uppercase tracking-wide text-[#121212]">
-                    Solicitação Enviada com Sucesso!
+                    Continue pelo WhatsApp
                   </h2>
-                  <p className="text-base text-[#666666] max-w-md mx-auto leading-relaxed">
-                    Nossa equipe entrará em contato via WhatsApp com as opções de planos e taxas de financiamento.
-                  </p>
+                  <RequestContinuation message={`Olá! Meu nome é ${name}. Gostaria de solicitar uma simulação em ${installments} parcelas, com entrada de R$ ${downPayment || 0}. Veículo: ${vehicles.find(v => v.id === selectedVehicleId)?.model || "a definir"}.`} />
                   <div className="pt-4">
                     <Button
                       onClick={() => setSuccess(false)}
@@ -176,6 +175,7 @@ export function Financiamento() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
+<p className="text-sm text-[#666666]">Preencha os dados e conclua o envio pelo WhatsApp na próxima etapa.</p>
                   
                   {/* Seleção do Veículo */}
                   <div>
@@ -184,10 +184,10 @@ export function Financiamento() {
                       <span>1. Veículo Desejado</span>
                     </h2>
                     <div>
-                      <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                      <label htmlFor="financiamento-1" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                         Escolha o veículo do estoque (ou deixe em branco para simulação geral)
                       </label>
-                      <select
+                      <select id="financiamento-1"
                         value={selectedVehicleId}
                         onChange={(e) => setSelectedVehicleId(e.target.value)}
                         className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] font-medium"
@@ -209,10 +209,10 @@ export function Financiamento() {
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="financiamento-2" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Nome Completo *
                         </label>
-                        <input
+                        <input id="financiamento-2"
                           type="text"
                           required
                           placeholder="Seu nome"
@@ -223,10 +223,10 @@ export function Financiamento() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="financiamento-3" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           CPF *
                         </label>
-                        <input
+                        <input id="financiamento-3"
                           type="text"
                           required
                           placeholder="000.000.000-00"
@@ -237,10 +237,10 @@ export function Financiamento() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="financiamento-4" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           WhatsApp com DDD *
                         </label>
-                        <input
+                        <input id="financiamento-4"
                           type="tel"
                           required
                           placeholder="(41) 99999-9999"
@@ -251,10 +251,10 @@ export function Financiamento() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="financiamento-5" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Data de Nascimento
                         </label>
-                        <input
+                        <input id="financiamento-5"
                           type="date"
                           value={birthDate}
                           onChange={(e) => setBirthDate(e.target.value)}
@@ -271,10 +271,10 @@ export function Financiamento() {
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="financiamento-6" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Valor de Entrada (R$)
                         </label>
-                        <input
+                        <input id="financiamento-6"
                           type="number"
                           placeholder="Ex: 20000"
                           value={downPayment}
@@ -284,10 +284,10 @@ export function Financiamento() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="financiamento-7" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Número de Parcelas
                         </label>
-                        <select
+                        <select id="financiamento-7"
                           value={installments}
                           onChange={(e) => setInstallments(Number(e.target.value))}
                           className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"
@@ -301,10 +301,10 @@ export function Financiamento() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="financiamento-8" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Possui CNH?
                         </label>
-                        <select
+                        <select id="financiamento-8"
                           value={cnh}
                           onChange={(e) => setCnh(e.target.value)}
                           className="w-full h-12 bg-white border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00]"

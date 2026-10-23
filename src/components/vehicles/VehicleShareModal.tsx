@@ -24,7 +24,7 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
   
   const rawTitle = `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel}`;
   const rawPrice = formatPrice(vehicle.price);
-  const rawDescription = `Confira este ${rawTitle} por ${rawPrice} na Carplus Autos Curitiba. Veículo periciado e revisado com garantia!`;
+  const rawDescription = `Confira este ${rawTitle} por ${rawPrice} na Carplus Autos Curitiba. Consulte fotos, histórico e condições no anúncio.`;
   
   const shareText = encodeURIComponent(rawDescription);
   const shareTitle = encodeURIComponent(`${rawTitle} | Carplus Autos`);

@@ -93,7 +93,7 @@ export function Header() {
     {
       name: 'Simular Financiamento',
       path: '/financiamento',
-      desc: 'Crédito facilitado em até 60x',
+      desc: 'Consulte prazos e condições',
       icon: <FileCheck className="w-4 h-4 text-[#F59C00]" />,
     },
     {
@@ -109,9 +109,9 @@ export function Header() {
     { name: 'INÍCIO', path: '/', icon: <Home className="w-6 h-6 text-[#F59C00]" />, desc: 'Página inicial da loja' },
     { name: 'ESTOQUE', path: '/estoque', icon: <Car className="w-6 h-6 text-[#F59C00]" />, desc: 'Ver todos os veículos à venda', highlight: true },
     { name: 'VENDA SEU CARRO', path: '/venda-seu-carro', icon: <DollarSign className="w-6 h-6 text-[#F59C00]" />, desc: 'Avaliamos e compramos seu veículo' },
-    { name: 'SIMULAR FINANCIAMENTO', path: '/financiamento', icon: <FileCheck className="w-6 h-6 text-[#F59C00]" />, desc: 'Parcelas em até 60x fáceis' },
+    { name: 'SIMULAR FINANCIAMENTO', path: '/financiamento', icon: <FileCheck className="w-6 h-6 text-[#F59C00]" />, desc: 'Solicite uma simulação' },
     { name: 'CONSIGNAÇÃO', path: '/consignacao', icon: <Sparkles className="w-6 h-6 text-[#F59C00]" />, desc: 'Deixe seu carro para vendermos' },
-    { name: 'A EMPRESA', path: '/empresa', icon: <Building2 className="w-6 h-6 text-[#F59C00]" />, desc: 'Quem somos e nossa garantia' },
+    { name: 'A EMPRESA', path: '/empresa', icon: <Building2 className="w-6 h-6 text-[#F59C00]" />, desc: 'Conheça a Carplus Autos' },
     { name: 'FALE CONOSCO', path: '/contato', icon: <Phone className="w-6 h-6 text-[#F59C00]" />, desc: 'Telefone, WhatsApp e endereço' },
   ];
 

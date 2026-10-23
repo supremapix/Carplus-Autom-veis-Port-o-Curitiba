@@ -7,6 +7,7 @@ export interface SeoHeadProps {
   ogType?: string;
   ogImage?: string;
   jsonLd?: object | object[];
+  noindex?: boolean;
 }
 
 export function SeoHead({
@@ -16,6 +17,7 @@ export function SeoHead({
   ogType = 'website',
   ogImage = 'https://img.carplusautos.com.br/redes.png',
   jsonLd,
+  noindex = false,
 }: SeoHeadProps) {
   useEffect(() => {
     // 1. Title
@@ -34,6 +36,7 @@ export function SeoHead({
 
     // 2. Meta description
     updateMeta('meta[name="description"]', 'name', 'description', description);
+    updateMeta('meta[name="robots"]', 'name', 'robots', noindex ? 'noindex, follow' : 'index, follow');
 
     // 3. Open Graph
     updateMeta('meta[property="og:title"]', 'property', 'og:title', title);
@@ -41,6 +44,9 @@ export function SeoHead({
     updateMeta('meta[property="og:url"]', 'property', 'og:url', canonicalUrl);
     updateMeta('meta[property="og:type"]', 'property', 'og:type', ogType);
     updateMeta('meta[property="og:image"]', 'property', 'og:image', ogImage);
+    updateMeta('meta[property="og:image:secure_url"]', 'property', 'og:image:secure_url', ogImage);
+    document.querySelectorAll('meta[property="og:image:width"], meta[property="og:image:height"], meta[property="og:image:type"]').forEach(el => el.remove());
+    updateMeta('meta[property="og:image:alt"]', 'property', 'og:image:alt', title);
 
     // 4. Twitter Card
     updateMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title);
@@ -70,7 +76,7 @@ export function SeoHead({
     } else if (scriptEl) {
       scriptEl.remove();
     }
-  }, [title, description, canonicalUrl, ogType, ogImage, jsonLd]);
+  }, [title, description, canonicalUrl, ogType, ogImage, jsonLd, noindex]);
 
   return null;
 }

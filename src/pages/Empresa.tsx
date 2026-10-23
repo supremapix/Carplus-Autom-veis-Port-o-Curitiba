@@ -18,7 +18,7 @@ export function Empresa() {
     <div className="bg-white min-h-screen">
       <SeoHead
         title="Carplus Autos | Revenda de Seminovos no Portão em Curitiba"
-        description="Conheça a história e a estrutura da Carplus Autos em Curitiba. Showroom moderno no Portão integrado ao centro mecânico especializado com procedência garantida."
+        description="Conheça a Carplus Autos, loja de seminovos no bairro Portão, em Curitiba, e seus serviços de compra, venda, troca e consignação."
         canonicalUrl="https://www.carplusautos.com.br/empresa"
         jsonLd={breadcrumbJsonLd}
       />
@@ -52,7 +52,7 @@ export function Empresa() {
                   Localizados na <strong className="text-[#121212]">Avenida Presidente Arthur da Silva Bernardes, 1323</strong>, no tradicional bairro Portão, contamos com uma estrutura integrada com showroom de veículos seminovos selecionados e centro mecânico especializado.
                 </p>
                 <p>
-                  Cada veículo disponível em nosso estoque passa por critérios rigorosos de conferência documental, laudo pericial cautelar 100% aprovado e garantia de motor e câmbio, garantindo a você a certeza de uma negociação segura e transparente.
+                  Consulte na página de cada veículo suas características, fotos e informações de histórico. Nossa equipe pode esclarecer dúvidas sobre documentação, laudo e condições da negociação.
                 </p>
               </div>
 
@@ -62,9 +62,9 @@ export function Empresa() {
                   <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center mb-4 text-[#F59C00]">
                     <Car className="w-6 h-6" />
                   </div>
-                  <h3 className="font-display font-bold text-lg uppercase text-[#121212] mb-1">
+                  <h2 className="font-display font-bold text-lg uppercase text-[#121212] mb-1">
                     Carplus Autos
-                  </h3>
+                  </h2>
                   <p className="text-xs text-[#666666] leading-relaxed">
                     Showroom de seminovos revisados, compra com pagamento à vista, troca com troco e consignação segura.
                   </p>
@@ -74,9 +74,9 @@ export function Empresa() {
                   <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center mb-4 text-[#F59C00]">
                     <Wrench className="w-6 h-6" />
                   </div>
-                  <h3 className="font-display font-bold text-lg uppercase text-[#121212] mb-1">
+                  <h2 className="font-display font-bold text-lg uppercase text-[#121212] mb-1">
                     Carplus Pneus & Oficina
-                  </h3>
+                  </h2>
                   <p className="text-xs text-[#666666] leading-relaxed">
                     Centro automotivo completo com alinhamento 3D, balanceamento, suspensão, freios e pneus multimarcas.
                   </p>

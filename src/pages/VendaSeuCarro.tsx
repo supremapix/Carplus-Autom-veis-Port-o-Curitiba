@@ -1,3 +1,4 @@
+import { RequestContinuation } from '../components/ui/RequestContinuation';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UploadCloud, CheckCircle2, AlertCircle, Trash2, Send, ShieldCheck, DollarSign, Clock } from 'lucide-react';
@@ -153,7 +154,7 @@ export function VendaSeuCarro() {
                   Pagamento Rápido
                 </h2>
                 <p className="text-xs text-[#666666] mt-1.5 leading-relaxed">
-                  Retornamos via WhatsApp e pagamos à vista com total segurança.
+                  Após a avaliação, consulte a proposta e as condições de pagamento.
                 </p>
               </div>
             </div>
@@ -166,11 +167,9 @@ export function VendaSeuCarro() {
                     <CheckCircle2 className="w-12 h-12 text-emerald-600" />
                   </div>
                   <h2 className="font-display font-bold text-3xl uppercase tracking-wide text-[#121212]">
-                    Dados Enviados com Sucesso!
+                    Continue pelo WhatsApp
                   </h2>
-                  <p className="text-base text-[#666666] max-w-md mx-auto leading-relaxed">
-                    Recebemos as informações do seu veículo. Nossa equipe entrará em contato via WhatsApp para apresentar a proposta.
-                  </p>
+                  <RequestContinuation message={`Olá! Meu nome é ${name}. Gostaria de avaliar meu ${brand} ${model} ${version}, ano ${year || "não informado"}, ${mileage === "" ? "quilometragem não informada" : mileage + " km"}. ${notes}`} />
                   <div className="pt-4">
                     <Button
                       onClick={() => setSuccess(false)}
@@ -182,6 +181,7 @@ export function VendaSeuCarro() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
+<p className="text-sm text-[#666666]">Preencha os dados e conclua o envio pelo WhatsApp na próxima etapa.</p>
                   
                   {/* Seção 1: Dados Pessoais */}
                   <div>
@@ -190,10 +190,10 @@ export function VendaSeuCarro() {
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-1" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Seu Nome *
                         </label>
-                        <input
+                        <input id="vendaseucarro-1"
                           type="text"
                           required
                           placeholder="Nome completo"
@@ -204,10 +204,10 @@ export function VendaSeuCarro() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-2" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           WhatsApp com DDD *
                         </label>
-                        <input
+                        <input id="vendaseucarro-2"
                           type="tel"
                           required
                           placeholder="(41) 99999-9999"
@@ -218,10 +218,10 @@ export function VendaSeuCarro() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-3" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           E-mail (opcional)
                         </label>
-                        <input
+                        <input id="vendaseucarro-3"
                           type="email"
                           placeholder="seuemail@exemplo.com"
                           value={email}
@@ -239,10 +239,10 @@ export function VendaSeuCarro() {
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-4" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Marca *
                         </label>
-                        <input
+                        <input id="vendaseucarro-4"
                           type="text"
                           required
                           placeholder="Ex: Toyota"
@@ -253,10 +253,10 @@ export function VendaSeuCarro() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-5" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Modelo *
                         </label>
-                        <input
+                        <input id="vendaseucarro-5"
                           type="text"
                           required
                           placeholder="Ex: Corolla"
@@ -267,10 +267,10 @@ export function VendaSeuCarro() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-6" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Versão
                         </label>
-                        <input
+                        <input id="vendaseucarro-6"
                           type="text"
                           placeholder="Ex: XEi 2.0"
                           value={version}
@@ -282,10 +282,10 @@ export function VendaSeuCarro() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mt-4">
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-7" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Ano Modelo
                         </label>
-                        <input
+                        <input id="vendaseucarro-7"
                           type="number"
                           placeholder="Ex: 2022"
                           value={year}
@@ -295,10 +295,10 @@ export function VendaSeuCarro() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-8" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Quilometragem (km)
                         </label>
-                        <input
+                        <input id="vendaseucarro-8"
                           type="number"
                           placeholder="Ex: 35000"
                           value={mileage}
@@ -308,10 +308,10 @@ export function VendaSeuCarro() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-9" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Cor
                         </label>
-                        <input
+                        <input id="vendaseucarro-9"
                           type="text"
                           placeholder="Ex: Branco"
                           value={color}
@@ -321,10 +321,10 @@ export function VendaSeuCarro() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="vendaseucarro-10" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           Preço Pretendido (R$)
                         </label>
-                        <input
+                        <input id="vendaseucarro-10"
                           type="number"
                           placeholder="Ex: 130000"
                           value={expectedPrice}
@@ -335,10 +335,10 @@ export function VendaSeuCarro() {
                     </div>
 
                     <div className="mt-4">
-                      <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                      <label htmlFor="vendaseucarro-11" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                         Observações sobre o estado de conservação
                       </label>
-                      <textarea
+                      <textarea id="vendaseucarro-11"
                         rows={3}
                         placeholder="Histórico de revisões, detalhes de lataria, acessórios instalados, etc."
                         value={notes}
@@ -356,7 +356,7 @@ export function VendaSeuCarro() {
 
                     <div className="border-2 border-dashed border-[#CCCCCC] hover:border-[#F59C00] transition-colors rounded-2xl p-8 text-center cursor-pointer relative bg-white">
                       <input
-                        type="file"
+                        type="file" aria-label="Fotos do veículo (até 10 imagens)"
                         multiple
                         accept="image/jpeg,image/png,image/webp"
                         onChange={handleImageUpload}

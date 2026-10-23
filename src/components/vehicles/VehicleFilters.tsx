@@ -86,7 +86,7 @@ export function VehicleFilters({
           <input
             type="text"
             placeholder="Marca, modelo, versão..."
-            value={filters.search || ''}
+            aria-label="Buscar por palavra-chave" value={filters.search || ''}
             onChange={(e) => onFilterChange({ ...filters, search: e.target.value || undefined })}
             className="w-full h-12 bg-[#FAFAFA] border border-[#E0E0E0] rounded-xl px-4 text-sm text-[#121212] placeholder-[#999999] focus:outline-none focus:border-[#F59C00] focus:bg-white"
           />
@@ -100,7 +100,7 @@ export function VehicleFilters({
           Marca
         </label>
         <select
-          value={filters.brand || ''}
+          aria-label="Marca" value={filters.brand || ''}
           onChange={(e) => handleBrandChange(e.target.value)}
           className="w-full h-12 bg-[#FAFAFA] border border-[#E0E0E0] rounded-xl px-3.5 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] focus:bg-white font-medium"
         >
@@ -120,7 +120,7 @@ export function VehicleFilters({
             Modelo
           </label>
           <select
-            value={filters.model || ''}
+            aria-label="Modelo" value={filters.model || ''}
             onChange={(e) => handleModelChange(e.target.value)}
             className="w-full h-12 bg-[#FAFAFA] border border-[#E0E0E0] rounded-xl px-3.5 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] focus:bg-white font-medium"
           >
@@ -202,7 +202,7 @@ export function VehicleFilters({
           Combustível
         </label>
         <select
-          value={filters.fuel || ''}
+          aria-label="Combustível" value={filters.fuel || ''}
           onChange={(e) =>
             onFilterChange({
               ...filters,
@@ -228,7 +228,7 @@ export function VehicleFilters({
         <input
           type="number"
           placeholder="Ex: 250000"
-          value={filters.maxPrice || ''}
+          aria-label="Preço máximo em reais" value={filters.maxPrice || ''}
           onChange={(e) =>
             onFilterChange({
               ...filters,
@@ -247,7 +247,7 @@ export function VehicleFilters({
         <input
           type="number"
           placeholder="Ex: 2020"
-          value={filters.minYear || ''}
+          aria-label="Ano mínimo" value={filters.minYear || ''}
           onChange={(e) =>
             onFilterChange({
               ...filters,

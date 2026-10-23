@@ -62,7 +62,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
           }]
         });
       }}
-      className={`group flex flex-col bg-white rounded-2xl border border-[#E0E0E0] overflow-hidden transition-all duration-300 hover:border-[#F59C00] hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/8 select-none ${
+      className={`group flex flex-col bg-white rounded-xl border border-[#E0E0E0] overflow-hidden transition-all duration-200 hover:border-[#F59C00] hover:-translate-y-0.5 hover:shadow-md hover:shadow-black/5 motion-reduce:transform-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F59C00] select-none ${
         isSold ? 'opacity-75 grayscale-[40%]' : ''
       }`}
     >
@@ -72,7 +72,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
           slug={vehicle.slug}
           imageIndex={0}
           alt={imageAlt}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transform-none"
         />
 
         {/* Badges de Destaque / Oferta / Status */}
@@ -114,11 +114,11 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
       </div>
 
       {/* Conteúdo & Especificações */}
-      <div className="p-5 sm:p-6 flex flex-col justify-between flex-grow bg-white">
+      <div className="p-5 flex flex-col justify-between flex-grow bg-white">
         <div>
           {/* Marca e Modelo com Logo */}
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-display font-bold text-xl sm:text-2xl text-[#121212] uppercase tracking-wide group-hover:text-[#F59C00] transition-colors line-clamp-2 leading-tight">
+            <h3 className="font-display font-bold text-xl sm:text-[22px] text-[#121212] uppercase tracking-normal line-clamp-2 leading-tight">
               {vehicle.brand} {vehicle.model}
             </h3>
             {getBrandLogo(vehicle.brand) && (
@@ -179,7 +179,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
                 <span className="text-[10px] font-display font-bold uppercase tracking-wider text-[#666666] block">
                   Preço à vista
                 </span>
-                <span className="font-display font-bold text-2xl sm:text-[28px] text-[#121212] group-hover:text-[#F59C00] transition-colors leading-none">
+                <span className="font-display font-bold text-2xl sm:text-[28px] text-[#121212] tabular-nums leading-none">
                   {formatPrice(vehicle.price)}
                 </span>
               </div>

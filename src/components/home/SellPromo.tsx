@@ -99,13 +99,13 @@ export function SellPromo() {
                     QUER VENDER OU TROCAR SEU <span className="text-[#F59C00] italic">CARRO?</span>
                   </>
                 }
-                subtitle="Na Carplus Autos, você tem um processo transparente, rápido e sem burocracia para vender ou consignar seu veículo em Curitiba."
+                subtitle="Converse com a Carplus Autos para avaliar a venda, a troca ou a consignação do seu veículo em Curitiba."
               />
 
               <div className="space-y-3.5 pt-1">
                 <div className="flex items-center gap-3 text-sm sm:text-base text-[#121212]">
                   <CheckCircle2 className="w-5 h-5 text-[#F59C00] shrink-0" />
-                  <span className="font-medium">Envie os dados e fotos do seu veículo pelo formulário</span>
+                  <span className="font-medium">Prepare os dados do veículo e conclua o envio pelo WhatsApp</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm sm:text-base text-[#121212]">
                   <CheckCircle2 className="w-5 h-5 text-[#F59C00] shrink-0" />
@@ -113,7 +113,7 @@ export function SellPromo() {
                 </div>
                 <div className="flex items-center gap-3 text-sm sm:text-base text-[#121212]">
                   <CheckCircle2 className="w-5 h-5 text-[#F59C00] shrink-0" />
-                  <span className="font-medium">Pagamento à vista seguro ou troca com troco garantida</span>
+                  <span className="font-medium">Compra à vista ou troca com troco, conforme avaliação</span>
                 </div>
               </div>
 

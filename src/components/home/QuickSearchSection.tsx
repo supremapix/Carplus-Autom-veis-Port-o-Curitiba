@@ -62,7 +62,7 @@ export function QuickSearchSection() {
               </label>
               <div className="relative">
                 <select
-                  value={selectedBrand}
+                  aria-label="Marca" value={selectedBrand}
                   onChange={(e) => setSelectedBrand(e.target.value)}
                   className="w-full h-[52px] bg-white border border-[#D0D0D0] rounded-xl px-3.5 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] focus:ring-1 focus:ring-[#F59C00] font-medium transition-all appearance-none cursor-pointer"
                 >
@@ -82,7 +82,7 @@ export function QuickSearchSection() {
               </label>
               <div className="relative">
                 <select
-                  value={selectedModel}
+                  aria-label="Modelo" value={selectedModel}
                   onChange={(e) => setSelectedModel(e.target.value)}
                   disabled={!selectedBrand}
                   className="w-full h-[52px] bg-white border border-[#D0D0D0] rounded-xl px-3.5 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] focus:ring-1 focus:ring-[#F59C00] disabled:opacity-40 font-medium transition-all appearance-none cursor-pointer"
@@ -103,7 +103,7 @@ export function QuickSearchSection() {
               </label>
               <div className="relative">
                 <select
-                  value={selectedMinYear}
+                  aria-label="Ano mínimo" value={selectedMinYear}
                   onChange={(e) => setSelectedMinYear(e.target.value)}
                   className="w-full h-[52px] bg-white border border-[#D0D0D0] rounded-xl px-3.5 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] focus:ring-1 focus:ring-[#F59C00] font-medium transition-all appearance-none cursor-pointer"
                 >
@@ -126,7 +126,7 @@ export function QuickSearchSection() {
               </label>
               <div className="relative">
                 <select
-                  value={selectedMaxPrice}
+                  aria-label="Preço máximo" value={selectedMaxPrice}
                   onChange={(e) => setSelectedMaxPrice(e.target.value)}
                   className="w-full h-[52px] bg-white border border-[#D0D0D0] rounded-xl px-3.5 text-sm text-[#121212] focus:outline-none focus:border-[#F59C00] focus:ring-1 focus:ring-[#F59C00] font-medium transition-all appearance-none cursor-pointer"
                 >

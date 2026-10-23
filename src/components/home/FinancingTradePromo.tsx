@@ -40,7 +40,7 @@ export function FinancingTradePromo() {
               </Button>
               <span className="mt-2 text-xs text-[#8A8A8A] font-normal tracking-wide flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
-                <span>Resposta ágil com as melhores taxas do mercado bancário</span>
+                <span>Taxas, prazos e aprovação sujeitos à análise da instituição financeira.</span>
               </span>
             </div>
           </div>
@@ -77,7 +77,7 @@ export function FinancingTradePromo() {
               </Button>
               <span className="mt-2 text-xs text-[#8A8A8A] font-normal tracking-wide flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#F59C00] shrink-0" />
-                <span>Showroom físico monitorado e segurança jurídica total</span>
+                <span>Consulte as condições e o contrato de consignação</span>
               </span>
             </div>
           </div>

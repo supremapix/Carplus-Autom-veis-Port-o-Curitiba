@@ -40,7 +40,7 @@ export function PoliticaPrivacidade() {
               
               <div className="pb-4 border-b border-[#E0E0E0]">
                 <span className="text-xs text-[#666666] font-bold uppercase tracking-wider">
-                  Última atualização: Fevereiro de 2025
+                  Última atualização: 23 de outubro de 2026
                 </span>
               </div>
 
@@ -58,7 +58,7 @@ export function PoliticaPrivacidade() {
                   2. Dados Coletados e Finalidade
                 </h2>
                 <p>
-                  Coletamos apenas os dados estritamente necessários fornecidos voluntariamente por você ao utilizar nossos canais e formulários:
+                  Os formulários permitem preencher informações para preparar seu atendimento. O envio à loja deve ser concluído pelo WhatsApp; preencher o formulário não confirma seu recebimento. As informações variam conforme a solicitação:
                 </p>
                 <ul className="list-disc pl-5 space-y-2 text-[#666666]">
                   <li><strong className="text-[#121212]">Formulário de Interesse e Troca:</strong> Nome, telefone/WhatsApp, e-mail e dados do veículo usado para prestar atendimento sobre o veículo anunciado e avaliar propostas de compra ou troca.</li>
@@ -66,6 +66,7 @@ export function PoliticaPrivacidade() {
                   <li><strong className="text-[#121212]">Formulário de Simulação de Financiamento:</strong> Nome, CPF, data de nascimento, contato, prazo e estimativa de entrada para encaminhar simulações personalizadas junto aos bancos parceiros.</li>
                   <li><strong className="text-[#121212]">Formulário de Contato Direto:</strong> Nome, WhatsApp e mensagem para esclarecimento de dúvidas e agendamento de visitas.</li>
                 </ul>
+                <p>O site utiliza Google Analytics para medir visitas e interações e incorpora mapas do Google. Esses serviços podem tratar dados de navegação conforme suas próprias políticas. Ao abrir o WhatsApp, você passa a utilizar um serviço externo e pode revisar a mensagem antes de enviá-la.</p>
               </section>
 
               <section className="space-y-3">
@@ -97,7 +98,7 @@ export function PoliticaPrivacidade() {
 
               <section className="space-y-3">
                 <h2 className="font-display font-bold text-xl uppercase text-[#121212] tracking-wider">
-                  6. Canal de Atendimento do Titular (DPO / Encarregado)
+                  6. Canal de atendimento sobre privacidade
                 </h2>
                 <p>
                   Para exercer seus direitos ou esclarecer dúvidas sobre esta Política de Privacidade, entre em contato diretamente com nossa equipe através do telefone <strong className="text-[#121212]">{CARPLUS_PHONE_DISPLAY}</strong> ou pelo endereço físico na Av. Presidente Arthur da Silva Bernardes, 1323, Portão, Curitiba/PR.

@@ -126,10 +126,11 @@ export function Veiculo() {
   if (!vehicle) {
     return (
       <div className="bg-white min-h-screen py-24 px-4 text-center">
+        <SeoHead title="Veículo não encontrado | Carplus Autos" description="Não encontramos este anúncio. Consulte os veículos disponíveis no estoque da Carplus Autos." canonicalUrl={`https://www.carplusautos.com.br/estoque/${slug}`} noindex />
         <div className="max-w-md mx-auto bg-[#FAFAFA] border border-[#E0E0E0] p-10 rounded-3xl space-y-5 shadow-sm">
-          <h2 className="font-display text-3xl uppercase text-[#121212] font-bold">
+          <h1 className="font-display text-3xl uppercase text-[#121212] font-bold">
             Veículo não encontrado
-          </h2>
+          </h1>
           <p className="text-[#666666] text-sm">
             Este anúncio pode ter sido vendido, removido ou o link está incorreto.
           </p>

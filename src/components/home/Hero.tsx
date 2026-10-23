@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useSyncExternalStore } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Volume2,
@@ -17,12 +17,53 @@ import {
 import { motion, useScroll, useTransform } from 'motion/react';
 import { BrandsMarquee } from './BrandsMarquee';
 
+const mobileHeroQuery = '(width < 1024px)';
+function subscribeToViewport(onChange: () => void) {
+  const query = window.matchMedia(mobileHeroQuery);
+  query.addEventListener('change', onChange);
+  return () => query.removeEventListener('change', onChange);
+}
+
 export function Hero() {
+  const isMobile = useSyncExternalStore(
+    subscribeToViewport,
+    () => window.matchMedia(mobileHeroQuery).matches,
+    () => false,
+  );
+  // Do not mount media on desktop: CSS hiding alone still downloads the video.
+  return isMobile ? <MobileHero /> : null;
+}
+
+function MobileHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [allowVideo, setAllowVideo] = useState(() =>
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+    !(navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
+  );
+
+  useEffect(() => {
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const connection = (navigator as Navigator & { connection?: EventTarget & { saveData?: boolean } }).connection;
+    const updatePreference = () => {
+      const nextAllowed = !motionPreference.matches && !connection?.saveData;
+      setAllowVideo(nextAllowed);
+      if (!nextAllowed) {
+        setIsVideoLoaded(false);
+        setIsPlaying(false);
+        setIsMuted(true);
+      }
+    };
+    motionPreference.addEventListener('change', updatePreference);
+    connection?.addEventListener('change', updatePreference);
+    return () => {
+      motionPreference.removeEventListener('change', updatePreference);
+      connection?.removeEventListener('change', updatePreference);
+    };
+  }, []);
 
   // Parallax suave no background
   const { scrollYProgress } = useScroll({
@@ -37,11 +78,11 @@ export function Hero() {
       videoRef.current.play().catch(() => {
         if (videoRef.current) {
           videoRef.current.muted = true;
-          videoRef.current.play().catch(() => {});
+          videoRef.current.play().catch(() => setIsVideoLoaded(false));
         }
       });
     }
-  }, []);
+  }, [allowVideo]);
 
   const toggleMute = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -58,8 +99,7 @@ export function Hero() {
     e.stopPropagation();
     if (videoRef.current) {
       if (videoRef.current.paused) {
-        videoRef.current.play();
-        setIsPlaying(true);
+        videoRef.current.play().catch(() => setIsVideoLoaded(false));
       } else {
         videoRef.current.pause();
         setIsPlaying(false);
@@ -79,9 +119,9 @@ export function Hero() {
     },
     {
       icon: <ShieldCheck className="w-4 h-4 text-[#F59C00]" />,
-      kicker: 'PROCEDÊNCIA & GARANTIA',
-      title: 'SEMINOVOS PERICIADOS COM LAUDO 100% APROVADO',
-      desc: 'CARROS REVISADOS COM GARANTIA',
+      kicker: 'INFORMAÇÕES DO VEÍCULO',
+      title: 'CONSULTE FOTOS E HISTÓRICO DE CADA VEÍCULO',
+      desc: 'CONSULTE AS CONDIÇÕES DO ANÚNCIO',
       link: '/estoque',
       badge: 'QUALIDADE',
     },
@@ -96,10 +136,10 @@ export function Hero() {
     {
       icon: <Award className="w-4 h-4 text-[#F59C00]" />,
       kicker: 'FINANCIAMENTO FÁCIL',
-      title: 'TAXAS ESPECIAIS EM ATÉ 60X',
+      title: 'CONSULTE PRAZOS E CONDIÇÕES',
       desc: 'SIMULE SUA PARCELA AGORA',
       link: '/financiamento',
-      badge: 'APROVAÇÃO RÁPIDA',
+      badge: 'SIMULAÇÃO',
     },
     {
       icon: <MapPin className="w-4 h-4 text-[#F59C00]" />,
@@ -123,30 +163,33 @@ export function Hero() {
     <section
       ref={heroRef}
       data-track-location="hero"
-      className="relative bg-[#050505] text-white min-h-[82vh] sm:min-h-[86vh] lg:min-h-[92vh] lg:max-h-[900px] flex flex-col justify-between overflow-hidden select-none"
+      className="relative bg-[#050505] text-white min-h-[82vh] sm:min-h-[86vh] flex lg:hidden flex-col justify-between overflow-hidden select-none"
     >
       {/* ========================================================================= */}
-      {/* 1. BACKGROUND LIMPO: VÍDEO EXCLUSIVO MOBILE & FOTO HIGH-END NO DESKTOP     */}
+      {/* 1. Vídeo mobile existente da Carplus, com poster real de fallback. */}
       {/* ========================================================================= */}
       <motion.div
-        style={{ scale: bgScale, opacity: bgOpacity }}
+        style={allowVideo ? { scale: bgScale, opacity: bgOpacity } : undefined}
         className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
       >
         {/* MOBILE VIDEO BACKGROUND (Exclusivo < 1024px — 100% limpo e desobstruído) */}
         <div className="block lg:hidden absolute inset-0 w-full h-full">
-          <video
+          {allowVideo && <video
             ref={videoRef}
             src="https://img.carplusautos.com.br/autos-no-portao.mp4"
             autoPlay
             loop
             muted={isMuted}
             playsInline
-            preload="auto"
-            onLoadedData={() => setIsVideoLoaded(true)}
+            poster="https://img.carplusautos.com.br/hero.webp"
+            preload="metadata"
+            onPlaying={() => { setIsVideoLoaded(true); setIsPlaying(true); }}
+            onPause={() => setIsPlaying(false)}
+            onError={() => { setIsVideoLoaded(false); setIsPlaying(false); }}
             className={`w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.05] transition-opacity duration-1000 ${
               isVideoLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-          />
+          />}
           {/* Fallback de imagem enquanto o vídeo carrega */}
           <img
             src="https://img.carplusautos.com.br/hero.webp"
@@ -163,25 +206,12 @@ export function Hero() {
           <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent pointer-events-none" />
         </div>
 
-        {/* DESKTOP BACKGROUND IMAGE (Exclusivo lg: >= 1024px) */}
-        <div className="hidden lg:block absolute inset-0 w-full h-full">
-          <img
-            src="https://img.carplusautos.com.br/hero.webp"
-            alt="Carplus Autos Showroom"
-            className="w-full h-full object-cover object-[center_center] filter brightness-[0.88] contrast-[1.05]"
-            fetchPriority="high"
-            decoding="async"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/40" />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#050505] via-[#050505]/75 to-transparent" />
-        </div>
       </motion.div>
 
       {/* ========================================================================= */}
       {/* 2. CONTROLES DE ÁUDIO & PLAY FLUTUANTES NO MOBILE                         */}
       {/* ========================================================================= */}
-      <div className="lg:hidden absolute top-4 right-4 z-20 flex items-center gap-2 pointer-events-auto">
+      {allowVideo && <div className="lg:hidden absolute top-4 right-4 z-20 flex items-center gap-2 pointer-events-auto">
         <button
           type="button"
           onClick={toggleMute}
@@ -213,7 +243,11 @@ export function Hero() {
             <Play className="w-3 h-3 text-[#F59C00] fill-[#F59C00] ml-0.5" />
           )}
         </button>
-      </div>
+      </div>}
+
+      <Link to="/estoque" className="absolute bottom-44 left-4 z-30 rounded-full bg-[#F59C00] px-5 py-3 font-display font-bold text-black uppercase focus-visible:outline-2 focus-visible:outline-white">
+        Ver estoque
+      </Link>
 
       {/* Espaço livre central — Hero 100% limpo para contemplação total do vídeo e do showroom */}
       <div className="flex-1" />
@@ -228,7 +262,7 @@ export function Hero() {
           <div className="absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
 
           {/* Letreiro em velocidade média fluida */}
-          <div className="animate-ticker flex items-center gap-6 sm:gap-8 whitespace-nowrap">
+          <div className="animate-ticker motion-reduce:animate-none flex items-center gap-6 sm:gap-8 whitespace-nowrap">
             {tickerItems.concat(tickerItems).map((item, idx) => (
               <Link
                 key={idx}

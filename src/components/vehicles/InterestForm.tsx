@@ -1,3 +1,4 @@
+import { RequestContinuation } from '../ui/RequestContinuation';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageSquare, RefreshCw, Send, CheckCircle2, AlertCircle, Calculator } from 'lucide-react';
@@ -135,18 +136,16 @@ export function InterestForm({ vehicle, onOpenTradeInModal }: InterestFormProps)
             TENHO INTERESSE NESTE VEÍCULO
           </h3>
           <p className="text-xs text-[#666666] mb-4">
-            Envie seus dados e nossa equipe retornará prontamente com as condições.
+            Consulte as condições diretamente com a equipe pelo WhatsApp.
           </p>
 
           {success ? (
             <div className="bg-black border border-[#222222] rounded-2xl p-6 text-center space-y-2 text-white">
               <CheckCircle2 className="w-10 h-10 text-[#F59C00] mx-auto" />
               <p className="text-base font-display font-bold uppercase text-white">
-                Proposta enviada com sucesso!
+                Continue pelo WhatsApp
               </p>
-              <p className="text-xs text-[#999999]">
-                Nosso consultor entrará em contato via WhatsApp.
-              </p>
+              <RequestContinuation message={whatsAppMessage} />
               <button
                 type="button"
                 onClick={() => setSuccess(false)}
@@ -157,6 +156,7 @@ export function InterestForm({ vehicle, onOpenTradeInModal }: InterestFormProps)
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+<p className="text-sm text-[#666666]">Preencha os dados e conclua o envio pelo WhatsApp na próxima etapa.</p>
               {/* Honeypot field */}
               <input
                 type="text"
@@ -169,10 +169,10 @@ export function InterestForm({ vehicle, onOpenTradeInModal }: InterestFormProps)
               />
 
               <div>
-                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                <label htmlFor="interestform-1" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   Seu Nome *
                 </label>
-                <input
+                <input id="interestform-1"
                   type="text"
                   required
                   placeholder="Nome completo"
@@ -183,10 +183,10 @@ export function InterestForm({ vehicle, onOpenTradeInModal }: InterestFormProps)
               </div>
 
               <div>
-                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                <label htmlFor="interestform-2" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   WhatsApp com DDD *
                 </label>
-                <input
+                <input id="interestform-2"
                   type="tel"
                   required
                   placeholder="(41) 99999-9999"
@@ -197,10 +197,10 @@ export function InterestForm({ vehicle, onOpenTradeInModal }: InterestFormProps)
               </div>
 
               <div>
-                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                <label htmlFor="interestform-3" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   E-mail (opcional)
                 </label>
-                <input
+                <input id="interestform-3"
                   type="email"
                   placeholder="seuemail@exemplo.com"
                   value={email}

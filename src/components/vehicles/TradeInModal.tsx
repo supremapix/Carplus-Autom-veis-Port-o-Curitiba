@@ -1,3 +1,4 @@
+import { RequestContinuation } from '../ui/RequestContinuation';
 import React, { useState } from 'react';
 import { X, RefreshCw, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
@@ -128,11 +129,9 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
               <CheckCircle2 className="w-10 h-10 text-emerald-600" />
             </div>
             <h4 className="font-display text-2xl uppercase tracking-wider text-[#121212]">
-              Proposta de Troca Recebida!
+              Continue pelo WhatsApp
             </h4>
-            <p className="text-sm text-[#666666] max-w-md mx-auto leading-relaxed">
-              Nossa equipe de avaliação entrará em contato via WhatsApp para solicitar fotos complementares e passar a melhor avaliação no seu seminovo.
-            </p>
+            <RequestContinuation message={`Olá! Gostaria de avaliar a troca do meu ${tradeBrand} ${tradeModel} pelo ${vehicle.brand} ${vehicle.model} ${vehicle.yearModel}. ${notes}`} />
             <div className="pt-2">
               <Button
                 onClick={onClose}
@@ -144,12 +143,13 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+<p className="text-sm text-[#666666]">Preencha os dados e conclua o envio pelo WhatsApp na próxima etapa.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                <label htmlFor="tradeinmodal-1" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   Seu Nome *
                 </label>
-                <input
+                <input id="tradeinmodal-1"
                   type="text"
                   required
                   placeholder="Nome completo"
@@ -160,10 +160,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                <label htmlFor="tradeinmodal-2" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   WhatsApp com DDD *
                 </label>
-                <input
+                <input id="tradeinmodal-2"
                   type="tel"
                   required
                   placeholder="(41) 99999-9999"
@@ -181,10 +181,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                  <label htmlFor="tradeinmodal-3" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Marca *
                   </label>
-                  <input
+                  <input id="tradeinmodal-3"
                     type="text"
                     required
                     placeholder="Ex: Fiat"
@@ -195,10 +195,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                  <label htmlFor="tradeinmodal-4" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Modelo *
                   </label>
-                  <input
+                  <input id="tradeinmodal-4"
                     type="text"
                     required
                     placeholder="Ex: Argo"
@@ -209,10 +209,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                  <label htmlFor="tradeinmodal-5" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Versão
                   </label>
-                  <input
+                  <input id="tradeinmodal-5"
                     type="text"
                     placeholder="Ex: Drive 1.0"
                     value={tradeVersion}
@@ -224,10 +224,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
                 <div>
-                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                  <label htmlFor="tradeinmodal-6" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Ano / Modelo
                   </label>
-                  <input
+                  <input id="tradeinmodal-6"
                     type="number"
                     placeholder="Ex: 2021"
                     value={tradeYear}
@@ -237,10 +237,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                  <label htmlFor="tradeinmodal-7" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Quilometragem (km)
                   </label>
-                  <input
+                  <input id="tradeinmodal-7"
                     type="number"
                     placeholder="Ex: 45000"
                     value={tradeMileage}
@@ -250,10 +250,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                  <label htmlFor="tradeinmodal-8" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                     Cor
                   </label>
-                  <input
+                  <input id="tradeinmodal-8"
                     type="text"
                     placeholder="Ex: Prata"
                     value={tradeColor}
@@ -264,10 +264,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
               </div>
 
               <div className="mt-3">
-                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                <label htmlFor="tradeinmodal-9" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   Valor Pretendido (R$)
                 </label>
-                <input
+                <input id="tradeinmodal-9"
                   type="number"
                   placeholder="Ex: 60000"
                   value={expectedPrice}
@@ -277,10 +277,10 @@ export function TradeInModal({ vehicle, isOpen, onClose }: TradeInModalProps) {
               </div>
 
               <div className="mt-3">
-                <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                <label htmlFor="tradeinmodal-10" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                   Observações adicionais (opcional)
                 </label>
-                <textarea
+                <textarea id="tradeinmodal-10"
                   rows={2}
                   placeholder="Detalhes sobre manutenção, opcionais, etc."
                   value={notes}

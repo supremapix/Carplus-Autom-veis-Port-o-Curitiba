@@ -22,11 +22,11 @@ export function Consignacao() {
     {
       icon: <Users className="w-6 h-6 text-[#F59C00]" />,
       title: 'Atendimento & Triagem',
-      description: 'Nossa equipe atende todos os interessados, filtra curiosos e negocia apenas com compradores qualificados.',
+      description: 'Nossa equipe atende os interessados e conduz as conversas sobre o veículo.',
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-[#F59C00]" />,
-      title: 'Segurança Total',
+      title: 'Atendimento na loja',
       description: 'Seu carro protegido em nosso showroom na Av. Arthur Bernardes, sem precisar receber estranhos na sua residência.',
     },
   ];

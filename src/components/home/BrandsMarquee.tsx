@@ -10,7 +10,7 @@ export function BrandsMarquee() {
       <div className="absolute inset-y-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
       <div className="relative flex overflow-x-hidden">
-        <div className="animate-marquee flex items-center gap-10 sm:gap-14 whitespace-nowrap">
+        <div className="animate-marquee motion-reduce:animate-none flex items-center gap-10 sm:gap-14 whitespace-nowrap">
           {CAR_BRANDS.concat(CAR_BRANDS).map((brand, index) => (
             <Link
               key={`${brand.name}-${index}`}

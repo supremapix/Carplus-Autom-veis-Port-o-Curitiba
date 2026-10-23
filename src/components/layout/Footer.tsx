@@ -93,7 +93,7 @@ export function Footer() {
               </Link>
 
               <p className="text-base text-[#D0D0D0] leading-relaxed">
-                Loja de seminovos selecionados e revisados em Curitiba com procedência, garantia e aprovação rápida de crédito.
+                Compra, venda, troca e consignação de seminovos no Portão, em Curitiba. Consulte o estoque e as condições de negociação.
               </p>
 
               <div className="space-y-2 pt-2">

@@ -1,3 +1,4 @@
+import { RequestContinuation } from '../components/ui/RequestContinuation';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Clock, MessageSquare, Send, CheckCircle2, AlertCircle } from 'lucide-react';
@@ -190,11 +191,9 @@ export function Contato() {
                       <CheckCircle2 className="w-12 h-12 text-emerald-600" />
                     </div>
                     <h2 className="font-display font-bold text-3xl uppercase tracking-wide text-[#121212]">
-                      Mensagem Enviada!
+                      Continue pelo WhatsApp
                     </h2>
-                    <p className="text-base text-[#666666] max-w-md mx-auto leading-relaxed">
-                      Agradecemos o seu contato. Nossa equipe responderá o mais breve possível no WhatsApp ou e-mail.
-                    </p>
+                    <RequestContinuation message={`Olá! Meu nome é ${name}. ${message}`} />
                     <div className="pt-4">
                       <Button
                         onClick={() => setSuccess(false)}
@@ -206,15 +205,16 @@ export function Contato() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+<p className="text-sm text-[#666666]">Preencha os dados e conclua o envio pelo WhatsApp na próxima etapa.</p>
                     <h2 className="font-display font-bold text-2xl uppercase text-[#121212] tracking-wide mb-2">
                       ENVIE UMA MENSAGEM
                     </h2>
 
                     <div>
-                      <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                      <label htmlFor="contato-1" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                         Seu Nome *
                       </label>
-                      <input
+                      <input id="contato-1"
                         type="text"
                         required
                         placeholder="Nome completo"
@@ -226,10 +226,10 @@ export function Contato() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="contato-2" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           WhatsApp com DDD *
                         </label>
-                        <input
+                        <input id="contato-2"
                           type="tel"
                           required
                           placeholder="(41) 99999-9999"
@@ -240,10 +240,10 @@ export function Contato() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                        <label htmlFor="contato-3" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                           E-mail (opcional)
                         </label>
-                        <input
+                        <input id="contato-3"
                           type="email"
                           placeholder="seuemail@exemplo.com"
                           value={email}
@@ -254,10 +254,10 @@ export function Contato() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
+                      <label htmlFor="contato-4" className="block text-xs font-display font-bold uppercase tracking-wider text-[#121212] mb-1.5">
                         Mensagem *
                       </label>
-                      <textarea
+                      <textarea id="contato-4"
                         rows={5}
                         required
                         placeholder="Como podemos te ajudar? Digite sua dúvida ou veículo de interesse..."

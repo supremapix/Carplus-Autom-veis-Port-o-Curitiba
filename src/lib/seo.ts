@@ -1,6 +1,9 @@
 import { Vehicle } from '../types/vehicle';
 
 export function buildVehicleTitle(vehicle: Vehicle): string {
+  if (vehicle.status !== 'disponivel') {
+    return `${vehicle.brand} ${vehicle.model} ${vehicle.yearModel} — ${vehicle.status === 'vendido' ? 'Vendido' : 'Reservado'} | Carplus Autos`;
+  }
   if (vehicle.metaTitle) {
     return vehicle.metaTitle;
   }
@@ -10,6 +13,9 @@ export function buildVehicleTitle(vehicle: Vehicle): string {
 }
 
 export function buildVehicleDescription(vehicle: Vehicle): string {
+  if (vehicle.status !== 'disponivel') {
+    return `${vehicle.brand} ${vehicle.model} ${vehicle.yearModel}: veículo ${vehicle.status === 'vendido' ? 'vendido' : 'reservado'}. Consulte o estoque atual da Carplus Autos para outras opções.`;
+  }
   if (vehicle.metaDescription) {
     return vehicle.metaDescription;
   }
