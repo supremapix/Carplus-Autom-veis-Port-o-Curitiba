@@ -1,3 +1,4 @@
+import { OLX_VEHICLES } from '../olx-vehicles';
 // ESTOQUE REAL DA CARPLUS AUTOS (FONTE OFICIAL - PORTÃO, CURITIBA)
 import { Vehicle } from '../../types/vehicle';
 import { VEHICLE_IMAGE_COUNT, getVehicleImageUrl as getCdnUrl } from '../vehicle-image-sources';
@@ -19,6 +20,7 @@ function getImagesForVehicle(slug: string, vehicleTitle: string) {
 }
 
 export const MOCK_VEHICLES: Vehicle[] = [
+  ...OLX_VEHICLES,
   {
     id: 'veh-land-rover-discovery-sport-2023',
     slug: 'land-rover-discovery-sport-se-2-0-4x4-diesel-2023',

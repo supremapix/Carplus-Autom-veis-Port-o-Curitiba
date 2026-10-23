@@ -17,7 +17,7 @@ export interface Vehicle {
   brand: string;
   model: string;
   version: string;
-  yearManufacture: number;
+  yearManufacture?: number;
   yearModel: number;
   price: number;
   previousPrice?: number | null;

@@ -52,8 +52,8 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
 
   const specsList = [
     {
-      label: 'Ano Fabricação / Modelo',
-      value: `${vehicle.yearManufacture} / ${vehicle.yearModel}`,
+      label: vehicle.yearManufacture ? 'Ano Fabricação / Modelo' : 'Ano',
+      value: vehicle.yearManufacture ? `${vehicle.yearManufacture} / ${vehicle.yearModel}` : String(vehicle.yearModel),
       icon: <Calendar className="w-4 h-4 text-[#F59C00]" />,
     },
     {

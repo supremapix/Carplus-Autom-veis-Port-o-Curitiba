@@ -34,14 +34,14 @@ export function buildVehicleJsonLd(vehicle: Vehicle, originUrl = 'https://www.ca
     '@type': 'Car',
     'name': `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel}`,
     'description': vehicle.description || buildVehicleDescription(vehicle),
-    'image': vehicle.images.map(img => img.url),
+    'image': vehicle.images.map(img => new URL(img.url, originUrl).href),
     'brand': {
       '@type': 'Brand',
       'name': vehicle.brand,
     },
     'model': vehicle.model,
     'vehicleModelDate': vehicle.yearModel.toString(),
-    'productionDate': vehicle.yearManufacture.toString(),
+    ...(vehicle.yearManufacture ? { productionDate: vehicle.yearManufacture.toString() } : {}),
     'mileageFromOdometer': {
       '@type': 'QuantitativeValue',
       'value': vehicle.mileage,

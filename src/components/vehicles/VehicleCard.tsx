@@ -142,7 +142,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
           <div className="grid grid-cols-2 gap-2.5 mt-4 pt-4 border-t border-[#E0E0E0] text-xs text-[#666666]">
             <div className="flex items-center gap-2" title="Ano de Fabricação / Modelo">
               <Calendar className="w-4 h-4 text-[#F59C00] shrink-0" />
-              <span className="font-semibold text-[#121212]">{vehicle.yearManufacture}/{vehicle.yearModel}</span>
+              <span className="font-semibold text-[#121212]">{vehicle.yearManufacture ? `${vehicle.yearManufacture}/${vehicle.yearModel}` : vehicle.yearModel}</span>
             </div>
 
             <div className="flex items-center gap-2" title="Quilometragem">

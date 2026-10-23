@@ -245,7 +245,7 @@ export function Veiculo() {
                 {vehicle.brand}
               </span>
               <span className="text-xs text-[#666666] font-bold">
-                {vehicle.yearManufacture}/{vehicle.yearModel} · {formatKm(vehicle.mileage)}
+                {vehicle.yearManufacture ? `${vehicle.yearManufacture}/${vehicle.yearModel}` : vehicle.yearModel} · {formatKm(vehicle.mileage)}
               </span>
               {vehicle.acceptsTrade && (
                 <span className="inline-flex items-center gap-1 bg-[#1A1A1A] text-[#F59C00] text-xs font-display font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wider">
