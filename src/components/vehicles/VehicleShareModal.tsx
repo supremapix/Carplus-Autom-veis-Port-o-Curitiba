@@ -24,7 +24,9 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
   
   const rawTitle = `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel}`;
   const rawPrice = formatPrice(vehicle.price);
-  const rawDescription = `Confira este ${rawTitle} por ${rawPrice} na Carplus Autos Curitiba. Consulte fotos, histórico e condições no anúncio.`;
+  const rawDescription = vehicle.status === 'vendido'
+    ? `${rawTitle} — vendido pela Carplus Autos. Consulte o estoque atual para outras opções.`
+    : `Confira este ${rawTitle} por ${rawPrice} na Carplus Autos Curitiba. Consulte fotos, histórico e condições no anúncio.`;
   
   const shareText = encodeURIComponent(rawDescription);
   const shareTitle = encodeURIComponent(`${rawTitle} | Carplus Autos`);
@@ -34,7 +36,7 @@ export function VehicleShareModal({ vehicle, isOpen, onClose }: VehicleShareModa
   const whatsappUrl = `https://api.whatsapp.com/send?text=${shareText}%0A${encodedUrl}`;
   
   // 2. Threads (Meta Threads intent URL)
-  const threadsUrl = `https://www.threads.net/intent/post?text=${encodeURIComponent(`${rawTitle} por ${rawPrice} na Carplus Autos Curitiba\n\n${currentUrl}`)}`;
+  const threadsUrl = `https://www.threads.net/intent/post?text=${encodeURIComponent(`${rawDescription}\n\n${currentUrl}`)}`;
   
   // 3. Pinterest (Suporta url, media=IMAGEM_ABSOLUTA, description=TEXTO)
   const pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${encodedUrl}&media=${encodedImage}&description=${shareText}`;

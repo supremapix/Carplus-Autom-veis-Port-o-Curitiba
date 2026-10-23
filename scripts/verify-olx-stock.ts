@@ -11,7 +11,7 @@ assert.equal(OLX_VEHICLES.length,5);
 assert.equal(MOCK_VEHICLES.length,17);
 assert.equal(new Set(MOCK_VEHICLES.map(v=>v.slug)).size,17);
 const original=execFileSync('git',['show','7dee036:src/data/mock/vehicles.mock.ts'],{encoding:'utf8'});
-const current=readFileSync('src/data/mock/vehicles.mock.ts','utf8').replace("import { OLX_VEHICLES } from '../olx-vehicles';\n",'').replace('\n  ...OLX_VEHICLES,','');
+const current=readFileSync('src/data/mock/vehicles.mock.ts','utf8').replace(/\r\n/g,'\n').replace("import { OLX_VEHICLES } from '../olx-vehicles';\n",'').replace('\n  ...OLX_VEHICLES,','').replace(/id: 'veh-citroen-c4-lounge-2017'[\s\S]*?updatedAt: '2026-10-23T14:20:27.000Z'/, block => block.replace("status: 'vendido'", "status: 'disponivel'").replace("updatedAt: '2026-10-23T14:20:27.000Z'", "updatedAt: '2024-03-01T10:00:00.000Z'"));
 assert.equal(current.replace(/\r\n/g,'\n'),original.replace(/\r\n/g,'\n'),'All 12 existing records preserved verbatim');
 for(const v of OLX_VEHICLES){
  const item=source.listings.find((x:any)=>v.sourceUrl?.endsWith(x.id));
@@ -21,7 +21,7 @@ for(const v of OLX_VEHICLES){
  v.images.forEach((img,i)=>{assert.equal(img.url,getVehicleImageUrl(v.slug,i));assert.ok(existsSync(`public${img.url}`));assert.ok(!img.url.includes('olx'));});
  const seo=buildVehicleJsonLd(v);
  assert.ok(!('productionDate' in seo));
- assert.equal(seo.offers.price,item.price);
+ assert.equal(seo.offers!.price,item.price);
  assert.ok(seo.image.every(url=>url.startsWith('https://www.carplusautos.com.br/images/')));
  const wa=buildWhatsAppLink(buildVehicleWhatsAppMessage(v));
  assert.ok(wa.startsWith('https://wa.me/5541988740258?text='));

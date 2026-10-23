@@ -182,6 +182,7 @@ export function Estoque() {
       </div>
 
       {/* Conteúdo Principal com Sidebar de Filtros */}
+      <Container><p className="pt-5 text-sm text-[#666666]">Esta página reúne os veículos disponíveis. <Link to="/historico-veiculos" className="font-semibold text-[#121212] underline underline-offset-4">Consulte também o histórico de vendidos.</Link></p></Container>
       <div className="py-6 sm:py-8">
         <Container>
           {/* Seletor Visual de Marcas com Logos Reais */}

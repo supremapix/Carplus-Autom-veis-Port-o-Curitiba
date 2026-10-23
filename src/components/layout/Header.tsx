@@ -106,6 +106,7 @@ export function Header() {
 
   // Links completos para o Menu Mobile
   const navLinks = [
+    { name: 'VENDIDOS', path: '/historico-veiculos', icon: <Car className="w-6 h-6 text-[#F59C00]" />, desc: 'Histórico de veículos já vendidos' },
     { name: 'INÍCIO', path: '/', icon: <Home className="w-6 h-6 text-[#F59C00]" />, desc: 'Página inicial da loja' },
     { name: 'ESTOQUE', path: '/estoque', icon: <Car className="w-6 h-6 text-[#F59C00]" />, desc: 'Ver todos os veículos à venda', highlight: true },
     { name: 'VENDA SEU CARRO', path: '/venda-seu-carro', icon: <DollarSign className="w-6 h-6 text-[#F59C00]" />, desc: 'Avaliamos e compramos seu veículo' },
@@ -193,6 +194,8 @@ export function Header() {
                   <span className="absolute bottom-0 left-1 right-1 h-[2px] bg-[#F59C00]" />
                 )}
               </Link>
+
+              <Link to="/historico-veiculos" aria-current={isActive('/historico-veiculos') ? 'page' : undefined} className={`font-bold uppercase tracking-[0.05em] py-1 px-1 text-[12px] whitespace-nowrap ${isActive('/historico-veiculos') ? 'text-[#F59C00]' : 'text-white/90 hover:text-[#F59C00]'}`}>VENDIDOS</Link>
 
               {/* Dropdown Agrupado: SERVIÇOS (Venda seu Carro, Financiamento, Consignação) */}
               <div

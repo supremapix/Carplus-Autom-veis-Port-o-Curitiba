@@ -101,7 +101,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
 
         {/* Badge Aceita Troca / Curitiba */}
         <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5">
-          {vehicle.acceptsTrade && (
+          {vehicle.acceptsTrade && !isSold && (
             <span className="bg-black/85 backdrop-blur-xs text-white font-semibold text-[11px] px-2.5 py-1 rounded-full border border-[#3E3E3E] shadow-sm flex items-center gap-1.5">
               <RefreshCw className="w-3 h-3 text-[#F59C00]" />
               <span>Aceita troca</span>

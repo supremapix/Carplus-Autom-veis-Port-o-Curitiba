@@ -7,7 +7,8 @@ import { buildWhatsAppLink } from '../src/lib/whatsapp';
 for (const vehicle of MOCK_VEHICLES) {
   const schema = buildVehicleJsonLd(vehicle);
   assert.equal(schema.mileageFromOdometer.value, vehicle.mileage);
-  assert.equal(schema.offers.price, vehicle.price);
+  if (vehicle.status === 'vendido') assert.equal(schema.offers, undefined);
+  else assert.equal(schema.offers!.price, vehicle.price);
   if (vehicle.status === 'vendido') {
     assert.match(buildVehicleTitle(vehicle), /Vendido/);
     assert.match(buildVehicleDescription(vehicle), /vendido/);

@@ -229,7 +229,7 @@ export function VehicleSpecs({ vehicle }: VehicleSpecsProps) {
       {vehicle.description && (
         <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-8 shadow-xs">
           <h2 className="font-display font-bold text-xl uppercase text-[#121212] tracking-wide pb-4 mb-4 border-b border-[#E0E0E0]">
-            Sobre este Veículo
+              {vehicle.status === 'vendido' ? 'Descrição do anúncio original — veículo vendido' : 'Sobre este Veículo'}
           </h2>
           <div className="text-sm text-[#333333] leading-relaxed whitespace-pre-line font-medium">
             {vehicle.description}

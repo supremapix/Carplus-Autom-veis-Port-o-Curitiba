@@ -93,6 +93,10 @@ export function InterestForm({ vehicle, onOpenTradeInModal }: InterestFormProps)
 
   return (
     <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-6 sm:p-7 shadow-xl space-y-6">
+      {isSold && <div className="space-y-3">
+        <p className="font-semibold">Este veículo já foi vendido. O anúncio permanece disponível para consulta ao histórico.</p>
+        <Link to="/estoque" className="inline-flex rounded-full bg-[#F59C00] px-5 py-3 font-bold text-black">Ver veículos disponíveis</Link>
+      </div>}
       {/* Botões de Ação Imediata */}
       <div className="space-y-3">
         {!isSold && (

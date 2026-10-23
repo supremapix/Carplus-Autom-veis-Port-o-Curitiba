@@ -8,7 +8,7 @@ import type { Vehicle } from '../src/types/vehicle';
 const before = JSON.stringify(MOCK_VEHICLES);
 const original = await getHomeInventory();
 assert.equal(original.vehicles.length, 8);
-assert.equal(original.totalCount, 12);
+assert.equal(original.totalCount, 11);
 assert.equal(new Set(original.vehicles.map(v => v.slug)).size, 8);
 assert.ok(original.vehicles.every(v => v.status === 'disponivel'));
 assert.equal(original.vehicles.filter(v => v.sourceUrl?.includes('olx')).length, 5);

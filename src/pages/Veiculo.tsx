@@ -248,7 +248,7 @@ export function Veiculo() {
               <span className="text-xs text-[#666666] font-bold">
                 {vehicle.yearManufacture ? `${vehicle.yearManufacture}/${vehicle.yearModel}` : vehicle.yearModel} · {formatKm(vehicle.mileage)}
               </span>
-              {vehicle.acceptsTrade && (
+              {!isSold && vehicle.acceptsTrade && (
                 <span className="inline-flex items-center gap-1 bg-[#1A1A1A] text-[#F59C00] text-xs font-display font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wider">
                   <RefreshCw className="w-3 h-3" />
                   <span>Aceita Troca</span>

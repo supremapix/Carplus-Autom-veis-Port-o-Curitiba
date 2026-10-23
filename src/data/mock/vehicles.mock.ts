@@ -224,7 +224,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
     doors: 4,
     seats: 5,
     plateEnd: '7',
-    status: 'disponivel',
+    status: 'vendido',
     featured: false,
     acceptsTrade: true,
     additionalInfo: [
@@ -262,7 +262,7 @@ export const MOCK_VEHICLES: Vehicle[] = [
     sellerId: undefined,
     views: 650,
     createdAt: '2024-03-01T10:00:00.000Z',
-    updatedAt: '2024-03-01T10:00:00.000Z',
+    updatedAt: '2026-10-23T14:20:27.000Z',
   },
   {
     id: 'veh-citroen-aircross-2017',

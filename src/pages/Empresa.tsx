@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Wrench, Car, ExternalLink, ArrowRight, ShieldCheck, Award } from 'lucide-react';
 import { Logo } from '../components/ui/Logo';
 import { Container } from '../components/ui/Container';
-import { PageHero } from '../components/ui/PageHero';
+import { CompactPageHeading } from '../components/ui/CompactPageHeading';
 import { Button } from '../components/ui/Button';
 import { SeoHead } from '../components/ui/SeoHead';
 import { buildBreadcrumbJsonLd } from '../lib/seo';
@@ -24,24 +24,16 @@ export function Empresa() {
       />
 
       {/* Page Hero Preto */}
-      <PageHero
-        kicker="TRADIÇÃO & TRANSPARÊNCIA"
-        title="A CARPLUS AUTOS"
-        subtitle="Estrutura física completa, showroom moderno e compromisso com procedência no mercado automotivo de Curitiba."
-        breadcrumbs={[
-          { label: 'Início', href: '/' },
-          { label: 'Sobre Nós' },
-        ]}
-      />
+      <CompactPageHeading title="A Carplus Autos" description="Compra, venda, troca e consignação de seminovos no Portão, em Curitiba." />
 
-      <div className="py-12 sm:py-16">
+      <div className="py-8 sm:py-10">
         <Container>
           <div className="max-w-4xl mx-auto space-y-12">
             {/* Bloco Institucional */}
-            <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-3xl p-8 sm:p-12 space-y-8 shadow-xl">
+            <div className="bg-[#FAFAFA] border border-[#E0E0E0] rounded-xl p-6 sm:p-8 space-y-6 shadow-none">
               
-              <div className="flex items-center justify-center p-8 sm:p-12 bg-black rounded-2xl border border-[#2E2E2E] shadow-lg">
-                <Logo variant="dark" className="h-20 sm:h-28 md:h-36 max-w-full" />
+              <div className="flex items-center justify-start p-5 sm:p-6 bg-black rounded-lg">
+                <Logo variant="dark" className="h-12 sm:h-16 max-w-full" />
               </div>
 
               <div className="space-y-5 text-[#333333] text-base leading-relaxed">

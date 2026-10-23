@@ -39,7 +39,7 @@ export function buildVehicleJsonLd(vehicle: Vehicle, originUrl = 'https://www.ca
     '@context': 'https://schema.org',
     '@type': 'Car',
     'name': `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.yearModel}`,
-    'description': vehicle.description || buildVehicleDescription(vehicle),
+    'description': vehicle.status === 'vendido' ? buildVehicleDescription(vehicle) : vehicle.description || buildVehicleDescription(vehicle),
     'image': vehicle.images.map(img => new URL(img.url, originUrl).href),
     'brand': {
       '@type': 'Brand',
@@ -58,7 +58,7 @@ export function buildVehicleJsonLd(vehicle: Vehicle, originUrl = 'https://www.ca
     'color': vehicle.color,
     'bodyType': vehicle.bodyType || 'Automóvel',
     'numberOfDoors': vehicle.doors || 4,
-    'offers': {
+    ...(vehicle.status !== 'vendido' ? { 'offers': {
       '@type': 'Offer',
       'price': vehicle.price,
       'priceCurrency': 'BRL',
@@ -79,7 +79,7 @@ export function buildVehicleJsonLd(vehicle: Vehicle, originUrl = 'https://www.ca
           'addressCountry': 'BR',
         },
       },
-    },
+    } } : {}),
   };
 }
 

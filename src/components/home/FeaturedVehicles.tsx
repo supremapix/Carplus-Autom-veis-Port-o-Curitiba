@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Car, ShieldCheck } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
 import { VehicleCard } from '../vehicles/VehicleCard';
@@ -48,6 +49,7 @@ export function FeaturedVehicles({ vehicles, totalCount }: FeaturedVehiclesProps
         </div>
 
         {/* Grid de Veículos */}
+        <p className="mb-6 text-center text-sm text-[#666666]">Quer conhecer nosso histórico? <Link to="/historico-veiculos" className="font-semibold text-[#121212] underline underline-offset-4">Ver veículos vendidos</Link></p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {vehicles.slice(0, HOME_VEHICLE_LIMIT).map((vehicle) => (
             <VehicleCard key={vehicle.id} vehicle={vehicle} />
