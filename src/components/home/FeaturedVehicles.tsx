@@ -5,6 +5,7 @@ import { VehicleCard } from '../vehicles/VehicleCard';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Button } from '../ui/Button';
+import { HOME_VEHICLE_LIMIT } from '../../lib/home-inventory';
 
 interface FeaturedVehiclesProps {
   vehicles: Vehicle[];
@@ -15,7 +16,7 @@ export function FeaturedVehicles({ vehicles, totalCount }: FeaturedVehiclesProps
   const displayTotal = totalCount !== undefined && totalCount > 0 ? totalCount : vehicles.length;
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-b border-[#E0E0E0]">
+    <section aria-label="Veículos em destaque" className="py-16 sm:py-24 bg-white border-b border-[#E0E0E0]">
       <Container>
         {/* Título da Seção Centralizado e Alinhado com Subtítulo e Botão */}
         <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto mb-12 pb-6 border-b border-[#E0E0E0]">
@@ -27,7 +28,7 @@ export function FeaturedVehicles({ vehicles, totalCount }: FeaturedVehiclesProps
                 VEÍCULOS EM <span className="text-[#F59C00] italic">DESTAQUE</span>
               </>
             }
-            subtitle="Seminovos revisados, periciados com laudo aprovado e prontos para entrega em Curitiba."
+            subtitle="Confira os veículos disponíveis adicionados ou atualizados mais recentemente no nosso estoque."
           />
 
           <div className="mt-6 flex flex-col items-center justify-center">
@@ -48,7 +49,7 @@ export function FeaturedVehicles({ vehicles, totalCount }: FeaturedVehiclesProps
 
         {/* Grid de Veículos */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-          {vehicles.slice(0, 4).map((vehicle) => (
+          {vehicles.slice(0, HOME_VEHICLE_LIMIT).map((vehicle) => (
             <VehicleCard key={vehicle.id} vehicle={vehicle} />
           ))}
         </div>

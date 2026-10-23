@@ -9,7 +9,7 @@ import { SellPromo } from '../components/home/SellPromo';
 import { FinancingTradePromo } from '../components/home/FinancingTradePromo';
 import { LocationSection } from '../components/home/LocationSection';
 import { HomeFAQ } from '../components/home/HomeFAQ';
-import { getFeaturedVehicles, getVehicles } from '../services/vehicles';
+import { getHomeInventory } from '../services/vehicles';
 import { Vehicle } from '../types/vehicle';
 import { buildGlobalDealerJsonLd } from '../lib/seo';
 import { SeoHead } from '../components/ui/SeoHead';
@@ -19,8 +19,10 @@ export function Home() {
   const [totalVehiclesCount, setTotalVehiclesCount] = useState<number>(0);
 
   useEffect(() => {
-    getFeaturedVehicles().then(setFeaturedVehicles);
-    getVehicles().then((all) => setTotalVehiclesCount(all.length));
+    getHomeInventory().then(({ vehicles, totalCount }) => {
+      setFeaturedVehicles(vehicles);
+      setTotalVehiclesCount(totalCount);
+    });
   }, []);
 
   const jsonLd = buildGlobalDealerJsonLd();

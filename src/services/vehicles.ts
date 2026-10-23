@@ -2,6 +2,7 @@ import { MOCK_VEHICLES } from '../data/mock/vehicles.mock';
 import { VehicleFiltersState, VehicleSortOption } from '../types/filters';
 import { Vehicle, VehicleStatus } from '../types/vehicle';
 import { slugify } from '../lib/utils';
+import { selectHomeInventory } from '../lib/home-inventory';
 
 // Persistent in-memory state for mock development (ETAPA 1).
 // Em ETAPA 2, essas funções executarão queries no Supabase Database.
@@ -107,8 +108,11 @@ export async function getVehicleBySlug(slug: string): Promise<Vehicle | null> {
 }
 
 export async function getFeaturedVehicles(): Promise<Vehicle[]> {
-  await new Promise((resolve) => setTimeout(resolve, 50));
-  return localVehicles.filter(v => v.featured && v.status === 'disponivel');
+  return (await getHomeInventory()).vehicles;
+}
+
+export async function getHomeInventory() {
+  return selectHomeInventory(localVehicles);
 }
 
 export async function getRelatedVehicles(vehicleId: string): Promise<Vehicle[]> {
