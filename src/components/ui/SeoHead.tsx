@@ -36,7 +36,7 @@ export function SeoHead({
 
     // 2. Meta description
     updateMeta('meta[name="description"]', 'name', 'description', description);
-    updateMeta('meta[name="robots"]', 'name', 'robots', noindex ? 'noindex, follow' : 'index, follow');
+    updateMeta('meta[name="robots"]', 'name', 'robots', noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large');
 
     // 3. Open Graph
     updateMeta('meta[property="og:title"]', 'property', 'og:title', title);

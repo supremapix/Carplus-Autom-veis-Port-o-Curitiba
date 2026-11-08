@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BlogPreview } from '../components/blog/BlogPreview';
 import { Hero } from '../components/home/Hero';
 import { HomeIntroSection } from '../components/home/HomeIntroSection';
 import { QuickSearchSection } from '../components/home/QuickSearchSection';
@@ -60,6 +61,8 @@ export function Home() {
 
       {/* 8. Financiamento e Consignação (Dois Cards Grandes) */}
       <FinancingTradePromo />
+
+      <BlogPreview />
 
       {/* 9. Onde Estamos (Localização & Mapa) */}
       <LocationSection />

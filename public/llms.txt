@@ -1,101 +1,25 @@
-# Carplus Autos Curitiba
+# Carplus Autos
 
-> Concessionária e loja de veículos seminovos selecionados e revisados com garantia e procedência em Curitiba - PR.
+> Loja de compra, venda, troca e consignação de veículos no bairro Portão, em Curitiba, Paraná.
 
-## Informações da Empresa
-- **Nome Fantasia**: Carplus Autos
-- **Endereço**: Av. Presidente Arthur da Silva Bernardes, 1323 — Portão, Curitiba - PR, CEP 80320-300
-- **Telefone / WhatsApp**: (41) 98874-0258
-- **Website Oficial**: https://www.carplusautos.com.br
-- **Horário de Atendimento**: Segunda a Sexta: 08:00 às 18:00 | Sábado: 08:00 às 12:00
+## Contato
+- Site oficial: https://www.carplusautos.com.br
+- Endereço: Av. Presidente Arthur da Silva Bernardes, 1323, Portão, Curitiba, PR, CEP 80320-300
+- Telefone e WhatsApp: (41) 98874-0258
 
-## Serviços
-- Venda de Veículos Seminovos Selecionados e Periciados
-- Compra de Veículos com Pagamento À Vista
-- Troca de Veículos com Troco na Troca e Aceite de Usado
-- Financiamento de Veículos em até 60x com os Principais Bancos
-- Consignação Segura com Divulgação Multicanal
+## Páginas oficiais
+- [Estoque](https://www.carplusautos.com.br/estoque): consulte a disponibilidade na página de cada veículo e confirme com a loja.
+- [Empresa](https://www.carplusautos.com.br/empresa)
+- [Contato](https://www.carplusautos.com.br/contato)
+- [Venda e troca](https://www.carplusautos.com.br/venda-seu-carro)
+- [Financiamento](https://www.carplusautos.com.br/financiamento): condições dependem de proposta e análise de crédito.
+- [Consignação](https://www.carplusautos.com.br/consignacao)
 
-## Estoque Atual de Veículos (Curitiba)
+## Guias do blog
+- [Checklist para comprar carro usado em Curitiba](https://www.carplusautos.com.br/blog/checklist-comprar-carro-usado-curitiba): Saiba o que conferir na documentação, na avaliação mecânica e no orçamento antes de comprar um carro usado em Curitiba.
+- [Documentos e transferência de veículo no Paraná](https://www.carplusautos.com.br/blog/documentos-transferencia-veiculo-parana): Entenda CRLV-e, ATPV-e, comunicação de venda e os cuidados para organizar a transferência de um carro no Paraná.
+- [Financiamento de carro: entrada, CET e custo total](https://www.carplusautos.com.br/blog/financiamento-entrada-cet-custo-total): Aprenda a comparar propostas de financiamento de veículo olhando entrada, prazo, CET e desembolso total, além do valor da parcela.
+- [Troca, venda direta ou consignação: como escolher?](https://www.carplusautos.com.br/blog/troca-venda-direta-consignacao): Compare troca, venda direta e consignação de veículo pelo valor líquido, pelo prazo e pelas responsabilidades antes de decidir.
 
-1. **Toyota Hilux SW4 SRX Platinum 4x4 2.8 Turbo Diesel Aut. 7 lugares 2024**
-   - Preço: R$ 339.000
-   - Ano: 2024 / 2024
-   - Quilometragem: 27.000 km
-   - Combustível: Diesel
-   - Câmbio: Automático
-   - Cor: Prata
-   - Lugares: 7
-   - Características: Único dono, Laudo cautelar 100% aprovado, Revisões em concessionária, Com garantia de fábrica, 4x4, Teto solar, Couro, Aceita troca.
-   - URL: https://www.carplusautos.com.br/estoque/toyota-hilux-sw4-srx-platinum-4x4-2-8-diesel-2024
-
-2. **Land Rover Discovery Sport SE 2.0 4x4 Diesel Aut. (MHEV) 2023**
-   - Preço: R$ 219.900 (De R$ 229.900)
-   - Ano: 2023 / 2023
-   - Quilometragem: 61.300 km
-   - Combustível: Diesel híbrido (MHEV)
-   - Câmbio: Automático
-   - Cor: Branco
-   - Características: Único dono, Pneus novos Pirelli, Laudo cautelar 100% aprovado, Revisões em concessionária, Aceita troca.
-   - URL: https://www.carplusautos.com.br/estoque/land-rover-discovery-sport-se-2-0-4x4-diesel-2023
-
-3. **BMW X3 xDrive 20i 2.0 X-Line Bi-Turbo Flex Aut. 2017**
-   - Preço: R$ 118.900
-   - Ano: 2017 / 2017
-   - Quilometragem: 45.000 km
-   - Combustível: Flex
-   - Câmbio: Automático
-   - Cor: Cinza
-   - Características: Baixíssima quilometragem, Laudo cautelar aprovado, Sem leilão ou sinistro, Aceita troca.
-   - URL: https://www.carplusautos.com.br/estoque/bmw-x3-xdrive-20i-x-line-2017
-
-4. **Citroën C4 Lounge Origine 1.6 Turbo THP Flex Aut. 2017**
-   - Preço: R$ 52.900 (De R$ 54.900 — OFERTA)
-   - Ano: 2017 / 2017
-   - Quilometragem: 111.000 km
-   - Combustível: Flex
-   - Câmbio: Automático
-   - Cor: Branco
-   - Características: Motor Turbo THP Flex, Câmbio de 6 marchas, Ar digital, Rodas de liga leve aro 16, Multimídia, Laudo cautelar aprovado, Aceita troca.
-   - URL: https://www.carplusautos.com.br/estoque/citroen-c4-lounge-origine-1-6-turbo-flex-automatico-2017
-
-5. **Citroën Aircross Feel 1.6 Flex 16V 5P Aut. 2017**
-   - Preço: R$ 49.800
-   - Ano: 2017 / 2017
-   - Quilometragem: 108.000 km
-   - Combustível: Flex
-   - Câmbio: Automático
-   - Cor: Branco
-   - Características: Posição de dirigir elevada, Para-brisa panorâmico, Multimídia touch, DRL em LED, Sensor de ré, Laudo cautelar aprovado, Aceita troca.
-   - URL: https://www.carplusautos.com.br/estoque/citroen-aircross-feel-1-6-flex-automatico-2017
-
-6. **Nissan Sentra S 2.0 Flex Fuel 16V Aut. 2011**
-   - Preço: R$ 34.900 (De R$ 35.900)
-   - Ano: 2011 / 2011
-   - Quilometragem: 161.000 km
-   - Combustível: Flex
-   - Câmbio: Automático
-   - Cor: Preto
-   - Características: Completo, 4 pneus novos, Revisões em dia, Multimídia, Aceita troca.
-   - URL: https://www.carplusautos.com.br/estoque/nissan-sentra-s-2-0-flex-automatico-2011
-
-7. **Ford Focus Sedan 2.0 16V Flex 4P Aut. 2012**
-   - Preço: R$ 35.900
-   - Ano: 2012 / 2012
-   - Quilometragem: 165.200 km
-   - Combustível: Flex
-   - Câmbio: Automático
-   - Cor: Preto
-   - Características: Bancos em couro, Rodas de liga leve, Revisão em dia, IPVA pago, Aceita troca.
-   - URL: https://www.carplusautos.com.br/estoque/ford-focus-sedan-2-0-16v-flex-automatico-2012
-
-8. **Peugeot 408 Griffe 2.0 Flex 16V Aut. 2012**
-   - Preço: R$ 32.900
-   - Ano: 2012 / 2012
-   - Quilometragem: 137.069 km
-   - Combustível: Flex
-   - Câmbio: Automático
-   - Cor: Branco
-   - Características: Teto solar, Bancos de couro, Ar dual zone, GPS, Piloto automático, IPVA pago, Aceita troca.
-   - URL: https://www.carplusautos.com.br/estoque/peugeot-408-griffe-2-0-16v-flex-automatico-2012
-
+## Contexto editorial
+Os artigos incluem data, autoria institucional, referências e perguntas frequentes. Fotografias de veículos são ilustrações do acervo e não indicam disponibilidade. Preços, estoque e condições comerciais devem ser confirmados nas páginas atuais e com a loja. Este arquivo é um índice auxiliar; o conteúdo completo está disponível em HTML nas páginas do blog.

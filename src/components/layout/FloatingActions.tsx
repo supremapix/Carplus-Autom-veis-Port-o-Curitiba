@@ -104,6 +104,7 @@ export function FloatingActions() {
   if (isAdmin) return null;
 
   const getCleanUrl = () => {
+    if (typeof window === 'undefined') return `https://www.carplusautos.com.br${location.pathname}`;
     try {
       const url = new URL(window.location.href);
       url.searchParams.delete('utm_source');
@@ -116,7 +117,7 @@ export function FloatingActions() {
   };
 
   const currentUrl = getCleanUrl();
-  const pageTitle = document.title || 'Carplus Autos Curitiba';
+  const pageTitle = (typeof document !== 'undefined' && document.title) || 'Carplus Autos Curitiba';
   const currentMsg = SHARE_MESSAGES[currentMessageIndex];
   const shareText = encodeURIComponent(currentMsg);
   const encodedUrl = encodeURIComponent(currentUrl);

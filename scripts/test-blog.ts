@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import { blogPosts } from '../src/data/blog-posts';
+import { SITE_URL, buildBlogArticleJsonLd, buildBlogJsonLd } from '../src/lib/blog-seo';
+
+assert.equal(blogPosts.length, 4);
+assert.equal(new Set(blogPosts.map(post => post.slug)).size, 4);
+const sitemap = await fs.readFile('dist/sitemap.xml', 'utf8');
+const llms = await fs.readFile('dist/llms.txt', 'utf8');
+const index = await fs.readFile('dist/blog/index.html', 'utf8');
+assert.equal((index.match(/<h1[\s>]/g) || []).length, 1);
+assert.match(index, /CollectionPage/);
+assert.equal(buildBlogJsonLd().length, 2);
+for (const post of blogPosts) {
+  assert.match(post.slug, /^[a-z0-9-]+$/);
+  assert.ok(post.title.length > 20 && post.title.length < 115);
+  assert.ok(post.description.length > 70 && post.description.length < 200);
+  assert.ok(post.sections.length >= 4);
+  assert.ok(post.faqs.length >= 3);
+  assert.ok(post.sources.length >= 2);
+  assert.equal(new Set(post.sections.map(section => section.id)).size, post.sections.length);
+  for (const source of post.sources) assert.ok(source.url.startsWith('https://'));
+  for (const slug of post.relatedSlugs) assert.ok(blogPosts.some(item => item.slug === slug));
+  await fs.access(`public${post.image}`);
+  const html = await fs.readFile(`dist/blog/${post.slug}/index.html`, 'utf8');
+  assert.equal((html.match(/<h1[\s>]/g) || []).length, 1);
+  assert.ok(html.includes(`<link rel="canonical" href="${SITE_URL}/blog/${post.slug}"`));
+  assert.ok(html.includes(post.answer));
+  assert.ok(html.includes('max-image-preview:large'));
+  assert.ok(!html.includes('noindex'));
+  assert.ok(html.includes('BlogPosting'));
+  const ld = JSON.parse(html.match(/<script type="application\/ld\+json" id="page-json-ld">([\s\S]*?)<\/script>/)![1]);
+  assert.equal(ld[0].headline, post.title);
+  assert.equal(ld[0].author.name, 'Carplus Autos');
+  assert.equal(ld[0].image[0], `${SITE_URL}${post.image}`);
+  assert.ok(sitemap.includes(`${SITE_URL}/blog/${post.slug}`));
+  assert.ok(llms.includes(`${SITE_URL}/blog/${post.slug}`));
+  assert.ok(index.includes(`/blog/${post.slug}`));
+  assert.equal(buildBlogArticleJsonLd(post)[0]['@type'], 'BlogPosting');
+  console.log(`PASS ${post.slug}: rendered content, metadata, schema, image, sitemap, links`);
+}
+console.log('PASS blog index and all four articles');

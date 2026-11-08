@@ -17,6 +17,8 @@ import { Empresa } from './pages/Empresa';
 import { Contato } from './pages/Contato';
 import { HistoricoVeiculos } from './pages/HistoricoVeiculos';
 import { PoliticaPrivacidade } from './pages/PoliticaPrivacidade';
+import { Blog } from './pages/Blog';
+import { BlogArticle } from './pages/BlogArticle';
 import { NotFound } from './pages/NotFound';
 
 function ScrollToTop() {
@@ -55,13 +57,13 @@ function ScrollToTop() {
   return null;
 }
 
-export default function App() {
+export function AppContent() {
   useEffect(() => {
     initAnalyticsListeners();
   }, []);
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       {/* Skip Link para Acessibilidade */}
       <a
@@ -82,6 +84,8 @@ export default function App() {
         <main id="main-content" className="flex-1 w-full max-w-full overflow-x-clip pb-16 lg:pb-0">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/estoque" element={<Estoque />} />
             <Route path="/estoque/:slug" element={<Veiculo />} />
             <Route path="/venda-seu-carro" element={<VendaSeuCarro />} />
@@ -116,6 +120,10 @@ export default function App() {
         {/* Ações Flutuantes (Compartilhamento + Contato Rápido + Topo) */}
         <FloatingActions />
       </div>
-    </BrowserRouter>
+    </>
   );
+}
+
+export default function App() {
+  return <BrowserRouter><AppContent /></BrowserRouter>;
 }

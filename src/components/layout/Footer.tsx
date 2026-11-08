@@ -132,6 +132,7 @@ export function Footer() {
                 PÁGINAS DO SITE
               </h4>
               <ul className="space-y-3 text-base">
+                <li><Link to="/blog" className="flex items-center gap-2.5 text-[#E0E0E0] hover:text-[#F59C00] transition-colors py-1"><FileText className="w-5 h-5 text-[#F59C00] shrink-0" /><span>Blog: Guias sobre Carros</span></Link></li>
                 <li>
                   <Link
                     to="/estoque"
