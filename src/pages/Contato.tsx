@@ -46,9 +46,9 @@ export function Contato() {
         source: 'direto',
       });
 
-      trackEvent('generate_lead', {
+      trackEvent('form_prepare', {
         form_name: 'contato',
-        contact_method: 'formulario',
+        contact_method: 'preparacao_whatsapp',
         currency: 'BRL',
         value: 0,
       });
@@ -185,13 +185,13 @@ export function Contato() {
                     <h2 className="font-display font-bold text-3xl uppercase tracking-wide text-[#121212]">
                       Continue pelo WhatsApp
                     </h2>
-                    <RequestContinuation message={`Olá! Meu nome é ${name}. ${message}`} />
+                    <RequestContinuation message={[`Olá! Meu nome é ${name.trim()}.`, `WhatsApp para retorno: ${whatsapp.trim()}`, ...(email.trim() ? [`E-mail: ${email.trim()}`] : []), message.trim()].join('\n')} />
                     <div className="pt-4">
                       <Button
                         onClick={() => setSuccess(false)}
                         variant="primary"
                       >
-                        ENVIAR OUTRA MENSAGEM
+                        REVISAR MENSAGEM
                       </Button>
                     </div>
                   </div>
@@ -199,7 +199,7 @@ export function Contato() {
                   <form onSubmit={handleSubmit} className="space-y-6">
 <p className="text-sm text-[#666666]">Preencha os dados e conclua o envio pelo WhatsApp na próxima etapa.</p>
                     <h2 className="font-display font-bold text-2xl uppercase text-[#121212] tracking-wide mb-2">
-                      ENVIE UMA MENSAGEM
+                      PREPARE SUA MENSAGEM
                     </h2>
 
                     <div>
@@ -291,7 +291,7 @@ export function Contato() {
                         size="lg"
                         icon={<Send className="w-5 h-5 text-black" />}
                       >
-                        {loading ? 'ENVIANDO...' : 'ENVIAR MENSAGEM'}
+                        {loading ? 'PREPARANDO...' : 'PREPARAR MENSAGEM'}
                       </Button>
                     </div>
                   </form>
