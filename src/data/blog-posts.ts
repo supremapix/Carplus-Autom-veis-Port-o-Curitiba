@@ -10,7 +10,9 @@ export type BlogPost = {
   image: string;
   imageAlt: string;
   imageCaption: string;
-  sections: Array<{ id: string; title: string; paragraphs: string[]; bullets?: string[] }>;
+  imageSize?: { width: number; height: number };
+  stickers?: string[];
+  sections: Array<{ id: string; title: string; paragraphs: string[]; bullets?: string[]; milestones?: Array<{ year: string; title: string; text: string; source: number }> }>;
   faqs: Array<{ q: string; a: string }>;
   sources: Array<{ name: string; url: string }>;
   cta: { label: string; href: string };
@@ -18,6 +20,132 @@ export type BlogPost = {
 };
 
 export const blogPosts: BlogPost[] = [
+{
+  "slug": "historia-do-carro-no-brasil-e-do-seminovo",
+  "title": "Como o carro mudou no Brasil e o que isso ensina ao comprar um seminovo",
+  "description": "De 1956 à fábrica no Paraná e ao motor flex: conheça os marcos e saiba o que verificar em um carro usado antes de decidir em Curitiba.",
+  "category": "História automotiva",
+  "datePublished": "2026-11-22",
+  "dateModified": "2026-11-22",
+  "readingMinutes": 5,
+  "answer": "A indústria brasileira ampliou a produção local, adotou novas tecnologias e chegou ao carro flex. Para escolher um seminovo hoje, descubra qual é a versão de fato, examine o histórico daquele exemplar e confirme documentação e condição mecânica. O ano do carro não responde a essas três perguntas.",
+  "image": "/images/editorial/historia-carro-brasil-seminovos.webp",
+  "imageAlt": "Carro compacto antigo de cor creme e hatch compacto moderno prata estacionados lado a lado",
+  "imageCaption": "Imagem ilustrativa gerada por IA. Não mostra veículos do estoque nem as instalações da Carplus Autos.",
+  "imageSize": {
+    "width": 1200,
+    "height": 675
+  },
+  "stickers": [
+    "Indústria brasileira",
+    "Paraná",
+    "Compra e venda"
+  ],
+  "sections": [
+    {
+      "id": "linha-do-tempo",
+      "title": "Quatro momentos da indústria brasileira",
+      "paragraphs": [
+        "A história não começa com um único modelo. O que mudou por etapas foi a escala com que o Brasil passou a produzir, projetar e adaptar carros para mercados e usos locais."
+      ],
+      "milestones": [
+        {
+          "year": "1956",
+          "title": "O país organiza a produção local",
+          "text": "O Grupo Executivo da Indústria Automobilística, o GEIA, estabeleceu bases para ampliar a produção local de carros e autopeças. A Anfavea também foi fundada nesse ano.",
+          "source": 1
+        },
+        {
+          "year": "Fim dos anos 1980",
+          "title": "A injeção eletrônica entra na história do carro nacional",
+          "text": "A Anfavea registra o Gol GTI como o primeiro automóvel brasileiro com injeção eletrônica. Em vez de escolher um exemplar só pelo apelido do modelo, vale conferir a versão e o sistema que ele realmente usa.",
+          "source": 1
+        },
+        {
+          "year": "1998",
+          "title": "São José dos Pinhais entra no mapa industrial",
+          "text": "A Renault inaugurou sua fábrica brasileira em São José dos Pinhais. A história do automóvel no país também passa pela Região Metropolitana de Curitiba, não apenas pelo ABC paulista.",
+          "source": 2
+        },
+        {
+          "year": "Anos 2000",
+          "title": "O flex vira parte da rotina",
+          "text": "A tecnologia flex permite ao motor projetado para esse fim operar com gasolina, etanol ou mistura, conforme orientação do fabricante. A expansão do flex é um dos marcos apontados pela Anfavea.",
+          "source": 1
+        }
+      ]
+    },
+    {
+      "id": "ano-modelo-versao",
+      "title": "Curiosidade: fabricação, ano-modelo e versão não são sinônimos",
+      "paragraphs": [
+        "Um carro pode ter sido fabricado em um ano e pertencer ao ano-modelo seguinte. A versão identifica o conjunto comercial: motorização, transmissão e equipamentos podem variar dentro do mesmo modelo e do mesmo ano-modelo.",
+        "Antes de comparar dois anúncios, confirme os dois anos na documentação e cheque a versão e os equipamentos no veículo. Em especial, não deduza que um item de segurança está presente pelo nome da família do carro."
+      ]
+    },
+    {
+      "id": "tres-verificacoes",
+      "title": "Antes de comprar um usado, faça três verificações separadas",
+      "paragraphs": [
+        "Para quem procura um carro na região do Portão, comece pelo tamanho que cabe na garagem e pela rotina real: trânsito, estrada, ocupantes e manutenção prevista. Só depois passe à comparação entre exemplares."
+      ],
+      "bullets": [
+        "Identificação e documentação: confira os dados com o vendedor e consulte o extrato do Detran-PR e os canais de recall da Senatran. Repita a consulta perto do fechamento.",
+        "Condição: histórico de manutenção e inspeção independente complementam o extrato. Em eletrificados, confirme se há diagnóstico compatível para os componentes de alta tensão.",
+        "Negociação: compare o que está escrito na proposta, confirme quem recebe e deixe claro o que será entregue, quando e com quais pendências resolvidas."
+      ]
+    },
+    {
+      "id": "venda-troca-consignacao",
+      "title": "Quem vende também precisa comparar mais do que o valor anunciado",
+      "paragraphs": [
+        "Na venda, separe as informações do veículo, o histórico disponível e o que precisa de reparo. Em uma troca, compare o valor atribuído ao seu carro e o valor total do veículo de destino. Na consignação, leia o prazo, a remuneração, a responsabilidade pela guarda e as regras de desistência antes de decidir.",
+        "A Carplus Autos atende no Portão, em Curitiba, para conversar sobre compra, venda, troca e consignação. Confirme com a equipe as condições de cada proposta e a disponibilidade do veículo antes de se deslocar."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Um carro com ano-modelo mais novo é sempre melhor?",
+      "a": "Não. Compare o equipamento que a versão efetivamente tem, condição, histórico e custos previstos. Dois exemplares do mesmo ano podem ter conservação bem diferente."
+    },
+    {
+      "q": "O extrato e a consulta de recall substituem a vistoria mecânica?",
+      "a": "Não. São verificações complementares. Os canais oficiais informam registros e pendências disponíveis; uma inspeção verifica os componentes que o profissional avaliou."
+    },
+    {
+      "q": "O carro mostrado na capa está à venda?",
+      "a": "Não. A capa é uma ilustração gerada por IA. Consulte o estoque atual e confirme disponibilidade com a Carplus Autos."
+    }
+  ],
+  "sources": [
+    {
+      "name": "Anfavea · Linha do tempo da indústria automotiva brasileira",
+      "url": "https://anfavea.com.br/site/institucional/linha-do-tempo/"
+    },
+    {
+      "name": "Renault · História da fábrica brasileira em São José dos Pinhais",
+      "url": "https://www.renault.com.br/renault-no-brasil.html"
+    },
+    {
+      "name": "Detran-PR · Consultar extrato de veículo",
+      "url": "https://www.detran.pr.gov.br/servicos/Transporte-e-Transito/Veiculos/Consultar-extrato-de-veiculo-0A30boka"
+    },
+    {
+      "name": "Senatran · Consultar recall de veículos",
+      "url": "https://www.gov.br/pt-br/servicos/realizar-consulta-sobre-recall-de-veiculos"
+    }
+  ],
+  "cta": {
+    "label": "Conversar sobre compra ou venda",
+    "href": "/contato"
+  },
+  "relatedSlugs": [
+    "checklist-comprar-carro-usado-curitiba",
+    "documentos-transferencia-veiculo-parana",
+    "troca-venda-direta-consignacao"
+  ]
+},
   {
     "slug": "checklist-comprar-carro-usado-curitiba",
     "title": "Checklist para comprar carro usado em Curitiba",

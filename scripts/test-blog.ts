@@ -3,8 +3,8 @@ import fs from 'node:fs/promises';
 import { blogPosts } from '../src/data/blog-posts';
 import { SITE_URL, buildBlogArticleJsonLd, buildBlogJsonLd } from '../src/lib/blog-seo';
 
-assert.equal(blogPosts.length, 4);
-assert.equal(new Set(blogPosts.map(post => post.slug)).size, 4);
+assert.ok(blogPosts.length >= 5);
+assert.equal(new Set(blogPosts.map(post => post.slug)).size, blogPosts.length);
 const sitemap = await fs.readFile('dist/sitemap.xml', 'utf8');
 const llms = await fs.readFile('dist/llms.txt', 'utf8');
 const index = await fs.readFile('dist/blog/index.html', 'utf8');
@@ -29,6 +29,17 @@ for (const post of blogPosts) {
   assert.ok(html.includes('max-image-preview:large'));
   assert.ok(!html.includes('noindex'));
   assert.ok(html.includes('BlogPosting'));
+  if (post.imageSize) {
+    assert.ok(post.imageSize.width >= 1200);
+    assert.ok(html.includes(`<meta property="og:image:width" content="${post.imageSize.width}"`));
+    assert.ok(html.includes(post.imageCaption));
+  }
+  for (const section of post.sections) {
+    for (const milestone of section.milestones || []) {
+      assert.ok(milestone.source >= 1 && milestone.source <= post.sources.length);
+      assert.ok(html.includes(milestone.title));
+    }
+  }
   const ld = JSON.parse(html.match(/<script type="application\/ld\+json" id="page-json-ld">([\s\S]*?)<\/script>/)![1]);
   assert.equal(ld[0].headline, post.title);
   assert.equal(ld[0].author.name, 'Carplus Autos');
@@ -39,4 +50,4 @@ for (const post of blogPosts) {
   assert.equal(buildBlogArticleJsonLd(post)[0]['@type'], 'BlogPosting');
   console.log(`PASS ${post.slug}: rendered content, metadata, schema, image, sitemap, links`);
 }
-console.log('PASS blog index and all four articles');
+console.log(`PASS blog index and all ${blogPosts.length} articles`);

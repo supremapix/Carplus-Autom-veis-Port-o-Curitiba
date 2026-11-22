@@ -7,7 +7,7 @@ export function BlogCard({ post }: { post: BlogPost; key?: React.Key }) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-[#E0E0E0] bg-white transition-shadow hover:shadow-lg">
       <Link to={`/blog/${post.slug}`} tabIndex={-1} aria-hidden="true" className="block overflow-hidden bg-[#EDEDED]">
-        <img src={post.image} alt="" width="960" height="640" loading="lazy" decoding="async" className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+        <img src={post.image} alt="" width={post.imageSize?.width ?? 960} height={post.imageSize?.height ?? 640} loading="lazy" decoding="async" className="aspect-[3/2] w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]" />
       </Link>
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#805100]">{post.category} <span className="text-[#767676]">· {post.readingMinutes} min</span></p>

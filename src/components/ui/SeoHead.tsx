@@ -6,6 +6,8 @@ export interface SeoHeadProps {
   canonicalUrl: string;
   ogType?: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  ogImageSize?: { width: number; height: number };
   jsonLd?: object | object[];
   noindex?: boolean;
 }
@@ -16,6 +18,8 @@ export function SeoHead({
   canonicalUrl,
   ogType = 'website',
   ogImage = 'https://img.carplusautos.com.br/redes.png',
+  ogImageAlt,
+  ogImageSize,
   jsonLd,
   noindex = false,
 }: SeoHeadProps) {
@@ -46,7 +50,11 @@ export function SeoHead({
     updateMeta('meta[property="og:image"]', 'property', 'og:image', ogImage);
     updateMeta('meta[property="og:image:secure_url"]', 'property', 'og:image:secure_url', ogImage);
     document.querySelectorAll('meta[property="og:image:width"], meta[property="og:image:height"], meta[property="og:image:type"]').forEach(el => el.remove());
-    updateMeta('meta[property="og:image:alt"]', 'property', 'og:image:alt', title);
+    if (ogImageSize) {
+      updateMeta('meta[property="og:image:width"]', 'property', 'og:image:width', String(ogImageSize.width));
+      updateMeta('meta[property="og:image:height"]', 'property', 'og:image:height', String(ogImageSize.height));
+    }
+    updateMeta('meta[property="og:image:alt"]', 'property', 'og:image:alt', ogImageAlt || title);
 
     // 4. Twitter Card
     updateMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title);
@@ -76,7 +84,7 @@ export function SeoHead({
     } else if (scriptEl) {
       scriptEl.remove();
     }
-  }, [title, description, canonicalUrl, ogType, ogImage, jsonLd, noindex]);
+  }, [title, description, canonicalUrl, ogType, ogImage, ogImageAlt, ogImageSize, jsonLd, noindex]);
 
   return null;
 }

@@ -22,7 +22,7 @@ export function buildBlogJsonLd() {
 }
 
 export function buildBlogArticleJsonLd(post: BlogPost) {
-  const articleBody = [post.answer, ...post.sections.flatMap(section => [section.title, ...section.paragraphs, ...(section.bullets || [])]), ...post.faqs.flatMap(faq => [faq.q, faq.a])].join('\n\n');
+  const articleBody = [post.answer, ...post.sections.flatMap(section => [section.title, ...section.paragraphs, ...(section.bullets || []), ...(section.milestones || []).flatMap(item => [item.year, item.title, item.text])]), ...post.faqs.flatMap(faq => [faq.q, faq.a])].join('\n\n');
   return [
     { '@context': 'https://schema.org', '@type': 'BlogPosting', '@id': `${blogUrl(post)}#article`,
       headline: post.title, description: post.description, url: blogUrl(post), mainEntityOfPage: blogUrl(post),
