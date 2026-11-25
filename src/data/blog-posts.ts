@@ -21,6 +21,99 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
 {
+  "slug": "consumo-carro-usado-cidade-estrada",
+  "title": "Consumo de carro usado: como comparar cidade e estrada antes da compra",
+  "description": "Aprenda a consultar a tabela do Inmetro pela versão correta e a estimar seu gasto de combustível usando os trajetos que você faz em Curitiba e região.",
+  "category": "Compra consciente",
+  "datePublished": "2026-11-23",
+  "dateModified": "2026-11-23",
+  "readingMinutes": 4,
+  "answer": "Compare as versões pelo consumo de referência do Inmetro para o mesmo combustível e o mesmo tipo de trajeto. Divida a distância mensal urbana pelo consumo urbano e a rodoviária pelo consumo de estrada; some os litros e multiplique pelo preço que você paga. É uma estimativa: o resultado real depende do uso e do estado do veículo.",
+  "image": "/images/editorial/consumo-carro-usado-cidade-estrada.webp",
+  "imageAlt": "Carro compacto prateado estacionado ao lado de uma estrada que segue em direção a uma área urbana",
+  "imageCaption": "Ilustração gerada por IA. Não representa um veículo do estoque nem um trecho específico de Curitiba.",
+  "imageSize": {
+    "width": 1200,
+    "height": 675
+  },
+  "stickers": [
+    "Cidade e estrada",
+    "Tabela do Inmetro",
+    "Gasto mensal"
+  ],
+  "sections": [
+    {
+      "id": "versao-correta",
+      "title": "1. Encontre a linha da versão, não apenas a do modelo",
+      "paragraphs": [
+        "Dois carros com o mesmo nome podem ter motores, câmbios e versões diferentes. Antes de consultar a tabela do Programa Brasileiro de Etiquetagem Veicular, confirme a versão, a motorização, o combustível e o câmbio do carro anunciado. Busque na edição correspondente ao modelo e ano, quando disponível.",
+        "A tabela reúne veículos participantes e serve como referência de comparação. Não encontrou a combinação exata? Não use o número da versão mais parecida como se fosse daquele exemplar. Trate o consumo como uma informação ainda não confirmada."
+      ]
+    },
+    {
+      "id": "trajeto",
+      "title": "2. Compare o mesmo combustível e o mesmo percurso",
+      "paragraphs": [
+        "Para deslocamentos com semáforos e trânsito no Portão e em outros bairros de Curitiba, comece pela coluna de cidade. Se sua rotina inclui trechos rodoviários na região metropolitana, reserve uma parte da quilometragem para a coluna de estrada. Num flex, compare gasolina com gasolina ou etanol com etanol; não compare diretamente números em unidades diferentes.",
+        "Segundo o Inmetro, as referências vêm de ensaios padronizados e podem diferir do uso real. Carga, ar-condicionado, trânsito, modo de dirigir, pneus e manutenção são alguns dos fatores que interferem no resultado. A nota geral da etiqueta não substitui a leitura das colunas da versão que você está avaliando."
+      ]
+    },
+    {
+      "id": "calculo-mensal",
+      "title": "3. Transforme quilômetros por litro em litros por mês",
+      "paragraphs": [
+        "Se você percorre 600 km em cidade e 200 km em estrada no mês, faça duas contas. Num exemplo fictício com 10 km/l na cidade e 14 km/l na estrada, são 60 litros urbanos e cerca de 14,3 litros rodoviários, total de 74,3 litros. Multiplique esse total pelo preço por litro que você utiliza como referência. Não é dado de um carro, cotação ou promessa de consumo.",
+        "Repita com a outra versão usando as mesmas distâncias e o mesmo preço de combustível. Some depois os demais gastos que você quiser comparar, como seguro e manutenção. Não tire a média simples entre os dois números de km/l: o que faz diferença é quanto você dirige em cada tipo de trajeto."
+      ]
+    },
+    {
+      "id": "visita",
+      "title": "4. Na visita, confira o que a tabela não mede",
+      "paragraphs": [
+        "A etiqueta fala da versão ensaiada; não revela o estado de um carro usado específico. Antes de decidir, confira o histórico de manutenção disponível e peça uma avaliação técnica independente se ainda houver dúvidas. Num test-drive combinado com o vendedor, observe como o carro se comporta em situações parecidas com as suas, mas não tire uma conclusão de consumo com base em poucos quilômetros."
+      ],
+      "bullets": [
+        "Guarde o ano e a versão da tabela consultada para poder conferir a comparação depois.",
+        "Use a estimativa de combustível só como uma das colunas ao comparar dois seminovos.",
+        "Se o painel mostrar um consumo diferente, verifique qual período ou trajeto está sendo medido antes de tirar conclusões."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "q": "O consumo da tabela é garantido no carro usado?",
+      "a": "Não. É uma referência de ensaio para a versão. Percurso, manutenção, carga, pneus, clima e forma de conduzir podem mudar o resultado."
+    },
+    {
+      "q": "Posso usar a tabela do modelo novo para estimar o consumo de um usado antigo?",
+      "a": "Só use números publicados para a configuração correspondente. Se ano, motor, câmbio ou combustível diferirem, não apresente a estimativa como se fosse do carro em análise."
+    },
+    {
+      "q": "Para quem usa o carro sobretudo em Curitiba, qual coluna olhar primeiro?",
+      "a": "Comece pela coluna de cidade se seus deslocamentos ocorrem principalmente em ruas e avenidas. Para viagens frequentes, calcule também os quilômetros rodoviários pela coluna de estrada."
+    }
+  ],
+  "sources": [
+    {
+      "name": "Inmetro — tabelas do Programa Brasileiro de Etiquetagem Veicular",
+      "url": "https://www.gov.br/inmetro/pt-br/assuntos/regulamentacao/avaliacao-da-conformidade/programa-brasileiro-de-etiquetagem/tabelas-de-eficiencia-energetica/veiculos-automotivos-pbe-veicular/"
+    },
+    {
+      "name": "Inmetro — como se calcula o consumo de combustível de referência",
+      "url": "https://www.gov.br/inmetro/pt-br/acesso-a-informacao/perguntas-frequentes/avaliacao-da-conformidade/etiquetagem-para-veiculos-leves/como-obter-informacoes-sobre-metodologia-para-calculo-de-consumo-de-combustivel-pbe-veicular"
+    }
+  ],
+  "cta": {
+    "label": "Consultar as versões no estoque",
+    "href": "/estoque"
+  },
+  "relatedSlugs": [
+    "checklist-comprar-carro-usado-curitiba",
+    "financiamento-entrada-cet-custo-total",
+    "historia-do-carro-no-brasil-e-do-seminovo"
+  ]
+},
+{
   "slug": "historia-do-carro-no-brasil-e-do-seminovo",
   "title": "Como o carro mudou no Brasil e o que isso ensina ao comprar um seminovo",
   "description": "De 1956 à fábrica no Paraná e ao motor flex: conheça os marcos e saiba o que verificar em um carro usado antes de decidir em Curitiba.",
