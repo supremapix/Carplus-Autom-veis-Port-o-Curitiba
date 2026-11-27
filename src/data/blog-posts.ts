@@ -343,12 +343,12 @@ export const blogPosts: BlogPost[] = [
   {
     "slug": "documentos-transferencia-veiculo-parana",
     "title": "Documentos e transferência de veículo no Paraná",
-    "description": "Entenda CRLV-e, ATPV-e, comunicação de venda e os cuidados para organizar a transferência de um carro no Paraná.",
+    "description": "Transferência de veículo no Paraná: veja a regra de assinatura eletrônica da ATPV-e desde 26/11/2026, as exceções e como conferir se o registro mudou.",
     "category": "Documentação",
     "datePublished": "2026-11-08",
-    "dateModified": "2026-11-08",
+    "dateModified": "2026-11-27",
     "readingMinutes": 4,
-    "answer": "A transferência de um veículo no Paraná exige conferir a situação cadastral, reunir os documentos das partes e do veículo, formalizar a venda e cumprir as etapas do Detran-PR. Assinar o recibo ou emitir a ATPV-e não significa que o registro já foi transferido.",
+    "answer": "Desde 26 de novembro de 2026, o Detran-PR exige assinatura eletrônica avançada ou qualificada nas ATPV-e apresentadas ao órgão. Há exceções para determinados processos anteriores e transferências interestaduais. Emitir ou assinar a autorização não conclui a transferência: acompanhe o registro até a confirmação.",
     "image": "/images/vehicles/renault-kardian-iconic-1-0-turbo-automatico-2026/01.webp",
     "imageAlt": "Renault Kardian preto visto de frente e de lado na Carplus Autos",
     "imageCaption": "Imagem do acervo do site da Carplus Autos. Uso ilustrativo, sem indicação de disponibilidade atual.",
@@ -373,6 +373,19 @@ export const blogPosts: BlogPost[] = [
         "paragraphs": [
           "O CRLV-e é o documento de registro e licenciamento. A ATPV-e é a autorização utilizada para formalizar a transferência. Um arquivo não substitui o outro. O Detran-PR orienta a emissão da ATPV-e para documentos emitidos a partir de 1º de janeiro de 2021.",
           "Antes de emitir, revise a identificação do comprador, os dados do veículo e as informações da venda. No procedimento aplicável ao seu caso, confirme como as assinaturas serão feitas e validadas. Não presuma que qualquer assinatura eletrônica é aceita nem que todo processo pode ser concluído sem atendimento presencial."
+        ]
+      },
+      {
+        "id": "assinatura-atpve",
+        "title": "O que mudou na assinatura da ATPV-e em 26 de novembro de 2026?",
+        "paragraphs": [
+          "A Portaria 1.913 do Detran-PR passou a exigir assinatura eletrônica avançada ou qualificada para a ATPV-e apresentada ao órgão. Uma foto da assinatura ou o PDF impresso e assinado à mão não equivalem à assinatura eletrônica aceita. Use os canais indicados pelo Detran-PR e, se alguém assinar em nome de outra pessoa ou de uma empresa, confira a documentação de representação.",
+          "O Detran-PR descreve exceções para documentos anteriores que já tinham firma reconhecida até 25/11/2026, processos com etapa irreversível já constituída sob a regra anterior e saídas do Paraná para estados cujos sistemas ainda não se comunicam com o paranaense. Se a negociação se encaixar em uma dessas situações, confirme com o órgão qual documento é aceito antes de refazer a assinatura."
+        ],
+        "bullets": [
+          "Antes de fechar em Curitiba, confirme em qual estado o veículo está registrado e onde será registrado após a venda.",
+          "Se a transferência já começou, reúna os protocolos e as datas antes de decidir se precisa emitir uma nova autorização.",
+          "Depois da assinatura, guarde o comprovante e acompanhe a conclusão no canal oficial. Assinatura, comunicação de venda e registro final são etapas distintas."
         ]
       },
       {
@@ -416,6 +429,10 @@ export const blogPosts: BlogPost[] = [
     ],
     "faqs": [
       {
+        "q": "Ainda posso imprimir a ATPV-e e reconhecer firma em cartório?",
+        "a": "Não como regra geral para novos processos no Paraná. Desde 26/11/2026, o Detran-PR aceita a ATPV-e com assinatura eletrônica avançada ou qualificada. Veja as exceções do órgão para processos anteriores e certas transferências para outro estado."
+      },
+      {
         "q": "Emitir a ATPV-e conclui a transferência?",
         "a": "Não. A emissão é uma etapa. É necessário cumprir o procedimento e confirmar a alteração do registro."
       },
@@ -429,6 +446,10 @@ export const blogPosts: BlogPost[] = [
       }
     ],
     "sources": [
+      {
+        "name": "Detran-PR: mudança na assinatura da ATPV-e, publicada em 25/11/2026",
+        "url": "https://www.detran.pr.gov.br/Noticia/Apos-atualizacao-do-Contran-Detran-PR-passa-exigir-assinatura-eletronica-nas-transferencias"
+      },
       {
         "name": "Detran-PR: transferir propriedade de veículo",
         "url": "https://www.detran.pr.gov.br/servicos/Veiculo/Compra-e-venda/Transferir-propriedade-de-veiculo-ERrZE36k"
